@@ -1,0 +1,2 @@
+module EkimaeBoardHelper
+end

@@ -1,0 +1,23 @@
+<table id="headerBoard">
+  <tr>
+	<td class="menu_text">
+	    自分のやること&nbsp;
+	     <%= link_to '看板で表示' ,:action=>'list' %>
+         &nbsp;&nbsp;
+	     <%= link_to '一覧表示' ,:action=>'task_list' %>
+        &nbsp;&nbsp; |
+        &nbsp;&nbsp;
+	    <%= link_to '過去に自分がやったことをみる', :action =>'show_calendar' %>
+        &nbsp;&nbsp; |
+	</td>
+	<td colspan="2" class="menu_text">
+      &nbsp;&nbsp;
+	  <%= link_to 'ゴミ箱へ', :action => 'confirm_recycle' %>
+       &nbsp;&nbsp; |
+	</td>
+    <td colspan="2" class="menu_text">
+      &nbsp;&nbsp;
+	  <%= link_to 'ログアウト',:controller=>'login', :action => 'logout' %>
+	</td>
+  </tr>
+</table>

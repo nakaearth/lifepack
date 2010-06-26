@@ -1,0 +1,11 @@
+<% if flash[:error] -%>
+  <%= flash[:error] %>
+<% end -%>
+ログインするのにOpenIdを使います。認証局を選んでください。
+<% form_tag :controller => "login" , :action => "login" do |f| -%>
+  <label for="openid_url" >
+    OpenId URL:
+  </label>
+  <%=select_tag "openid_url","<option value=http://mixi.jp>MIXI</option><option value=http://www.yahoo.co.jp>Yahoo</option>" %>
+  <%= submit_tag "Login" -%>
+<% end -%>

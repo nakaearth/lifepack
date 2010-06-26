@@ -1,0 +1,16 @@
+<%= error_messages_for 'comment' %>
+<div id='comment_form_block'>
+<%= form_tag  :action => 'save_comment', :id => @memo.id%>
+<p>
+<label for="comment_author">名前は？</label>
+<%= text_field 'comment','author' %>
+<br>
+<label for="comment_message">メッセージ</label>
+<br/>
+<%= text_area 'comment', 'message',"cols" => 80, "rows" => 3  %>
+<br/>
+
+<%= submit_tag 'コメント投稿' %>
+</div>
+<!--[eoform:task]-->
+

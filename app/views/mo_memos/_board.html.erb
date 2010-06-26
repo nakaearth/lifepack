@@ -1,0 +1,13 @@
+<table class = "board" id="main_board" >
+  <% for memo in @memos %>
+  <tr>
+    <td class="memo" id="memo_board" >
+      <div style="border: 2px solid #333333; background-color: #FFFFFF;">
+      ﾒﾓ：<%= h memo.title %><br>
+      本文: <%=format_string_length(memo.message,10) %><br>
+      著者：<%=h memo.author %>
+      </div>
+    </td><td><%= link_to '詳細',  :action=>'show_memo',:id => memo.id %></td>
+  </tr>
+ <% end %>
+</table>

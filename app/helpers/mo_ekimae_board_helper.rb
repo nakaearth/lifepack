@@ -1,0 +1,2 @@
+module MoEkimaeBoardHelper
+end

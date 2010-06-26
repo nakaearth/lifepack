@@ -1,0 +1,94 @@
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "scriptaculousext" %>
+<%= stylesheet_link_tag 'task' %>
+<script language="JavaScript">
+    	function deleteTask(id) {
+    		var targetTask = document.getElementById(id);
+    		targetTask.parentNode.removeChild(targetTask);
+    	}
+        		// ウインドウのロード時の関数をセット
+        window.onclick = init;
+        
+        var frac = 1;    // 1pxと1mの比率。この値を10にすれば1pxが10mになる
+        var bound = 0.5; // バウンドするときの跳ね返る割合
+        var count = 0;   // 落下開始からのカウント
+        var elm;         // 落下するエレメント
+        var y = 0;       // 落下するエレメントの上からのピクセル
+        
+        function fall() {
+        
+          // yに落下加速を考慮した数値を加算
+          y += ++count * 0.098 * frac;
+          elm.style.top = y;
+        
+          if(y >= wH){
+        
+            // 着地したときの処理
+            y = wH;
+            count = Math.ceil(-count * bound);
+            if( count == -1 )clearInterval( handle );
+          }
+        }
+        function init() {
+        
+          //  エレメント取得
+          elm = document.getElementById("gomibako");
+        
+          // ウインドウの幅を取得
+          wH = document.all ? document.body.clientHeight : window.innerHeight;
+          wH = wH - elm.height;
+         
+          // 落下スクリプト開始
+          handle = setInterval(fall,10);
+        }
+         	
+</script>
+<img src="/images/gomibako.png" id="gomibako" onclick="init();" style="position:absolute">
+<br/>
+<table class = "board" id="board">
+    <tr>
+        <td colspan="3" style="text-align:right;">
+            <%= link_to 'かんばんに戻る', :action => 'list' %>
+        </td>
+    </tr>
+    <tr>
+        <td class="recycle" id="recycle" colspan="3">
+            <div id="todoCaption" class="gomiCaption">
+                ゴミ箱
+            </div>
+            <%= render :partial => 'task', :collection => @recycles %>
+        </td>
+    </tr>
+    <tr>
+        <td class="recover" id="todo">
+            <div id="todoCaption" class="gomiCaption">
+                ToDoに戻す
+            </div>
+            ここにドロップするとタスクのステータスをToDoに戻します。
+        </td>
+        <%=drop_receiving_element 'todo',
+        :update =>'info',
+        :complete=> visual_effect(:fade),
+        :url => {:action => 'change_status',:status => 'todo'} %>
+        <td class="recover" id="doing">
+            <div id="DoingCaption" class="gomiCaption">
+                Doingに戻す
+            </div>
+            ここにドロップするとタスクのステータスをDoingに戻します。
+        </td>
+        <%=drop_receiving_element 'doing',
+        :update =>'info',
+        :complete=> visual_effect(:fade),
+        :url => {:action => 'change_status' ,:status => 'doing'} %>
+        <td class="recover" id="done">
+            <div id="DoneCaption" class="gomiCaption">
+                Doneに戻す
+            </div>
+            ここにドロップするとタスクのステータスをDoneに戻します。
+        </td>
+        <%=drop_receiving_element 'done',
+        :update =>'info',
+        :complete=> visual_effect(:fade) ,
+        :url => {:action => 'change_status',:status => 'done'} %>
+    </tr>
+</table>

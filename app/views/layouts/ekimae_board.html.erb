@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <%= javascript_include_tag :defaults ,:cache => "life_board" %><!-- JavaScript -->
+  <%= stylesheet_link_tag 'life_boards' %><!-- StyleSheet -->
+  <title>駅前掲示板: <%= controller.action_name %></title>
+  <script src="http://platform.twitter.com/anywhere.js?id=NeHU5eNjljvYRkyWPwo1lQ&amp;v=1">
+  </script>
+  <script type="text/javascript">
+     twttr.anywhere(function(twitter) {
+              twitter.hovercards();
+     });
+  </script>
+</head>
+<body><center><div class="title">駅前掲示板の一覧です。好きな掲示板を選らんでください。</div></center>
+<p style="color: green"><%= flash[:notice] %></p>
+<div id="err_msg_id" class="err_msg"><%= flash[:error] %></div><br>
+
+<%= yield %>
+
+</body>
+</html>

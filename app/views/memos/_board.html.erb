@@ -1,0 +1,17 @@
+<table class = "board" id="main_board" >
+  <tr>
+    <td class="memo_board" id="memo_board" >
+      <table><tr><td>
+        メモ
+      </td></tr></table>
+	  <div id="memoCaption" class="memoCaption">
+	  <%= render :partial => 'memo', :collection => @memos %>
+	  </div>
+    </td>
+  <%=drop_receiving_element 'memo',
+			:update =>'info',
+  :complete=> visual_effect(:highlight),
+  :url => {:action => 'change_status',:status => 'todo'}
+		%>
+ </tr>
+</table>

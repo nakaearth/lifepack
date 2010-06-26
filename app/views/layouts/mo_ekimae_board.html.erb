@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <%= javascript_include_tag :defaults ,:cache => "life_board" %><!-- JavaScript -->
+  <%= stylesheet_link_tag 'life_boards' %><!-- StyleSheet -->
+  <title>駅前掲示板: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <script src="http://maps.google.co.jp/maps?hl=ja&amp;file=api&amp;v=2&amp;key=ABQIAAAANev-7G8eKq-3IAhsgVZRhxTUpob225lbeWteLqWtr03cj4F1KxRSgU7aJnRJs8-p8iw6gYYcF8xqjA" type="text/javascript"></script>
+</head>
+<body><center><div class="mo_title">モバイル版駅前掲示板</div></center>
+<p style="color: green"><%= flash[:notice] %></p>
+<div id="err_msg_id" class="err_msg"><%= flash[:error] %></div><br>
+
+<%= yield %>
+
+</body>
+</html>

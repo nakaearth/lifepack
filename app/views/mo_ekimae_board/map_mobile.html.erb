@@ -1,0 +1,17 @@
+<font size="3" >
+あなたの居場所から考えて近くの掲示板は以下です。<br>
+お選びください。</font>
+<br>
+<% for board in @boards %>
+ <%= link_to board.title,:controller =>'mo_memos',:board_id=>board.id %><br>
+<% end %>
+<br>
+<br>
+<font size="3" >
+あなたの居場所から気になった場所の距離を調べたい場合は<br>
+</font>
+<%= link_to 'こちらへ',:controller =>'mo_place' %><br>
+
+<div id="map">
+    <img src="http://maps.google.com/staticmap?center=<%= @position.lat %>,<%= @position.lon %>&zoom=15&size=<%= @display_size %>&maptype=mobile&markers=<%= @position.lat %>,<%= @position.lon %>,redy%7C43.067402,141.352697,blueb&key=ABQIAAAANev-7G8eKq-3IAhsgVZRhxTUpob225lbeWteLqWtr03cj4F1KxRSgU7aJnRJs8-p8iw6gYYcF8xqjA" />
+</div>

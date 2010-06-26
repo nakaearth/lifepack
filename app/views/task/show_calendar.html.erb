@@ -1,0 +1,16 @@
+<%= render :partial => 'header' %>
+<%= render :partial => 'menus' %>
+<br>
+<div id="cal_menu" class="cal_menu_text">
+<%=  link_to @prev.year.to_s+'年'+@prev.month.to_s+'月' ,:action=>'show_calendar',:year =>@prev.year,:month=>@prev.month %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%=  link_to @next.year.to_s+'年'+@next.month.to_s+'月' ,:action=>'show_calendar',:year =>@next.year,:month=>@next.month %>
+
+<%=  calendar(:year => @year, :month =>@month ,:table_class => "calendar_helper") do|date|
+  cell_text='<a href="show_past_tasks?year='+@year.to_s+'&month='+@month.to_s+'&day='+date.day.to_s+'">'+date.day.to_s+'</a>'
+end
+%>
+</div>
+
+
+

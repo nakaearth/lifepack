@@ -1,0 +1,22 @@
+<font size="3" >距離検索しますか？</font>
+あなたが今いる場所はからの距離を測りましょうか？
+ <%= form_tag  :action => 'display_distance' %>
+<p>
+<label for="place_name">場所は？</label>
+<%= text_field_tag 'place_name' %>
+<%= submit_tag '計測' %>
+
+<font size="3" >
+あなたの居場所から<%= h @place_name %>までの距離は、<%= h @distance %>キロメートル
+<br>
+
+<br>
+<br>
+<font size="3" >
+<%= link_to '掲示板一覧へ',:controller =>'mo_ekimae_board',:action=>'map' %><br>
+</font>
+
+<div id="map" class="map">
+    <img src="http://maps.google.com/staticmap?center=<%= @position.lat %>,<%= @position.lon %>&zoom=15&size=220x220&maptype=mobile&markers=<%= @position.lat %>,<%= @position.lon %>,
+redy%7C43.067402,141.352697,blueb&key=ABQIAAAANev-7G8eKq-3IAhsgVZRhxTUpob225lbeWteLqWtr03cj4F1KxRSgU7aJnRJs8-p8iw6gYYcF8xqjA" />
+</div>

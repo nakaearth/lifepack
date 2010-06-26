@@ -1,0 +1,2 @@
+module MoTopMenusHelper
+end

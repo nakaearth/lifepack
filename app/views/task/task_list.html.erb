@@ -1,0 +1,43 @@
+<%= render :partial => 'header' %>
+<%= render :partial => 'menus' %>
+<div id="item_form_block" class="forms">
+<%= render :partial => 'form' %>
+</div>
+<div id="task_info"></div>
+
+
+<table class="task_list_board">
+    <tr >
+        <th class="task_list_menu_bar">
+            内容
+        </th>
+        <th class="task_list_menu_bar">
+            状態
+        </th>
+        <th class="task_list_menu_bar">
+            いつやるか度
+        </th>
+        <th class="task_list_menu_bar">
+
+        </th>
+    </tr>
+    <%  i = 0 %>
+    <% for task in @page %>
+    <tr >
+        <td class="task_list_td<%= list_color_num(i) %> ">
+			<%=h task.content %>
+        </td>
+        <td class="task_list_td<%= list_color_num(i) %>">
+			<%=h status_name(task.status) %>
+        </td>
+        <td class="task_list_td<%= list_color_num(i) %>">
+			<%=h priority_name(task.priority) %>
+        </td>
+        <td class="task_list_td<%= list_color_num(i) %>">
+            <%= link_to_remote '編集', :url => {:action => 'editTask', :id => task.id} %>
+        </td>
+    </tr>
+    <% i+=1 %>
+    <% end %>
+</table>
+<%= will_paginate @page %>

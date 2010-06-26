@@ -1,0 +1,68 @@
+<table class = "board" id="board">
+  <tr>
+    <td class="todo" id="todo">
+      <table><tr><td>
+        やる予定
+      </td></tr></table>
+	  <div id="todoCaption" class="boardCaption">
+	  <%= render :partial => 'task', :collection => @toDoTasks %>
+	  </div>
+    </td>
+  
+  <%=drop_receiving_element 'todo',
+			:update =>'info',
+  :complete=> visual_effect(:highlight),
+  :url => {:action => 'change_status',:status => 'todo'}
+		%>
+
+
+    <td  class="doing" id="doing">
+	  <table><tr><td >
+	  今やってるよ～
+	  </td></tr></table>
+	  <div id="doingCaption" class="boardCaption">		
+	  <%= render :partial => 'task', :collection => @doingTasks %>
+      </div>
+    </td>
+  
+  <%=drop_receiving_element 'doing',
+		    :update =>'info',
+  :complete=> visual_effect(:highlight),
+  :url => {:action => 'change_status' ,:status => 'doing'}
+		%>
+
+    <td class="done" id="done">
+	  <table><tr><td>
+	  完了だ～！
+	  </td></tr></table>
+	  <div id="doneCaption" class="boardCaption">
+	  <%= render :partial => 'task', :collection => @doneTasks %>
+      </div>
+    </td>
+  
+  <%=drop_receiving_element 'done',
+		    :update =>'info',
+  :complete=> visual_effect(:highlight) ,
+  :url => {:action => 'change_status',:status => 'done'}
+		%>
+  </tr>
+  <tr>
+	<td colspan="2">
+	</td>
+ 	<td class="recycle" id="recycle">
+      <div id="RecycleCaption" class="recycleCaption">
+        <%=image_tag("gomibako.png",:size => "20x20",:border => 0)%>
+	   	  	GOMI
+      </div>
+      <br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to 'GOMI', :action => 'confirm_recycle' %>		
+	</td>
+  <%=drop_receiving_element 'recycle',
+		    :update =>'info',
+  :url => {:action => 'recycle',:status => 'recycle'}
+		%>
+  </tr>
+</table>

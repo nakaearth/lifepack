@@ -1,0 +1,12 @@
+<h1>Editing task_board</h1>
+
+<% form_for(@task_board) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @task_board %> |
+<%= link_to 'Back', task_boards_path %>

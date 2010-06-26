@@ -1,0 +1,26 @@
+<div class="memo" id="<%=memo.id%>" style="border:2px solid #9DB1FF">
+	<div class="memo_bar">
+      <%= link_to '詳細',  :action=>'show',:id => memo.id %>
+      <%= link_to_remote '編集', :url => {:action => 'edit_memo', :id => memo.id} %>
+	  <%= link_to_remote 'X',:url => {:action => 'remove_memo',:id => memo.id}%>
+	</div>
+    <div class="memo_author">
+	<table style="padding:0px;margin:0px;">
+		<tr>
+		<td>
+          <%=h memo.author %>
+        </td>
+		</tr>
+	</table>
+    </div>
+    <%=h memo.title %><br>
+	<%=format_string_length(memo.message,20) %><br>
+  <hr>
+    タグは・・・・
+  <hr>
+	<span class="datetime">
+		作成<%=h memo.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+		更新<%=h memo.updated_at.strftime("%Y/%m/%d %H:%M") %><br>
+	</span>
+<%=draggable_element  "#{memo.id }",:revert=>false %>
+</div>

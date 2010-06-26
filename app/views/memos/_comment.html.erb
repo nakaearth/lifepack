@@ -1,0 +1,15 @@
+<div class="comment" id="<%=comment.comment_id%>" style="border:2px solid #9DB1FF">
+	<div class="comment_bar">
+	  <%= link_to_remote 'X',:url => {:action => 'remove_memo',:id => comment.comment_id}%>
+	</div>
+    <div class="comment_author">
+	<table style="padding:0px;margin:0px;">
+		<tr>
+		<td>
+          <%= comment.author %>
+        </td>
+		</tr>
+	</table>
+    </div>
+	<%= comment.message %><br>
+</div>

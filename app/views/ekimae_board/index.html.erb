@@ -1,0 +1,16 @@
+ <%= link_to 'トップへ',:controller=>'top_menus', :action => 'index' %><br>
+ <div id='auth' class='messageBox'>
+ アプリ作成者：@s_nakamura
+ </div>
+<br>
+<h1>掲示板</h1>
+<table>
+<% for board in @boards %>
+    <tr><td><%= link_to board.title,:controller =>'memos',:board_id=>board.id %></td><tr>
+<% end %>
+</table>
+<br>
+  <div id="board_map" class="map">
+<%= @map.to_html %>
+<%= @map.div %>
+  </div>

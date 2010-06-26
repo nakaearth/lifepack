@@ -1,0 +1,26 @@
+<div class="comment_menu">
+  <%= link_to 'コメント',:action => 'new_comment',:id => @memo.id %>
+  <%= link_to '削除',:action => 'remove_memo_after_show',:id => @memo.id %>
+  <%= link_to '戻る', :action=>'index', :board_id=>@select_board.id %>
+</div>
+<table class="comment_board"><tr><td>
+<div class="memo_detail" id="<%=@memo.id%>_detail" style="border:2px solid #9DB1FF">
+<p>
+  <b><label for="memo_title">タイトル</label>:</b><%=h @memo.title %>
+</p>
+<p>
+  <b><label for="memo_author">作者</label></b>
+  <%=h @memo.author %>
+</p>
+<p>
+  <b><label for="memo_message">メッセージ</label>:</b>
+  <%=h @memo.message %>
+</p>
+</div>
+</td></tr>
+<tr><td>
+  <%= render :partial => 'comment_list' %>
+</td></tr>
+</table>
+
+<br>

@@ -1,0 +1,13 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<%= link_to '掲示板一覧へ', :controller =>'mo_ekimae_board', :action=>'map' %>
+<br>
+<font size="3"><%= h @select_board.title %></font><!-- %= h @distance % > -->
+<font size="2"><%= h @select_board.description %></font>
+<div id="item_form_block" class="forms">
+<%= link_to 'ﾒｯｾｰｼﾞ記入へ',  :action=>'write_form' %>
+</div>
+<br />
+<%= render :partial => 'board' %>

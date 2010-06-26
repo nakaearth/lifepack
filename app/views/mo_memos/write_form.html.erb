@@ -1,0 +1,23 @@
+<%= error_messages_for 'memo' %>
+
+<%= form_tag  :action => 'save_memo'%>
+<p>
+<label for="memo_title">タイトルは？</label>
+<%= text_field 'memo','title' %>
+<br>
+<label for="memo_message">詳細はこちら</label>
+<br/>
+<%= text_area 'memo', 'message',"cols" => 80, "rows" => 3  %>
+<br/>
+<label for="memo_author">誰のメモ？</label>
+<%= text_field 'memo','author' %>
+<br/>
+<label for="memo_password">秘密のパスワードは？</label>
+<%= password_field 'memo','password' , :size => 30 %>
+<br>
+<label for="memo_password">確認のためもう一度秘密のパスワードを</label>
+<input type="password" id="rePassword" name="rePassword" size="30" value="">
+<br>
+<%= submit_tag '保存' %>
+
+
