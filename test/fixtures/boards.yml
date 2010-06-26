@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+ id: 1
+ title: '渋谷駅掲示板'
+ description: '渋谷駅のバーチャル掲示板です。落書きは禁止！'
+ gps_y: 35.659354
+ gps_x: 139.701118
+ image_file: 'shibuya_station.jpg'
+ 

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Hash::Conversions [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Hash::Conversions
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/hash/conversions_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/hash/conversions.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>XML_TYPE_NAMES</td>
+                    <td>=</td>
+                    <td class='context-item-value'>{           &quot;Symbol&quot;     =&gt; &quot;symbol&quot;,           &quot;Fixnum&quot;     =&gt; &quot;integer&quot;,           &quot;Bignum&quot;     =&gt; &quot;integer&quot;,           &quot;BigDecimal&quot; =&gt; &quot;decimal&quot;,           &quot;Float&quot;      =&gt; &quot;float&quot;,           &quot;TrueClass&quot;  =&gt; &quot;boolean&quot;,           &quot;FalseClass&quot; =&gt; &quot;boolean&quot;,           &quot;Date&quot;       =&gt; &quot;date&quot;,           &quot;DateTime&quot;   =&gt; &quot;datetime&quot;,           &quot;Time&quot;       =&gt; &quot;datetime&quot;,           &quot;ActiveSupport::TimeWithZone&quot; =&gt; &quot;datetime&quot;         } unless defined?(XML_TYPE_NAMES)</td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>XML_FORMATTING</td>
+                    <td>=</td>
+                    <td class='context-item-value'>{           &quot;symbol&quot;   =&gt; Proc.new { |symbol| symbol.to_s },           &quot;date&quot;     =&gt; Proc.new { |date| date.to_s(:db) },           &quot;datetime&quot; =&gt; Proc.new { |time| time.xmlschema },           &quot;binary&quot;   =&gt; Proc.new { |binary| ActiveSupport::Base64.encode64(binary) },           &quot;yaml&quot;     =&gt; Proc.new { |yaml| yaml.to_yaml }</td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>XML_PARSING</td>
+                    <td>=</td>
+                    <td class='context-item-value'>{             &quot;symbol&quot;       =&gt; Proc.new  { |symbol|  symbol.to_sym },             &quot;date&quot;         =&gt; Proc.new  { |date|    ::Date.parse(date) },             &quot;datetime&quot;     =&gt; Proc.new  { |time|    ::Time.parse(time).utc rescue ::DateTime.parse(time).utc },             &quot;integer&quot;      =&gt; Proc.new  { |integer| integer.to_i },             &quot;float&quot;        =&gt; Proc.new  { |float|   float.to_f },             &quot;decimal&quot;      =&gt; Proc.new  { |number|  BigDecimal(number) },             &quot;boolean&quot;      =&gt; Proc.new  { |boolean| %w(1 true).include?(boolean.strip) },             &quot;string&quot;       =&gt; Proc.new  { |string|  string.to_s },             &quot;yaml&quot;         =&gt; Proc.new  { |yaml|    YAML::load(yaml) rescue yaml },             &quot;base64Binary&quot; =&gt; Proc.new  { |bin|     ActiveSupport::Base64.decode64(bin) },             &quot;file&quot;         =&gt; Proc.new do |file, entity|               f = StringIO.new(ActiveSupport::Base64.decode64(file))</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

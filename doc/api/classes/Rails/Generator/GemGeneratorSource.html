@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Rails::Generator::GemGeneratorSource [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Rails::Generator::GemGeneratorSource
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/railties/lib/rails_generator/lookup_rb.html">vendor/rails/railties/lib/rails_generator/lookup.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="AbstractGemSource.html">Rails::Generator::AbstractGemSource</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="GemGeneratorSource.html">GemGeneratorSource</a> hits the mines to
+            quarry for generators. The latest versions of gems named *_generator are
+            selected.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M002781">each</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M002781'>
+                <a name='M002781'></a>
+                <div class='synopsis'>
+                  <span class='name'>each</span>
+                  <span class='arguments'>() {|Spec.new(gem.name.sub(/_generator$/, ''), gem.full_gem_path, label)| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Yield latest versions of generator gems.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002781-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002781-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/rails_generator/lookup.rb, line 210</span>&#x000A;210:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>&#x000A;211:         <span class="ruby-identifier">dependency</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Dependency</span>.<span class="ruby-identifier">new</span>(<span class="ruby-regexp re">/_generator$/</span>, <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Requirement</span>.<span class="ruby-identifier">default</span>)&#x000A;212:         <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-identifier">cache</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">dependency</span>).<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">latest</span>, <span class="ruby-identifier">gem</span><span class="ruby-operator">|</span>&#x000A;213:           <span class="ruby-identifier">hem</span> = <span class="ruby-identifier">latest</span>[<span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>]&#x000A;214:           <span class="ruby-identifier">latest</span>[<span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">gem</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hem</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">gem</span>.<span class="ruby-identifier">version</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">hem</span>.<span class="ruby-identifier">version</span>&#x000A;215:           <span class="ruby-identifier">latest</span>&#x000A;216:         }.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gem</span><span class="ruby-operator">|</span>&#x000A;217:           <span class="ruby-keyword kw">yield</span> <span class="ruby-constant">Spec</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/_generator$/</span>, <span class="ruby-value str">''</span>), <span class="ruby-identifier">gem</span>.<span class="ruby-identifier">full_gem_path</span>, <span class="ruby-identifier">label</span>)&#x000A;218:         }&#x000A;219:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

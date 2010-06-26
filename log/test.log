@@ -1,0 +1,876 @@
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (37.0ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (54.0ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+  [4;35;1mSQL (7.0ms)[0m   [0mCREATE TABLE `memos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(50) NOT NULL, `message` varchar(300) NOT NULL, `img_url` varchar(255), `author` varchar(20) NOT NULL, `password` varchar(16) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090920030904')[0m
+Migrating to CreateRecommendPlaces (20090920031125)
+  [4;35;1mSQL (33.0ms)[0m   [0mCREATE TABLE `recommend_places` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `message` varchar(255), `img_url` varchar(255), `author` varchar(255), `password` varchar(255), `point` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090920031125')[0m
+Migrating to AddColumnMemo (20091010140943)
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091010140943')[0m
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mCREATE TABLE `open_id_authentication_associations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `issued` int(11), `lifetime` int(11), `handle` varchar(255), `assoc_type` varchar(255), `server_url` blob, `secret` blob) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mCREATE TABLE `open_id_authentication_nonces` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `timestamp` int(11) NOT NULL, `server_url` varchar(255), `salt` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091010143245')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (53.0ms)[0m   [0;1mSHOW FIELDS FROM `memos`[0m
+  [4;35;1mSQL (247.0ms)[0m   [0mdescribe `memos`[0m
+  [4;36;1mSQL (33.0ms)[0m   [0;1mSHOW KEYS FROM `memos`[0m
+  [4;35;1mSQL (20.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (214.0ms)[0m   [0;1mdescribe `open_id_authentication_associations`[0m
+  [4;35;1mSQL (19.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (234.0ms)[0m   [0mdescribe `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `recommend_places`[0m
+  [4;36;1mSQL (211.0ms)[0m   [0;1mdescribe `recommend_places`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (1.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE ((`comments`.`memo_id` = 1)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE ((`comments`.`memo_id` = 1)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE ((`comments`.`memo_id` = 1)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE ((`comments`.`memo_id` = 1)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mComment Load (1.0ms)[0m   [0mSELECT * FROM `comments` WHERE (memo_id=1 and comment_id=1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mMemo Load (0.0ms)[0m   [0mSELECT * FROM `memos` WHERE (`memos`.`id` = 1) [0m
+  [4;36;1mComment Load (0.0ms)[0m   [0;1mSELECT * FROM `comments` WHERE ((`comments`.`memo_id` = 1)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mComment Load (0.0ms)[0m   [0mSELECT * FROM `comments` WHERE (memo_id=1 and comment_id=1) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (65.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+Migrating to CreateRecommendPlaces (20090920031125)
+Migrating to AddColumnMemo (20091010140943)
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+Migrating to CreateBadWords (20100211044141)
+  [4;36;1mSQL (36.0ms)[0m   [0;1mCREATE TABLE `bad_words` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `word` varchar(255) DEFAULT '' NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100211044141')[0m
+Migrating to RemoveColumnMemo (20100211044334)
+  [4;36;1mSQL (37.0ms)[0m   [0;1mALTER TABLE `memos` DROP `img_url`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100211044334')[0m
+Migrating to CreateBoards (20100214151615)
+  [4;36;1mSQL (14.0ms)[0m   [0;1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT '' NOT NULL, `description` varchar(255) DEFAULT '' NOT NULL, `image_file` varchar(255) DEFAULT '' NOT NULL, `gps_x` int(11), `gps_y` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mBoard Columns (5.0ms)[0m   [0mSHOW FIELDS FROM `boards`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Create (0.0ms)[0m   [0mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('shibuya_station.jpg', '2010-03-03 16:42:00', '渋谷駅掲示板', '渋谷駅のバーチャル掲示板です。落書きは禁止！', 139, 35, '2010-03-03 16:42:00')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Create (0.0ms)[0m   [0;1mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('kamakura_station.jpg', '2010-03-03 16:42:00', '鎌倉駅掲示板', '鎌倉駅のバーチャル掲示板です。古都鎌倉。観光にいいですよ', 139, 35, '2010-03-03 16:42:00')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100214151615')[0m
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+  [4;35;1mSQL (17.0ms)[0m   [0mALTER TABLE `memos` ADD `board_id` int(11) DEFAULT 0 NOT NULL[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100216160629')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `bad_words`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `bad_words`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `bad_words`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `boards`[0m
+  [4;36;1mSQL (9.0ms)[0m   [0;1mdescribe `boards`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `boards`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `comments`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `comments`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `memos`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `memos`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `memos`[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (9.0ms)[0m   [0mdescribe `open_id_authentication_associations`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (38.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `recommend_places`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `recommend_places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (0.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >34 and gps_x < 36 and gps_y >138 and gps_y < 140) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (0.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >34 and gps_x < 36 and gps_y >138 and gps_y < 140) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (1.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >138 and gps_x < 140 and gps_y >34 and gps_y < 36) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (0.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >138 and gps_x < 140 and gps_y >34 and gps_y < 36) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (1.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >138 and gps_x < 140 and gps_y >34 and gps_y < 36) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Load (0.0ms)[0m   [0mSELECT * FROM `boards` WHERE (gps_x >138 and gps_x < 140 and gps_y >34 and gps_y < 36) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (1.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.7 and 139.3 and gps_y between 34.7 and 35.3) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (1.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.7 and 139.3 and gps_y between 34.7 and 35.3) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.5 and 139.5 and gps_y between 34.5 and 35.5) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (20.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+  [4;36;1mSQL (80.0ms)[0m   [0;1mALTER TABLE `memos` DROP `board_id`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100216160629'[0m
+Migrating to CreateBoards (20100214151615)
+  [4;36;1mSQL (4.0ms)[0m   [0;1mDROP TABLE `boards`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100214151615'[0m
+Migrating to RemoveColumnMemo (20100211044334)
+  [4;36;1mSQL (37.0ms)[0m   [0;1mALTER TABLE `memos` ADD `img_url` varchar(255)[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100211044334'[0m
+Migrating to CreateBadWords (20100211044141)
+  [4;36;1mSQL (37.0ms)[0m   [0;1mDROP TABLE `bad_words`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100211044141'[0m
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+  [4;36;1mSQL (50.0ms)[0m   [0;1mDROP TABLE `open_id_authentication_associations`[0m
+  [4;35;1mSQL (25.0ms)[0m   [0mDROP TABLE `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20091010143245'[0m
+Migrating to AddColumnMemo (20091010140943)
+  [4;35;1mSQL (0.0ms)[0m   [0mMysql::Error: Can't DROP 'tag_name'; check that column/key exists: ALTER TABLE `memos` DROP `tag_name`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+Migrating to CreateRecommendPlaces (20090920031125)
+Migrating to AddColumnMemo (20091010140943)
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (49.0ms)[0m   [0mCREATE TABLE `open_id_authentication_associations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `issued` int(11), `lifetime` int(11), `handle` varchar(255), `assoc_type` varchar(255), `server_url` blob, `secret` blob) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mCREATE TABLE `open_id_authentication_nonces` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `timestamp` int(11) NOT NULL, `server_url` varchar(255), `salt` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091010143245')[0m
+Migrating to CreateBadWords (20100211044141)
+  [4;35;1mSQL (8.0ms)[0m   [0mCREATE TABLE `bad_words` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `word` varchar(255) DEFAULT '' NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100211044141')[0m
+Migrating to RemoveColumnMemo (20100211044334)
+  [4;35;1mSQL (21.0ms)[0m   [0mALTER TABLE `memos` DROP `img_url`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100211044334')[0m
+Migrating to CreateBoards (20100214151615)
+  [4;35;1mSQL (24.0ms)[0m   [0mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT '' NOT NULL, `description` varchar(255) DEFAULT '' NOT NULL, `image_file` varchar(255) DEFAULT '' NOT NULL, `gps_x` int(11), `gps_y` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mBoard Columns (4.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Create (1.0ms)[0m   [0;1mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('shibuya_station.jpg', '2010-03-26 16:03:13', '渋谷駅掲示板', '渋谷駅のバーチャル掲示板です。落書きは禁止！', 139, 35, '2010-03-26 16:03:13')[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Create (0.0ms)[0m   [0mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('kamakura_station.jpg', '2010-03-26 16:03:14', '鎌倉駅掲示板', '鎌倉駅のバーチャル掲示板です。古都鎌倉。観光にいいですよ', 139, 35, '2010-03-26 16:03:14')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100214151615')[0m
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+  [4;36;1mSQL (18.0ms)[0m   [0;1mALTER TABLE `memos` ADD `board_id` int(11) DEFAULT 0 NOT NULL[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100216160629')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mSHOW FIELDS FROM `bad_words`[0m
+  [4;36;1mSQL (329.0ms)[0m   [0;1mdescribe `bad_words`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `bad_words`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `boards`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `boards`[0m
+  [4;35;1mSQL (34.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mdescribe `comments`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `comments`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `memos`[0m
+  [4;35;1mSQL (21.0ms)[0m   [0mdescribe `memos`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `memos`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (217.0ms)[0m   [0;1mdescribe `open_id_authentication_associations`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (215.0ms)[0m   [0mdescribe `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `recommend_places`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `recommend_places`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (1.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.5 and 139.5 and gps_y between 34.5 and 35.5) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (1.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+  [4;36;1mSQL (47.0ms)[0m   [0;1mALTER TABLE `memos` DROP `board_id`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100216160629'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `bad_words`[0m
+  [4;36;1mSQL (9.0ms)[0m   [0;1mdescribe `bad_words`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `bad_words`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mdescribe `boards`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `boards`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `comments`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSHOW KEYS FROM `comments`[0m
+  [4;36;1mSQL (14.0ms)[0m   [0;1mSHOW FIELDS FROM `memos`[0m
+  [4;35;1mSQL (216.0ms)[0m   [0mdescribe `memos`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW KEYS FROM `memos`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `open_id_authentication_associations`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (12.0ms)[0m   [0mdescribe `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (11.0ms)[0m   [0mSHOW FIELDS FROM `recommend_places`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `recommend_places`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateBoards (20100214151615)
+  [4;36;1mSQL (3.0ms)[0m   [0;1mDROP TABLE `boards`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100214151615'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `bad_words`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `bad_words`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `bad_words`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mdescribe `comments`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `comments`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `memos`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `memos`[0m
+  [4;35;1mSQL (21.0ms)[0m   [0mSHOW KEYS FROM `memos`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mdescribe `open_id_authentication_associations`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `recommend_places`[0m
+  [4;35;1mSQL (11.0ms)[0m   [0mdescribe `recommend_places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+Migrating to CreateRecommendPlaces (20090920031125)
+Migrating to AddColumnMemo (20091010140943)
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+Migrating to CreateBadWords (20100211044141)
+Migrating to RemoveColumnMemo (20100211044334)
+Migrating to CreateBoards (20100214151615)
+  [4;36;1mSQL (24.0ms)[0m   [0;1mCREATE TABLE `boards` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT '' NOT NULL, `description` varchar(255) DEFAULT '' NOT NULL, `image_file` varchar(255) DEFAULT '' NOT NULL, `gps_x` float, `gps_y` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mBoard Columns (5.0ms)[0m   [0mSHOW FIELDS FROM `boards`[0m
+  [4;36;1mSQL (208.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mBoard Create (1.0ms)[0m   [0mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('shibuya_station.jpg', '2010-03-26 16:07:38', '渋谷駅掲示板', '渋谷駅のバーチャル掲示板です。落書きは禁止！', 139.701118, 35.659354, '2010-03-26 16:07:38')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Create (0.0ms)[0m   [0;1mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('kamakura_station.jpg', '2010-03-26 16:07:38', '鎌倉駅掲示板', '鎌倉駅のバーチャル掲示板です。古都鎌倉。観光にいいですよ', 139.55143, 35.321988, '2010-03-26 16:07:38')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100214151615')[0m
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+  [4;35;1mSQL (33.0ms)[0m   [0mALTER TABLE `memos` ADD `board_id` int(11) DEFAULT 0 NOT NULL[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100216160629')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mSHOW FIELDS FROM `bad_words`[0m
+  [4;35;1mSQL (28.0ms)[0m   [0mdescribe `bad_words`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `bad_words`[0m
+  [4;35;1mSQL (46.0ms)[0m   [0mSHOW FIELDS FROM `boards`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mdescribe `boards`[0m
+  [4;35;1mSQL (10.0ms)[0m   [0mSHOW KEYS FROM `boards`[0m
+  [4;36;1mSQL (11.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mdescribe `comments`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `comments`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `memos`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `memos`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mSHOW KEYS FROM `memos`[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (10.0ms)[0m   [0mdescribe `open_id_authentication_associations`[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `recommend_places`[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mdescribe `recommend_places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (1.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.5 and 139.5 and gps_y between 34.5 and 35.5) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138.9 and 139.9 and gps_y between 35.0 and 36.0) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Load (0.0ms)[0m   [0;1mSELECT * FROM `boards` WHERE (gps_x between 138 and 140 and gps_y between 34 and 36) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (34.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+Migrating to CreateRecommendPlaces (20090920031125)
+Migrating to AddColumnMemo (20091010140943)
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+Migrating to CreateBadWords (20100211044141)
+Migrating to RemoveColumnMemo (20100211044334)
+Migrating to CreateBoards (20100214151615)
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+Migrating to AddBoard (20100410020850)
+  [4;36;1mBoard Columns (52.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mBoard Create (0.0ms)[0m   [0;1mINSERT INTO `boards` (`image_file`, `updated_at`, `title`, `description`, `gps_x`, `gps_y`, `created_at`) VALUES('aobadai_station.jpg', '2010-05-02 01:57:02', '青葉台駅掲示板', '青葉台のバーチャル掲示板です。田園都市線沿いのメジャーな駅です', 139.517441, 35.543052, '2010-05-02 01:57:02')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100410020850')[0m
+Migrating to CreateSessions (20100418014307)
+  [4;35;1mSQL (46.0ms)[0m   [0mCREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (116.0ms)[0m   [0;1mCREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mCREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100418014307')[0m
+Migrating to CreatePlaces (20100502015250)
+  [4;35;1mSQL (36.0ms)[0m   [0mCREATE TABLE `places` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `place_name` varchar(255) DEFAULT '' NOT NULL, `description` varchar(255) DEFAULT '' NOT NULL, `place_image` varchar(255) DEFAULT '', `gps_x` float, `gps_y` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100502015250')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (45.0ms)[0m   [0;1mSHOW FIELDS FROM `bad_words`[0m
+  [4;35;1mSQL (34.0ms)[0m   [0mdescribe `bad_words`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `bad_words`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `boards`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `boards`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `boards`[0m
+  [4;36;1mSQL (73.0ms)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `comments`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `comments`[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mSHOW FIELDS FROM `memos`[0m
+  [4;36;1mSQL (22.0ms)[0m   [0;1mdescribe `memos`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `memos`[0m
+  [4;36;1mSQL (55.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mdescribe `open_id_authentication_associations`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;35;1mSQL (12.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (13.0ms)[0m   [0;1mSHOW FIELDS FROM `places`[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mdescribe `places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `places`[0m
+  [4;35;1mSQL (44.0ms)[0m   [0mSHOW FIELDS FROM `recommend_places`[0m
+  [4;36;1mSQL (9.0ms)[0m   [0;1mdescribe `recommend_places`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `sessions`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mdescribe `sessions`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (0.0ms)[0m   [0mMysql::Error: Unknown column 'places.lat' in 'field list': SELECT *, (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>40.5881458528536 AND places.lat<40.2990061471464 AND (places.lng<35.5160669588091 OR places.lng>35.1361430411909) AND (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 10 OR (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePlaces (20100502015250)
+  [4;36;1mSQL (3.0ms)[0m   [0;1mDROP TABLE `places`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20100502015250'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (26.0ms)[0m   [0mSHOW FIELDS FROM `bad_words`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `bad_words`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `bad_words`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `boards`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `boards`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mdescribe `comments`[0m
+  [4;35;1mSQL (14.0ms)[0m   [0mSHOW KEYS FROM `comments`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `memos`[0m
+  [4;35;1mSQL (17.0ms)[0m   [0mdescribe `memos`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `memos`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `open_id_authentication_associations`[0m
+  [4;35;1mSQL (13.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (8.0ms)[0m   [0mdescribe `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `recommend_places`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `recommend_places`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `recommend_places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `sessions`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `sessions`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateMemos (20090920030904)
+Migrating to CreateRecommendPlaces (20090920031125)
+Migrating to AddColumnMemo (20091010140943)
+Migrating to AddOpenIdAuthenticationTables (20091010143245)
+Migrating to CreateBadWords (20100211044141)
+Migrating to RemoveColumnMemo (20100211044334)
+Migrating to CreateBoards (20100214151615)
+Migrating to AddBoardIdcolumnMemos (20100216160629)
+Migrating to AddBoard (20100410020850)
+Migrating to CreateSessions (20100418014307)
+Migrating to CreatePlaces (20100502015250)
+  [4;36;1mSQL (66.0ms)[0m   [0;1mCREATE TABLE `places` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `place_name` varchar(255) DEFAULT '' NOT NULL, `description` varchar(255) DEFAULT '' NOT NULL, `place_image` varchar(255) DEFAULT '', `lng` float, `lat` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mPlace Columns (5.0ms)[0m   [0mSHOW FIELDS FROM `places`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Create (0.0ms)[0m   [0mINSERT INTO `places` (`updated_at`, `place_name`, `place_image`, `lng`, `description`, `lat`, `created_at`) VALUES('2010-05-02 03:24:54', '鶴ヶ丘八幡宮', '', 35.326105, '古都鎌倉の代表的な建物です。', 139.556424, '2010-05-02 03:24:54')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100502015250')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (36.0ms)[0m   [0mSHOW FIELDS FROM `bad_words`[0m
+  [4;36;1mSQL (14.0ms)[0m   [0;1mdescribe `bad_words`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `bad_words`[0m
+  [4;36;1mSQL (12.0ms)[0m   [0;1mSHOW FIELDS FROM `boards`[0m
+  [4;35;1mSQL (17.0ms)[0m   [0mdescribe `boards`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `boards`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `comments`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `comments`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `memos`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `memos`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `memos`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mdescribe `open_id_authentication_associations`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `open_id_authentication_associations`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mdescribe `open_id_authentication_nonces`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSHOW KEYS FROM `open_id_authentication_nonces`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `places`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `places`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSHOW KEYS FROM `places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `recommend_places`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mdescribe `recommend_places`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW KEYS FROM `recommend_places`[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mSHOW FIELDS FROM `sessions`[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mdescribe `sessions`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (0.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>40.5881458528536 AND places.lat<40.2990061471464 AND (places.lng<35.5160669588091 OR places.lng>35.1361430411909) AND (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 10 OR (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (1.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>40.5881458528536 AND places.lat<40.2990061471464 AND (places.lng<35.5160669588091 OR places.lng>35.1361430411909) AND (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 10 OR (ACOS(least(1,COS(2.43571909110924)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571909110924)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571909110924)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (0.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>40.5881588528536 AND places.lat<40.2990191471464 AND (places.lng<35.5160669955472 OR places.lng>35.1361430044527) AND (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 10 OR (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (0.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>41.8892875285359 AND places.lat<38.9978904714641 AND (places.lng<37.2254351011004 OR places.lng>33.4267748988996) AND (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 100 OR (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (1.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>41.8892875285359 AND places.lat<38.9978904714641 AND (places.lng<37.2254351011004 OR places.lng>33.4267748988996) AND (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 100 OR (ACOS(least(1,COS(2.43571886421643)*COS(0.616556844155231)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(2.43571886421643)*SIN(0.616556844155231)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(2.43571886421643)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (0.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(0.616556844155231)*COS(2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>33.8804064714641 AND places.lat<36.7718035285359 AND places.lng>137.784637323735 AND places.lng<141.328184676266 AND (ACOS(least(1,COS(0.616556844155231)*COS(2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 100 OR (ACOS(least(1,COS(0.616556844155231)*COS(2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlace Load (1.0ms)[0m   [0mSELECT *, (ACOS(least(1,COS(0.616556844155231)*COS(-2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(-2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ AS distance FROM `places` WHERE (places.lat>33.8804064714641 AND places.lat<36.7718035285359 AND places.lng>-141.328184676266 AND places.lng<-137.784637323735 AND (ACOS(least(1,COS(0.616556844155231)*COS(-2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(-2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ <= 100 OR (ACOS(least(1,COS(0.616556844155231)*COS(-2.43571886421643)*COS(RADIANS(places.lat))*COS(RADIANS(places.lng))+
+ COS(0.616556844155231)*SIN(-2.43571886421643)*COS(RADIANS(places.lat))*SIN(RADIANS(places.lng))+
+ SIN(0.616556844155231)*SIN(RADIANS(places.lat))))*3963.19)
+ IS NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m

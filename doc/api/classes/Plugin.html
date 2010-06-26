@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Plugin [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Plugin
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/railties/lib/commands/plugin_rb.html">vendor/rails/railties/lib/commands/plugin.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000216">find</a></li>
+              <li><a href="#M000215">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000219">git_url?</a></li>
+              <li><a href="#M000223">info</a></li>
+              <li><a href="#M000221">install</a></li>
+              <li><a href="#M000220">installed?</a></li>
+              <li><a href="#M000218">svn_url?</a></li>
+              <li><a href="#M000217">to_s</a></li>
+              <li><a href="#M000222">uninstall</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>name</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>uri</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000216'>
+                <a name='M000216'></a>
+                <div class='synopsis'>
+                  <span class='name'>find</span>
+                  <span class='arguments'>(name)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000216-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000216-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 164</span>&#x000A;164:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">name</span>)&#x000A;165:     <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\//</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Repositories</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">find_plugin</span>(<span class="ruby-identifier">name</span>)&#x000A;166:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000215'>
+                <a name='M000215'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(uri, name=nil)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000215-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000215-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 159</span>&#x000A;159:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;160:     <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">uri</span>&#x000A;161:     <span class="ruby-identifier">guess_name</span>(<span class="ruby-identifier">uri</span>)&#x000A;162:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000219'>
+                <a name='M000219'></a>
+                <div class='synopsis'>
+                  <span class='name'>git_url?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000219-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000219-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 176</span>&#x000A;176:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">git_url?</span>&#x000A;177:     <span class="ruby-ivar">@uri</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^git:\/\//</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@uri</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.git$/</span>&#x000A;178:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000223'>
+                <a name='M000223'></a>
+                <div class='synopsis'>
+                  <span class='name'>info</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000223-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000223-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 217</span>&#x000A;217:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">info</span>&#x000A;218:     <span class="ruby-identifier">tmp</span> = <span class="ruby-node">&quot;#{rails_env.root}/_tmp_about.yml&quot;</span>&#x000A;219:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">svn_url?</span>&#x000A;220:       <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;svn export #{@uri} \&quot;#{rails_env.root}/#{tmp}\&quot;&quot;</span>&#x000A;221:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">cmd</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$verbose</span>&#x000A;222:       <span class="ruby-identifier">system</span>(<span class="ruby-identifier">cmd</span>)&#x000A;223:     <span class="ruby-keyword kw">end</span>&#x000A;224:     <span class="ruby-identifier">open</span>(<span class="ruby-identifier">svn_url?</span> <span class="ruby-value">? </span><span class="ruby-identifier">tmp</span> <span class="ruby-operator">:</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@uri</span>, <span class="ruby-value str">'about.yml'</span>)) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stream</span><span class="ruby-operator">|</span>&#x000A;225:       <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">read</span>&#x000A;226:     <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-node">&quot;No about.yml found in #{uri}&quot;</span>&#x000A;227:   <span class="ruby-keyword kw">ensure</span>&#x000A;228:     <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span> <span class="ruby-identifier">tmp</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">svn_url?</span>&#x000A;229:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000221'>
+                <a name='M000221'></a>
+                <div class='synopsis'>
+                  <span class='name'>install</span>
+                  <span class='arguments'>(method=nil, options = {})</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000221-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000221-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 185</span>&#x000A;185:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>(<span class="ruby-identifier">method</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span> = {})&#x000A;186:     <span class="ruby-identifier">method</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">rails_env</span>.<span class="ruby-identifier">best_install_method?</span>&#x000A;187:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">:http</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">method</span>&#x000A;188:       <span class="ruby-identifier">method</span> = <span class="ruby-identifier">:export</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">svn_url?</span>&#x000A;189:       <span class="ruby-identifier">method</span> = <span class="ruby-identifier">:git</span>    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">git_url?</span>&#x000A;190:     <span class="ruby-keyword kw">end</span>&#x000A;191: &#x000A;192:     <span class="ruby-identifier">uninstall</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">installed?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:force</span>]&#x000A;193: &#x000A;194:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">installed?</span>&#x000A;195:       <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;install_using_#{method}&quot;</span>, <span class="ruby-identifier">options</span>)&#x000A;196:       <span class="ruby-identifier">run_install_hook</span>&#x000A;197:     <span class="ruby-keyword kw">else</span>&#x000A;198:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;already installed: #{name} (#{uri}).  pass --force to reinstall&quot;</span>&#x000A;199:     <span class="ruby-keyword kw">end</span>&#x000A;200:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000220'>
+                <a name='M000220'></a>
+                <div class='synopsis'>
+                  <span class='name'>installed?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000220-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000220-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 180</span>&#x000A;180:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">installed?</span>&#x000A;181:     <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-node">&quot;#{rails_env.root}/vendor/plugins/#{name}&quot;</span>) \&#x000A;182:       <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">rails_env</span>.<span class="ruby-identifier">externals</span>.<span class="ruby-identifier">detect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">repo</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">uri</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">repo</span> }&#x000A;183:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000218'>
+                <a name='M000218'></a>
+                <div class='synopsis'>
+                  <span class='name'>svn_url?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000218-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000218-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 172</span>&#x000A;172:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">svn_url?</span>&#x000A;173:     <span class="ruby-ivar">@uri</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/svn(?:\+ssh)?:\/\/*/</span>&#x000A;174:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000217'>
+                <a name='M000217'></a>
+                <div class='synopsis'>
+                  <span class='name'>to_s</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000217-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000217-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 168</span>&#x000A;168:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>&#x000A;169:     <span class="ruby-node">&quot;#{@name.ljust(30)}#{@uri}&quot;</span>&#x000A;170:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000222'>
+                <a name='M000222'></a>
+                <div class='synopsis'>
+                  <span class='name'>uninstall</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000222-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000222-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 202</span>&#x000A;202:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uninstall</span>&#x000A;203:     <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;#{rails_env.root}/vendor/plugins/#{name}&quot;</span>&#x000A;204:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">path</span>)&#x000A;205:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Removing 'vendor/plugins/#{name}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$verbose</span>&#x000A;206:       <span class="ruby-identifier">run_uninstall_hook</span>&#x000A;207:       <span class="ruby-identifier">rm_r</span> <span class="ruby-identifier">path</span>&#x000A;208:     <span class="ruby-keyword kw">else</span>&#x000A;209:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Plugin doesn't exist: #{path}&quot;</span>&#x000A;210:     <span class="ruby-keyword kw">end</span>&#x000A;211:     <span class="ruby-comment cmt"># clean up svn:externals</span>&#x000A;212:     <span class="ruby-identifier">externals</span> = <span class="ruby-identifier">rails_env</span>.<span class="ruby-identifier">externals</span>&#x000A;213:     <span class="ruby-identifier">externals</span>.<span class="ruby-identifier">reject!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>,<span class="ruby-identifier">u</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">n</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">u</span>}&#x000A;214:     <span class="ruby-identifier">rails_env</span>.<span class="ruby-identifier">externals</span> = <span class="ruby-identifier">externals</span>&#x000A;215:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

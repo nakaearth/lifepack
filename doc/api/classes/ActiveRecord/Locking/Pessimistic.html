@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::Locking::Pessimistic [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveRecord::Locking::Pessimistic
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activerecord/lib/active_record/locking/pessimistic_rb.html">vendor/rails/activerecord/lib/active_record/locking/pessimistic.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="Pessimistic.html">Locking::Pessimistic</a> provides support for
+            row-level locking using SELECT &#8230; FOR UPDATE and other lock types.
+            </p>
+            <p>
+            Pass <tt>:lock =&gt; true</tt> to <a
+            href="../Base.html#M002551">ActiveRecord::Base.find</a> to obtain an
+            exclusive lock on the selected rows:
+            </p>
+            <pre># select * from accounts where id=1 for update&#x000A;Account.find(1, :lock =&gt; true)</pre>
+            <p>
+            Pass <tt>:lock =&gt; 'some locking clause'</tt> to give a database-specific
+            locking clause of your own such as &#8216;LOCK IN SHARE MODE&#8217; or
+            &#8216;FOR UPDATE NOWAIT&#8217;.
+            </p>
+            <p>
+            Example:
+            </p>
+            <pre>Account.transaction do&#x000A;  # select * from accounts where name = 'shugo' limit 1 for update&#x000A;  shugo = Account.find(:first, :conditions =&gt; &quot;name = 'shugo'&quot;, :lock =&gt; true)&#x000A;  yuko = Account.find(:first, :conditions =&gt; &quot;name = 'yuko'&quot;, :lock =&gt; true)&#x000A;  shugo.balance -= 100&#x000A;  shugo.save!&#x000A;  yuko.balance += 100&#x000A;  yuko.save!&#x000A;end</pre>
+            <p>
+            You can also use ActiveRecord::Base#lock! method to lock one record by id.
+            This may be better if you don&#8217;t need to lock every row. Example:
+            </p>
+            <pre>Account.transaction do&#x000A;  # select * from accounts where ...&#x000A;  accounts = Account.find(:all, :conditions =&gt; ...)&#x000A;  account1 = accounts.detect { |account| ... }&#x000A;  account2 = accounts.detect { |account| ... }&#x000A;  # select * from accounts where id=? for update&#x000A;  account1.lock!&#x000A;  account2.lock!&#x000A;  account1.balance -= 100&#x000A;  account1.save!&#x000A;  account2.balance += 100&#x000A;  account2.save!&#x000A;end</pre>
+            <p>
+            Database-specific information on row locking:
+            </p>
+            <pre>MySQL: http://dev.mysql.com/doc/refman/5.1/en/innodb-locking-reads.html&#x000A;PostgreSQL: http://www.postgresql.org/docs/8.1/interactive/sql-select.html#SQL-FOR-UPDATE-SHARE</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M002112">lock!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M002112'>
+                <a name='M002112'></a>
+                <div class='synopsis'>
+                  <span class='name'>lock!</span>
+                  <span class='arguments'>(lock = true)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Obtain a row lock on this record. Reloads the record to obtain the
+                  requested lock. Pass an SQL locking clause to append the end of the SELECT
+                  statement or pass true for &#8220;FOR UPDATE&#8221; (the default, an
+                  exclusive row lock). Returns the locked record.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002112-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002112-source'>    <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/locking/pessimistic.rb, line 71</span>&#x000A;71:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">lock!</span>(<span class="ruby-identifier">lock</span> = <span class="ruby-keyword kw">true</span>)&#x000A;72:         <span class="ruby-identifier">reload</span>(<span class="ruby-identifier">:lock</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lock</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">new_record?</span>&#x000A;73:         <span class="ruby-keyword kw">self</span>&#x000A;74:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

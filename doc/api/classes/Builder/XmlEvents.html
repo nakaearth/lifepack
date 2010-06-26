@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Builder::XmlEvents [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Builder::XmlEvents
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/xmlevents_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="XmlMarkup.html">Builder::XmlMarkup</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Create a series of SAX-like XML events (e.g. start_tag, end_tag) from the
+            markup code. XmlEvent objects are used in a way similar to <a
+            href="XmlMarkup.html">XmlMarkup</a> objects, except that a series of events
+            are generated and passed to a handler rather than generating
+            character-based markup.
+            </p>
+            <p>
+            Usage:
+            </p>
+            <pre>xe = Builder::XmlEvents.new(handler)&#x000A;xe.title(&quot;HI&quot;)    # Sends start_tag/end_tag/text messages to the handler.</pre>
+            <p>
+            Indentation may also be selected by providing value for the indentation
+            size and initial indentation level.
+            </p>
+            <pre>xe = Builder::XmlEvents.new(handler, indent_size, initial_indent_level)</pre>
+            <h2>XML Event Handler</h2>
+            <p>
+            The handler object must expect the following events.
+            </p>
+            <dl>
+            <dt><tt>start_tag(tag, attrs)</tt></dt><dd>Announces that a new tag has been found. <tt>tag</tt> is the name of the
+            tag and <tt>attrs</tt> is a hash of attributes for the tag.
+            
+            </dd>
+            <dt><tt>end_tag(tag)</tt></dt><dd>Announces that an end tag for <tt>tag</tt> has been found.
+            
+            </dd>
+            <dt><tt>text(text)</tt></dt><dd>Announces that a string of characters (<tt>text</tt>) has been found. A
+            series of characters may be broken up into more than one <tt>text</tt>
+            call, so the client cannot assume that a single callback contains all the
+            text data.
+            
+            </dd>
+            </dl>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001868">_end_tag</a></li>
+              <li><a href="#M001867">_start_tag</a></li>
+              <li><a href="#M001866">text!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001868'>
+                <a name='M001868'></a>
+                <div class='synopsis'>
+                  <span class='name'>_end_tag</span>
+                  <span class='arguments'>(sym)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001868-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001868-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb, line 58</span>&#x000A;58:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_end_tag</span>(<span class="ruby-identifier">sym</span>)&#x000A;59:       <span class="ruby-ivar">@target</span>.<span class="ruby-identifier">end_tag</span>(<span class="ruby-identifier">sym</span>)&#x000A;60:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001867'>
+                <a name='M001867'></a>
+                <div class='synopsis'>
+                  <span class='name'>_start_tag</span>
+                  <span class='arguments'>(sym, attrs, end_too=false)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001867-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001867-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb, line 53</span>&#x000A;53:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">end_too</span>=<span class="ruby-keyword kw">false</span>)&#x000A;54:       <span class="ruby-ivar">@target</span>.<span class="ruby-identifier">start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>)&#x000A;55:       <span class="ruby-identifier">_end_tag</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">end_too</span>&#x000A;56:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001866'>
+                <a name='M001866'></a>
+                <div class='synopsis'>
+                  <span class='name'>text!</span>
+                  <span class='arguments'>(text)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001866-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001866-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb, line 49</span>&#x000A;49:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text!</span>(<span class="ruby-identifier">text</span>)&#x000A;50:       <span class="ruby-ivar">@target</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">text</span>)&#x000A;51:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

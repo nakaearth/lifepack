@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionController::Resources [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActionController::Resources
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/resources_rb.html">vendor/rails/actionpack/lib/action_controller/resources.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h2>Overview</h2>
+            <p>
+            <a href="Resources.html">ActionController::Resources</a> are a way of
+            defining RESTful resources. A RESTful resource, in basic terms, is
+            something that can be pointed at and it will respond with a representation
+            of the data requested. In real terms this could mean a user with a browser
+            requests an HTML page, or that a desktop application requests XML data.
+            </p>
+            <p>
+            RESTful design is based on the assumption that there are four generic verbs
+            that a user of an application can request from a resource (the noun).
+            </p>
+            <p>
+            Resources can be requested using four basic HTTP verbs (GET, POST, PUT,
+            DELETE), the method used denotes the type of action that should take place.
+            </p>
+            <h3>The Different Methods and their Usage</h3>
+            <ul>
+            <li>GET - Requests for a resource, no saving or editing of a resource should
+            occur in a GET request.
+            
+            </li>
+            <li>POST - Creation of resources.
+            
+            </li>
+            <li>PUT - Editing of attributes on a resource.
+            
+            </li>
+            <li>DELETE - Deletion of a resource.
+            
+            </li>
+            </ul>
+            <h3>Examples</h3>
+            <pre># A GET request on the Posts resource is asking for all Posts&#x000A;GET /posts&#x000A;&#x000A;# A GET request on a single Post resource is asking for that particular Post&#x000A;GET /posts/1&#x000A;&#x000A;# A POST request on the Posts resource is asking for a Post to be created with the supplied details&#x000A;POST /posts # with =&gt; { :post =&gt; { :title =&gt; &quot;My Whizzy New Post&quot;, :body =&gt; &quot;I've got a brand new combine harvester&quot; } }&#x000A;&#x000A;# A PUT request on a single Post resource is asking for a Post to be updated&#x000A;PUT /posts # with =&gt; { :id =&gt; 1, :post =&gt; { :title =&gt; &quot;Changed Whizzy Title&quot; } }&#x000A;&#x000A;# A DELETE request on a single Post resource is asking for it to be deleted&#x000A;DELETE /posts # with =&gt; { :id =&gt; 1 }</pre>
+            <p>
+            By using the REST convention, users of our application can assume certain
+            things about how the data is requested and how it is returned. <a
+            href="../Rails.html">Rails</a> simplifies the routing part of RESTful
+            design by supplying you with methods to create them in your routes.rb file.
+            </p>
+            <p>
+            Read more about REST at <a
+            href="http://en.wikipedia.org/wiki/Representational_State_Transfer">en.wikipedia.org/wiki/Representational_State_Transfer</a>
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000524">resource</a></li>
+              <li><a href="#M000523">resources</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>INHERITABLE_OPTIONS</td>
+                    <td>=</td>
+                    <td class='context-item-value'>:namespace, :shallow</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000524'>
+                <a name='M000524'></a>
+                <div class='synopsis'>
+                  <span class='name'>resource</span>
+                  <span class='arguments'>(*entities, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Creates named routes for implementing verb-oriented controllers for a
+                  singleton resource. A singleton resource is global to its current context.
+                  For unnested singleton resources, the resource is global to the current
+                  user visiting the application, such as a user&#8217;s <tt>/account</tt>
+                  profile. For nested singleton resources, the resource is global to its
+                  parent resource, such as a <tt>projects</tt> resource that <tt>has_one
+                  :project_manager</tt>. The <tt>project_manager</tt> should be mapped as a
+                  singleton resource under <tt>projects</tt>:
+                  </p>
+                  <pre>map.resources :projects do |project|&#x000A;  project.resource :project_manager&#x000A;end</pre>
+                  <p>
+                  See <tt>resources</tt> for general conventions. These are the main
+                  differences:
+                  </p>
+                  <ul>
+                  <li>A singular name is given to <tt>map.resource</tt>. The default controller
+                  name is still taken from the plural name.
+                  
+                  </li>
+                  <li>To specify a custom plural name, use the <tt>:plural</tt> option. There is
+                  no <tt>:singular</tt> option.
+                  
+                  </li>
+                  <li>No default index route is created for the singleton resource controller.
+                  
+                  </li>
+                  <li>When nesting singleton resources, only the singular name is used as the
+                  path prefix (example: &#8216;account/messages/1&#8217;)
+                  
+                  </li>
+                  </ul>
+                  <p>
+                  For example:
+                  </p>
+                  <pre>map.resource :account</pre>
+                  <p>
+                  maps these actions in the Accounts controller:
+                  </p>
+                  <pre>class AccountsController &lt; ActionController::Base&#x000A;  # GET new_account_url&#x000A;  def new&#x000A;    # return an HTML form for describing the new account&#x000A;  end&#x000A;&#x000A;  # POST account_url&#x000A;  def create&#x000A;    # create an account&#x000A;  end&#x000A;&#x000A;  # GET account_url&#x000A;  def show&#x000A;    # find and return the account&#x000A;  end&#x000A;&#x000A;  # GET edit_account_url&#x000A;  def edit&#x000A;    # return an HTML form for editing the account&#x000A;  end&#x000A;&#x000A;  # PUT account_url&#x000A;  def update&#x000A;    # find and update the account&#x000A;  end&#x000A;&#x000A;  # DELETE account_url&#x000A;  def destroy&#x000A;    # delete the account&#x000A;  end&#x000A;end</pre>
+                  <p>
+                  Along with the routes themselves, <tt>resource</tt> generates named routes
+                  for use in controllers and views. <tt>map.resource :account</tt> produces
+                  these named routes and helpers:
+                  </p>
+                  <pre>Named Route   Helpers&#x000A;============  =============================================&#x000A;account       account_url, hash_for_account_url,&#x000A;              account_path, hash_for_account_path&#x000A;&#x000A;new_account   new_account_url, hash_for_new_account_url,&#x000A;              new_account_path, hash_for_new_account_path&#x000A;&#x000A;edit_account  edit_account_url, hash_for_edit_account_url,&#x000A;              edit_account_path, hash_for_edit_account_path</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000524-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000524-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/resources.rb, line 518</span>&#x000A;518:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resource</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">entities</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;519:       <span class="ruby-identifier">options</span> = <span class="ruby-identifier">entities</span>.<span class="ruby-identifier">extract_options!</span>&#x000A;520:       <span class="ruby-identifier">entities</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entity</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map_singleton_resource</span>(<span class="ruby-identifier">entity</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) }&#x000A;521:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000523'>
+                <a name='M000523'></a>
+                <div class='synopsis'>
+                  <span class='name'>resources</span>
+                  <span class='arguments'>(*entities, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Creates named routes for implementing verb-oriented controllers for a
+                  collection resource.
+                  </p>
+                  <p>
+                  For example:
+                  </p>
+                  <pre>map.resources :messages</pre>
+                  <p>
+                  will map the following actions in the corresponding controller:
+                  </p>
+                  <pre>class MessagesController &lt; ActionController::Base&#x000A;  # GET messages_url&#x000A;  def index&#x000A;    # return all messages&#x000A;  end&#x000A;&#x000A;  # GET new_message_url&#x000A;  def new&#x000A;    # return an HTML form for describing a new message&#x000A;  end&#x000A;&#x000A;  # POST messages_url&#x000A;  def create&#x000A;    # create a new message&#x000A;  end&#x000A;&#x000A;  # GET message_url(:id =&gt; 1)&#x000A;  def show&#x000A;    # find and return a specific message&#x000A;  end&#x000A;&#x000A;  # GET edit_message_url(:id =&gt; 1)&#x000A;  def edit&#x000A;    # return an HTML form for editing a specific message&#x000A;  end&#x000A;&#x000A;  # PUT message_url(:id =&gt; 1)&#x000A;  def update&#x000A;    # find and update a specific message&#x000A;  end&#x000A;&#x000A;  # DELETE message_url(:id =&gt; 1)&#x000A;  def destroy&#x000A;    # delete a specific message&#x000A;  end&#x000A;end</pre>
+                  <p>
+                  Along with the routes themselves, <tt>resources</tt> generates named routes
+                  for use in controllers and views. <tt>map.resources :messages</tt> produces
+                  the following named routes and helpers:
+                  </p>
+                  <pre>Named Route   Helpers&#x000A;============  =====================================================&#x000A;messages      messages_url, hash_for_messages_url,&#x000A;              messages_path, hash_for_messages_path&#x000A;&#x000A;message       message_url(id), hash_for_message_url(id),&#x000A;              message_path(id), hash_for_message_path(id)&#x000A;&#x000A;new_message   new_message_url, hash_for_new_message_url,&#x000A;              new_message_path, hash_for_new_message_path&#x000A;&#x000A;edit_message  edit_message_url(id), hash_for_edit_message_url(id),&#x000A;              edit_message_path(id), hash_for_edit_message_path(id)</pre>
+                  <p>
+                  You can use these helpers instead of <tt>url_for</tt> or methods that take
+                  <tt>url_for</tt> parameters. For example:
+                  </p>
+                  <pre>redirect_to :controller =&gt; 'messages', :action =&gt; 'index'&#x000A;# and&#x000A;&lt;%= link_to &quot;edit this message&quot;, :controller =&gt; 'messages', :action =&gt; 'edit', :id =&gt; @message.id %&gt;</pre>
+                  <p>
+                  now become:
+                  </p>
+                  <pre>redirect_to messages_url&#x000A;# and&#x000A;&lt;%= link_to &quot;edit this message&quot;, edit_message_url(@message) # calls @message.id automatically</pre>
+                  <p>
+                  Since web browsers don&#8217;t support the PUT and DELETE verbs, you will
+                  need to add a parameter &#8216;_method&#8217; to your form tags. The form
+                  helpers make this a little easier. For an update form with a
+                  <tt>@message</tt> object:
+                  </p>
+                  <pre>&lt;%= form_tag message_path(@message), :method =&gt; :put %&gt;</pre>
+                  <p>
+                  or
+                  </p>
+                  <pre>&lt;% form_for :message, @message, :url =&gt; message_path(@message), :html =&gt; {:method =&gt; :put} do |f| %&gt;</pre>
+                  <p>
+                  or
+                  </p>
+                  <pre>&lt;% form_for @message do |f| %&gt;</pre>
+                  <p>
+                  which takes into account whether <tt>@message</tt> is a new record or not
+                  and generates the path and method accordingly.
+                  </p>
+                  <p>
+                  The <tt>resources</tt> method accepts the following options to customize
+                  the resulting routes:
+                  </p>
+                  <ul>
+                  <li><tt>:collection</tt> - Add named routes for other actions that operate on
+                  the collection. Takes a hash of <tt>#{action} =&gt; #{method}</tt>, where
+                  method is <tt>:get</tt>/<tt>:post</tt>/<tt>:put</tt>/<tt>:delete</tt>, an
+                  array of any of the previous, or <tt>:any</tt> if the method does not
+                  matter. These routes map to a URL like /messages/rss, with a route of
+                  <tt>rss_messages_url</tt>.
+                  
+                  </li>
+                  <li><tt>:member</tt> - Same as <tt>:collection</tt>, but for actions that
+                  operate on a specific member.
+                  
+                  </li>
+                  <li><tt>:new</tt> - Same as <tt>:collection</tt>, but for actions that operate
+                  on the new resource action.
+                  
+                  </li>
+                  <li><tt>:controller</tt> - Specify the controller name for the routes.
+                  
+                  </li>
+                  <li><tt>:singular</tt> - Specify the singular name used in the member routes.
+                  
+                  </li>
+                  <li><tt>:requirements</tt> - Set custom routing parameter requirements; this is
+                  a hash of either
+                  
+                  <pre>regular expressions (which must match for the route to match) or extra parameters. For example:&#x000A;&#x000A;  map.resource :profile, :path_prefix =&gt; ':name', :requirements =&gt; { :name =&gt; /[a-zA-Z]+/, :extra =&gt; 'value' }&#x000A;&#x000A;will only match if the first part is alphabetic, and will pass the parameter :extra to the controller.</pre>
+                  </li>
+                  <li><tt>:conditions</tt> - Specify custom routing recognition conditions.
+                  Resources sets the <tt>:method</tt> value for the method-specific routes.
+                  
+                  </li>
+                  <li><tt>:as</tt> - Specify a different resource name to use in the URL path.
+                  For example:
+                  
+                  <pre># products_path == '/productos'&#x000A;map.resources :products, :as =&gt; 'productos' do |product|&#x000A;  # product_reviews_path(product) == '/productos/1234/comentarios'&#x000A;  product.resources :product_reviews, :as =&gt; 'comentarios'&#x000A;end</pre>
+                  </li>
+                  <li><tt>:has_one</tt> - Specify nested resources, this is a shorthand for
+                  mapping singleton resources beneath the current.
+                  
+                  </li>
+                  <li><tt>:has_many</tt> - Same has <tt>:has_one</tt>, but for plural resources.
+                  
+                  <p>
+                  You may directly specify the routing association with <tt>has_one</tt> and
+                  <tt>has_many</tt> like:
+                  </p>
+                  <pre>map.resources :notes, :has_one =&gt; :author, :has_many =&gt; [:comments, :attachments]</pre>
+                  <p>
+                  This is the same as:
+                  </p>
+                  <pre>map.resources :notes do |notes|&#x000A;  notes.resource  :author&#x000A;  notes.resources :comments&#x000A;  notes.resources :attachments&#x000A;end</pre>
+                  </li>
+                  <li><tt>:path_names</tt> - Specify different names for the &#8216;new&#8217;
+                  and &#8216;edit&#8217; actions. For example:
+                  
+                  <pre># new_products_path == '/productos/nuevo'&#x000A;map.resources :products, :as =&gt; 'productos', :path_names =&gt; { :new =&gt; 'nuevo', :edit =&gt; 'editar' }</pre>
+                  <p>
+                  You can also set default action names from an environment, like this:
+                  </p>
+                  <pre>config.action_controller.resources_path_names = { :new =&gt; 'nuevo', :edit =&gt; 'editar' }</pre>
+                  </li>
+                  <li><tt>:path_prefix</tt> - Set a prefix to the routes with required route
+                  variables.
+                  
+                  <p>
+                  Weblog comments usually belong to a post, so you might use
+                  <tt>resources</tt> like:
+                  </p>
+                  <pre>map.resources :articles&#x000A;map.resources :comments, :path_prefix =&gt; '/articles/:article_id'</pre>
+                  <p>
+                  You can nest <tt>resources</tt> calls to set this automatically:
+                  </p>
+                  <pre>map.resources :articles do |article|&#x000A;  article.resources :comments&#x000A;end</pre>
+                  <p>
+                  The comment resources work the same, but must now include a value for
+                  <tt>:article_id</tt>.
+                  </p>
+                  <pre>article_comments_url(@article)&#x000A;article_comment_url(@article, @comment)&#x000A;&#x000A;article_comments_url(:article_id =&gt; @article)&#x000A;article_comment_url(:article_id =&gt; @article, :id =&gt; @comment)</pre>
+                  <p>
+                  If you don&#8217;t want to load all objects from the database you might
+                  want to use the <tt>article_id</tt> directly:
+                  </p>
+                  <pre>articles_comments_url(@comment.article_id, @comment)</pre>
+                  </li>
+                  <li><tt>:name_prefix</tt> - Define a prefix for all generated routes, usually
+                  ending in an underscore. Use this if you have named routes that may clash.
+                  
+                  <pre>map.resources :tags, :path_prefix =&gt; '/books/:book_id', :name_prefix =&gt; 'book_'&#x000A;map.resources :tags, :path_prefix =&gt; '/toys/:toy_id',   :name_prefix =&gt; 'toy_'</pre>
+                  </li>
+                  </ul>
+                  <p>
+                  You may also use <tt>:name_prefix</tt> to override the generic named routes
+                  in a nested resource:
+                  </p>
+                  <pre>map.resources :articles do |article|&#x000A;  article.resources :comments, :name_prefix =&gt; nil&#x000A;end</pre>
+                  <p>
+                  This will yield named resources like so:
+                  </p>
+                  <pre>comments_url(@article)&#x000A;comment_url(@article, @comment)</pre>
+                  <ul>
+                  <li><tt>:shallow</tt> - If true, paths for nested resources which reference a
+                  specific member (ie. those with an :id parameter) will not use the parent
+                  path prefix or name prefix.
+                  
+                  </li>
+                  </ul>
+                  <p>
+                  The <tt>:shallow</tt> option is inherited by any nested resource(s).
+                  </p>
+                  <p>
+                  For example, &#8216;users&#8217;, &#8216;posts&#8217; and
+                  &#8216;comments&#8217; all use shallow paths with the following nested
+                  resources:
+                  </p>
+                  <pre>map.resources :users, :shallow =&gt; true do |user|&#x000A;  user.resources :posts do |post|&#x000A;    post.resources :comments&#x000A;  end&#x000A;end&#x000A;# --&gt; GET /users/1/posts (maps to the PostsController#index action as usual)&#x000A;#     also adds the usual named route called &quot;user_posts&quot;&#x000A;# --&gt; GET /posts/2 (maps to the PostsController#show action as if it were not nested)&#x000A;#     also adds the named route called &quot;post&quot;&#x000A;# --&gt; GET /posts/2/comments (maps to the CommentsController#index action)&#x000A;#     also adds the named route called &quot;post_comments&quot;&#x000A;# --&gt; GET /comments/2 (maps to the CommentsController#show action as if it were not nested)&#x000A;#     also adds the named route called &quot;comment&quot;</pre>
+                  <p>
+                  You may also use <tt>:shallow</tt> in combination with the <tt>has_one</tt>
+                  and <tt>has_many</tt> shorthand notations like:
+                  </p>
+                  <pre>map.resources :users, :has_many =&gt; { :posts =&gt; :comments }, :shallow =&gt; true</pre>
+                  <ul>
+                  <li><tt>:only</tt> and <tt>:except</tt> - Specify which of the seven default
+                  actions should be routed to.
+                  
+                  </li>
+                  </ul>
+                  <p>
+                  <tt>:only</tt> and <tt>:except</tt> may be set to <tt>:all</tt>,
+                  <tt>:none</tt>, an action name or a list of action names. By default,
+                  routes are generated for all seven actions.
+                  </p>
+                  <p>
+                  For example:
+                  </p>
+                  <pre>map.resources :posts, :only =&gt; [:index, :show] do |post|&#x000A;  post.resources :comments, :except =&gt; [:update, :destroy]&#x000A;end&#x000A;# --&gt; GET /posts (maps to the PostsController#index action)&#x000A;# --&gt; POST /posts (fails)&#x000A;# --&gt; GET /posts/1 (maps to the PostsController#show action)&#x000A;# --&gt; DELETE /posts/1 (fails)&#x000A;# --&gt; POST /posts/1/comments (maps to the CommentsController#create action)&#x000A;# --&gt; PUT /posts/1/comments/1 (fails)</pre>
+                  <p>
+                  If <tt>map.resources</tt> is called with multiple resources, they all get
+                  the same options applied.
+                  </p>
+                  <p>
+                  Examples:
+                  </p>
+                  <pre>map.resources :messages, :path_prefix =&gt; &quot;/thread/:thread_id&quot;&#x000A;# --&gt; GET /thread/7/messages/1&#x000A;&#x000A;map.resources :messages, :collection =&gt; { :rss =&gt; :get }&#x000A;# --&gt; GET /messages/rss (maps to the #rss action)&#x000A;#     also adds a named route called &quot;rss_messages&quot;&#x000A;&#x000A;map.resources :messages, :member =&gt; { :mark =&gt; :post }&#x000A;# --&gt; POST /messages/1/mark (maps to the #mark action)&#x000A;#     also adds a named route called &quot;mark_message&quot;&#x000A;&#x000A;map.resources :messages, :new =&gt; { :preview =&gt; :post }&#x000A;# --&gt; POST /messages/new/preview (maps to the #preview action)&#x000A;#     also adds a named route called &quot;preview_new_message&quot;&#x000A;&#x000A;map.resources :messages, :new =&gt; { :new =&gt; :any, :preview =&gt; :post }&#x000A;# --&gt; POST /messages/new/preview (maps to the #preview action)&#x000A;#     also adds a named route called &quot;preview_new_message&quot;&#x000A;# --&gt; /messages/new can be invoked via any request method&#x000A;&#x000A;map.resources :messages, :controller =&gt; &quot;categories&quot;,&#x000A;      :path_prefix =&gt; &quot;/category/:category_id&quot;,&#x000A;      :name_prefix =&gt; &quot;category_&quot;&#x000A;# --&gt; GET /categories/7/messages/1&#x000A;#     has named route &quot;category_message&quot;</pre>
+                  <p>
+                  The <tt>resources</tt> method sets HTTP method restrictions on the routes
+                  it generates. For example, making an HTTP POST on <tt>new_message_url</tt>
+                  will raise a RoutingError exception. The default route in
+                  <tt>config/routes.rb</tt> overrides this and allows invalid HTTP methods
+                  for resource routes.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000523-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000523-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/resources.rb, line 444</span>&#x000A;444:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resources</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">entities</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;445:       <span class="ruby-identifier">options</span> = <span class="ruby-identifier">entities</span>.<span class="ruby-identifier">extract_options!</span>&#x000A;446:       <span class="ruby-identifier">entities</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entity</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map_resource</span>(<span class="ruby-identifier">entity</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) }&#x000A;447:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

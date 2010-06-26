@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Builder [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          Builder
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/blankslate_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/blankslate.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/css_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/css.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/xchar_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xchar.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/xmlbase_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlbase.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/xmlevents_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/builder/xmlmarkup_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xmlmarkup.rb</a>
+          </li>
+          <li>
+            <a class='show' href='#' onclick='this.parentNode.parentNode.className += " expanded"; this.parentNode.removeChild(this); return false'>show all</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            BlankSlate has been promoted to a top level name and is now available as a
+            standalone gem. We make the name available in the <a
+            href="Builder.html">Builder</a> namespace for compatibility.
+            </p>
+            <hr size="1"></hr><p>
+            If the Builder::XChar module is not currently defined, fail on any name
+            clashes in standard library classes.
+            </p>
+            <hr size="1"></hr>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001840">check_for_name_collision</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="Builder/CSS.html" class="link">Builder::CSS</a><br />
+              Class <a href="Builder/IllegalBlockError.html" class="link">Builder::IllegalBlockError</a><br />
+              Class <a href="Builder/XmlBase.html" class="link">Builder::XmlBase</a><br />
+              Class <a href="Builder/XmlEvents.html" class="link">Builder::XmlEvents</a><br />
+              Class <a href="Builder/XmlMarkup.html" class="link">Builder::XmlMarkup</a><br />
+            </div>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>BlankSlate</td>
+                    <td>=</td>
+                    <td class='context-item-value'>::BlankSlate</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001840'>
+                <a name='M001840'></a>
+                <div class='synopsis'>
+                  <span class='name'>check_for_name_collision</span>
+                  <span class='arguments'>(klass, method_name, defined_constant=nil)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001840-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001840-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/builder/xchar.rb, line 12</span>&#x000A;12:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">check_for_name_collision</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">defined_constant</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;13:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">to_s</span>)&#x000A;14:       <span class="ruby-identifier">fail</span> <span class="ruby-constant">RuntimeError</span>,&#x000A;15:         <span class="ruby-node">&quot;Name Collision: Method '#{method_name}' is already defined in #{klass}&quot;</span>&#x000A;16:     <span class="ruby-keyword kw">end</span>&#x000A;17:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

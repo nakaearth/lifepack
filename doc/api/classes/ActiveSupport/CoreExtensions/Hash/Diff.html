@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Hash::Diff [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Hash::Diff
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/hash/diff_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/hash/diff.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001471">diff</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001471'>
+                <a name='M001471'></a>
+                <div class='synopsis'>
+                  <span class='name'>diff</span>
+                  <span class='arguments'>(h2)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a hash that represents the difference between two hashes.
+                  </p>
+                  <p>
+                  Examples:
+                  </p>
+                  <pre>{1 =&gt; 2}.diff(1 =&gt; 2)         # =&gt; {}&#x000A;{1 =&gt; 2}.diff(1 =&gt; 3)         # =&gt; {1 =&gt; 2}&#x000A;{}.diff(1 =&gt; 2)               # =&gt; {1 =&gt; 2}&#x000A;{1 =&gt; 2, 3 =&gt; 4}.diff(1 =&gt; 2) # =&gt; {3 =&gt; 4}</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001471-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001471-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/hash/diff.rb, line 13</span>&#x000A;13:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">diff</span>(<span class="ruby-identifier">h2</span>)&#x000A;14:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h2</span>[<span class="ruby-identifier">k</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">v</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">h2</span>.<span class="ruby-identifier">dup</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">k</span>) })&#x000A;15:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

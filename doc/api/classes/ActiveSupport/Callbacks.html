@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Callbacks [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Callbacks
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/callbacks_rb.html">vendor/rails/activesupport/lib/active_support/callbacks.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="Callbacks.html">Callbacks</a> are hooks into the lifecycle of an
+            object that allow you to trigger logic before or after an alteration of the
+            object state.
+            </p>
+            <p>
+            Mixing in this module allows you to define callbacks in your class.
+            </p>
+            <p>
+            Example:
+            </p>
+            <pre>class Storage&#x000A;  include ActiveSupport::Callbacks&#x000A;&#x000A;  define_callbacks :before_save, :after_save&#x000A;end&#x000A;&#x000A;class ConfigStorage &lt; Storage&#x000A;  before_save :saving_message&#x000A;  def saving_message&#x000A;    puts &quot;saving...&quot;&#x000A;  end&#x000A;&#x000A;  after_save do |object|&#x000A;    puts &quot;saved&quot;&#x000A;  end&#x000A;&#x000A;  def save&#x000A;    run_callbacks(:before_save)&#x000A;    puts &quot;- save&quot;&#x000A;    run_callbacks(:after_save)&#x000A;  end&#x000A;end&#x000A;&#x000A;config = ConfigStorage.new&#x000A;config.save</pre>
+            <p>
+            Output:
+            </p>
+            <pre>saving...&#x000A;- save&#x000A;saved</pre>
+            <p>
+            <a href="Callbacks.html">Callbacks</a> from parent classes are inherited.
+            </p>
+            <p>
+            Example:
+            </p>
+            <pre>class Storage&#x000A;  include ActiveSupport::Callbacks&#x000A;&#x000A;  define_callbacks :before_save, :after_save&#x000A;&#x000A;  before_save :prepare&#x000A;  def prepare&#x000A;    puts &quot;preparing save&quot;&#x000A;  end&#x000A;end&#x000A;&#x000A;class ConfigStorage &lt; Storage&#x000A;  before_save :saving_message&#x000A;  def saving_message&#x000A;    puts &quot;saving...&quot;&#x000A;  end&#x000A;&#x000A;  after_save do |object|&#x000A;    puts &quot;saved&quot;&#x000A;  end&#x000A;&#x000A;  def save&#x000A;    run_callbacks(:before_save)&#x000A;    puts &quot;- save&quot;&#x000A;    run_callbacks(:after_save)&#x000A;  end&#x000A;end&#x000A;&#x000A;config = ConfigStorage.new&#x000A;config.save</pre>
+            <p>
+            Output:
+            </p>
+            <pre>preparing save&#x000A;saving...&#x000A;- save&#x000A;saved</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001360">included</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001361">run_callbacks</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="Callbacks/ClassMethods.html" class="link">ActiveSupport::Callbacks::ClassMethods</a><br />
+              Class <a href="Callbacks/Callback.html" class="link">ActiveSupport::Callbacks::Callback</a><br />
+              Class <a href="Callbacks/CallbackChain.html" class="link">ActiveSupport::Callbacks::CallbackChain</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001360'>
+                <a name='M001360'></a>
+                <div class='synopsis'>
+                  <span class='name'>included</span>
+                  <span class='arguments'>(base)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001360-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001360-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/callbacks.rb, line 200</span>&#x000A;200:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)&#x000A;201:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">ClassMethods</span>&#x000A;202:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001361'>
+                <a name='M001361'></a>
+                <div class='synopsis'>
+                  <span class='name'>run_callbacks</span>
+                  <span class='arguments'>(kind, options = {}, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Runs all the callbacks defined for the given options.
+                  </p>
+                  <p>
+                  If a block is given it will be called after each callback receiving as
+                  arguments:
+                  </p>
+                  <pre>* the result from the callback&#x000A;* the object which has the callback</pre>
+                  <p>
+                  If the result from the block evaluates to false, the callback chain is
+                  stopped.
+                  </p>
+                  <p>
+                  Example:
+                  </p>
+                  <pre>class Storage&#x000A;  include ActiveSupport::Callbacks&#x000A;&#x000A;  define_callbacks :before_save, :after_save&#x000A;end&#x000A;&#x000A;class ConfigStorage &lt; Storage&#x000A;  before_save :pass&#x000A;  before_save :pass&#x000A;  before_save :stop&#x000A;  before_save :pass&#x000A;&#x000A;  def pass&#x000A;    puts &quot;pass&quot;&#x000A;  end&#x000A;&#x000A;  def stop&#x000A;    puts &quot;stop&quot;&#x000A;    return false&#x000A;  end&#x000A;&#x000A;  def save&#x000A;    result = run_callbacks(:before_save) { |result, object| result == false }&#x000A;    puts &quot;- save&quot; if result&#x000A;  end&#x000A;end&#x000A;&#x000A;config = ConfigStorage.new&#x000A;config.save</pre>
+                  <p>
+                  Output:
+                  </p>
+                  <pre>pass&#x000A;pass&#x000A;stop</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001361-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001361-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/callbacks.rb, line 276</span>&#x000A;276:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run_callbacks</span>(<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;277:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{kind}_callback_chain&quot;</span>).<span class="ruby-identifier">run</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;278:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Testing::SetupAndTeardown::ForClassicTestUnit [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Testing::SetupAndTeardown::ForClassicTestUnit
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown_rb.html">vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001662">run</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>PASSTHROUGH_EXCEPTIONS</td>
+                    <td>=</td>
+                    <td class='context-item-value'>Test::Unit::TestCase::PASSTHROUGH_EXCEPTIONS rescue [NoMemoryError, SignalException, Interrupt, SystemExit]</td>
+                    <td>&nbsp;</td>
+                    <td class='context-item-desc'>
+                      
+                      For compatibility with Ruby < 1.8.6
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001662'>
+                <a name='M001662'></a>
+                <div class='synopsis'>
+                  <span class='name'>run</span>
+                  <span class='arguments'>(result) {|Test::Unit::TestCase::STARTED, name| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  This redefinition is unfortunate but test/unit shows us no alternative.
+                  Doubly unfortunate: hax to support Mocha&#8217;s hax.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001662-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001662-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb, line 44</span>&#x000A;44:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">result</span>)&#x000A;45:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@method_name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;default_test&quot;</span>&#x000A;46: &#x000A;47:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">using_mocha</span> = <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:mocha_verify</span>)&#x000A;48:             <span class="ruby-identifier">assertion_counter_klass</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCaseAdapter</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionCounter</span>)&#x000A;49:                                         <span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCaseAdapter</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionCounter</span>&#x000A;50:                                       <span class="ruby-keyword kw">else</span>&#x000A;51:                                         <span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">Integration</span><span class="ruby-operator">::</span><span class="ruby-constant">TestUnit</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionCounter</span>&#x000A;52:                                       <span class="ruby-keyword kw">end</span>&#x000A;53:             <span class="ruby-identifier">assertion_counter</span> = <span class="ruby-identifier">assertion_counter_klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>)&#x000A;54:           <span class="ruby-keyword kw">end</span>&#x000A;55: &#x000A;56:           <span class="ruby-keyword kw">yield</span>(<span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span><span class="ruby-operator">::</span><span class="ruby-constant">STARTED</span>, <span class="ruby-identifier">name</span>)&#x000A;57:           <span class="ruby-ivar">@_result</span> = <span class="ruby-identifier">result</span>&#x000A;58:           <span class="ruby-keyword kw">begin</span>&#x000A;59:             <span class="ruby-keyword kw">begin</span>&#x000A;60:               <span class="ruby-identifier">run_callbacks</span> <span class="ruby-identifier">:setup</span>&#x000A;61:               <span class="ruby-identifier">setup</span>&#x000A;62:               <span class="ruby-identifier">__send__</span>(<span class="ruby-ivar">@method_name</span>)&#x000A;63:               <span class="ruby-identifier">mocha_verify</span>(<span class="ruby-identifier">assertion_counter</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">using_mocha</span>&#x000A;64:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Mocha</span><span class="ruby-operator">::</span><span class="ruby-constant">ExpectationError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;65:               <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)&#x000A;66:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionFailedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;67:               <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)&#x000A;68:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;69:               <span class="ruby-identifier">raise</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">PASSTHROUGH_EXCEPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span>)&#x000A;70:               <span class="ruby-identifier">add_error</span>(<span class="ruby-identifier">e</span>)&#x000A;71:             <span class="ruby-keyword kw">ensure</span>&#x000A;72:               <span class="ruby-keyword kw">begin</span>&#x000A;73:                 <span class="ruby-identifier">teardown</span>&#x000A;74:                 <span class="ruby-identifier">run_callbacks</span> <span class="ruby-identifier">:teardown</span>, <span class="ruby-identifier">:enumerator</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:reverse_each</span>&#x000A;75:               <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">AssertionFailedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;76:                 <span class="ruby-identifier">add_failure</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>)&#x000A;77:               <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;78:                 <span class="ruby-identifier">raise</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">PASSTHROUGH_EXCEPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">class</span>)&#x000A;79:                 <span class="ruby-identifier">add_error</span>(<span class="ruby-identifier">e</span>)&#x000A;80:               <span class="ruby-keyword kw">end</span>&#x000A;81:             <span class="ruby-keyword kw">end</span>&#x000A;82:           <span class="ruby-keyword kw">ensure</span>&#x000A;83:             <span class="ruby-identifier">mocha_teardown</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">using_mocha</span>&#x000A;84:           <span class="ruby-keyword kw">end</span>&#x000A;85:           <span class="ruby-identifier">result</span>.<span class="ruby-identifier">add_run</span>&#x000A;86:           <span class="ruby-keyword kw">yield</span>(<span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span><span class="ruby-operator">::</span><span class="ruby-constant">FINISHED</span>, <span class="ruby-identifier">name</span>)&#x000A;87:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

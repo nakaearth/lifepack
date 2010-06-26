@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: SourceAnnotationExtractor [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          SourceAnnotationExtractor
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/railties/lib/source_annotation_extractor_rb.html">vendor/rails/railties/lib/source_annotation_extractor.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Implements the logic behind the rake tasks for annotations like
+            </p>
+            <pre>rake notes&#x000A;rake notes:optimize</pre>
+            <p>
+            and friends. See <tt>rake -T notes</tt> and
+            <tt>railties/lib/tasks/annotations.rake</tt>.
+            </p>
+            <p>
+            <a href="SourceAnnotationExtractor/Annotation.html">Annotation</a> objects
+            are triplets <tt>:line</tt>, <tt>:tag</tt>, <tt>:text</tt> that represent
+            the line where the annotation lives, its tag, and its text. Note the
+            filename is not stored.
+            </p>
+            <p>
+            Annotations are looked for in comments and modulus whitespace they have to
+            start with the tag optionally followed by a colon. Everything up to the end
+            of the line (or closing ERb comment tag) is considered to be their text.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000224">enumerate</a></li>
+              <li><a href="#M000225">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000229">display</a></li>
+              <li><a href="#M000228">extract_annotations_from</a></li>
+              <li><a href="#M000226">find</a></li>
+              <li><a href="#M000227">find_in</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="SourceAnnotationExtractor/Annotation.html" class="link">SourceAnnotationExtractor::Annotation</a><br />
+            </div>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>tag</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000224'>
+                <a name='M000224'></a>
+                <div class='synopsis'>
+                  <span class='name'>enumerate</span>
+                  <span class='arguments'>(tag, options={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Prints all annotations with tag <tt>tag</tt> under the root directories
+                  <tt>app</tt>, <tt>lib</tt>, and <tt>test</tt> (recursively). Only filenames
+                  with extension <tt>.builder</tt>, <tt>.rb</tt>, <tt>.rxml</tt>,
+                  <tt>.rjs</tt>, <tt>.rhtml</tt>, or <tt>.erb</tt> are taken into account.
+                  The <tt>options</tt> hash is passed to each annotation&#8217;s
+                  <tt>to_s</tt>.
+                  </p>
+                  <p>
+                  This class method is the single entry point for the rake tasks.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000224-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000224-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 37</span>&#x000A;37:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">enumerate</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">options</span>={})&#x000A;38:     <span class="ruby-identifier">extractor</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">tag</span>)&#x000A;39:     <span class="ruby-identifier">extractor</span>.<span class="ruby-identifier">display</span>(<span class="ruby-identifier">extractor</span>.<span class="ruby-identifier">find</span>, <span class="ruby-identifier">options</span>)&#x000A;40:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000225'>
+                <a name='M000225'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(tag)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000225-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000225-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 44</span>&#x000A;44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">tag</span>)&#x000A;45:     <span class="ruby-ivar">@tag</span> = <span class="ruby-identifier">tag</span>&#x000A;46:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000229'>
+                <a name='M000229'></a>
+                <div class='synopsis'>
+                  <span class='name'>display</span>
+                  <span class='arguments'>(results, options={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Prints the mapping from filenames to annotations in <tt>results</tt>
+                  ordered by filename. The <tt>options</tt> hash is passed to each
+                  annotation&#8217;s <tt>to_s</tt>.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000229-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000229-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 93</span>&#x000A; 93:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display</span>(<span class="ruby-identifier">results</span>, <span class="ruby-identifier">options</span>={})&#x000A; 94:     <span class="ruby-identifier">results</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>&#x000A; 95:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{file}:&quot;</span>&#x000A; 96:       <span class="ruby-identifier">results</span>[<span class="ruby-identifier">file</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">note</span><span class="ruby-operator">|</span>&#x000A; 97:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;  * #{note.to_s(options)}&quot;</span>&#x000A; 98:       <span class="ruby-keyword kw">end</span>&#x000A; 99:       <span class="ruby-identifier">puts</span>&#x000A;100:     <span class="ruby-keyword kw">end</span>&#x000A;101:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000228'>
+                <a name='M000228'></a>
+                <div class='synopsis'>
+                  <span class='name'>extract_annotations_from</span>
+                  <span class='arguments'>(file, pattern)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  If <tt>file</tt> is the filename of a file that contains annotations this
+                  method returns a hash with a single entry that maps <tt>file</tt> to an
+                  array of its annotations. Otherwise it returns an empty hash.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000228-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000228-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 81</span>&#x000A;81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extract_annotations_from</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">pattern</span>)&#x000A;82:     <span class="ruby-identifier">lineno</span> = <span class="ruby-value">0</span>&#x000A;83:     <span class="ruby-identifier">result</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>&#x000A;84:       <span class="ruby-identifier">lineno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;85:       <span class="ruby-keyword kw">next</span> <span class="ruby-identifier">list</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">pattern</span>&#x000A;86:       <span class="ruby-identifier">list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Annotation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">lineno</span>, <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>)&#x000A;87:     <span class="ruby-keyword kw">end</span>&#x000A;88:     <span class="ruby-identifier">result</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span>{} <span class="ruby-operator">:</span> { <span class="ruby-identifier">file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">result</span> }&#x000A;89:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000226'>
+                <a name='M000226'></a>
+                <div class='synopsis'>
+                  <span class='name'>find</span>
+                  <span class='arguments'>(dirs=%w(app lib test))</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a hash that maps filenames under <tt>dirs</tt> (recursively) to
+                  arrays with their annotations. Only files with annotations are included,
+                  and only those with extension <tt>.builder</tt>, <tt>.rb</tt>,
+                  <tt>.rxml</tt>, <tt>.rjs</tt>, <tt>.rhtml</tt>, and <tt>.erb</tt> are taken
+                  into account.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000226-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000226-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 52</span>&#x000A;52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">dirs</span>=<span class="ruby-node">%w(app lib test)</span>)&#x000A;53:     <span class="ruby-identifier">dirs</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">dir</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">find_in</span>(<span class="ruby-identifier">dir</span>)) }&#x000A;54:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000227'>
+                <a name='M000227'></a>
+                <div class='synopsis'>
+                  <span class='name'>find_in</span>
+                  <span class='arguments'>(dir)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a hash that maps filenames under <tt>dir</tt> (recursively) to
+                  arrays with their annotations. Only files with annotations are included,
+                  and only those with extension <tt>.builder</tt>, <tt>.rb</tt>,
+                  <tt>.rxml</tt>, <tt>.rjs</tt>, <tt>.rhtml</tt>, and <tt>.erb</tt> are taken
+                  into account.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000227-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000227-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/source_annotation_extractor.rb, line 60</span>&#x000A;60:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_in</span>(<span class="ruby-identifier">dir</span>)&#x000A;61:     <span class="ruby-identifier">results</span> = {}&#x000A;62: &#x000A;63:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;#{dir}/*&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>&#x000A;64:       <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">item</span>)[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?.</span>&#x000A;65: &#x000A;66:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">item</span>)&#x000A;67:         <span class="ruby-identifier">results</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">find_in</span>(<span class="ruby-identifier">item</span>))&#x000A;68:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">item</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.(builder|(r(?:b|xml|js)))$/</span>&#x000A;69:         <span class="ruby-identifier">results</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">extract_annotations_from</span>(<span class="ruby-identifier">item</span>, <span class="ruby-node">/#\s*(#{tag}):?\s*(.*)$/</span>))&#x000A;70:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">item</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.(rhtml|erb)$/</span>&#x000A;71:         <span class="ruby-identifier">results</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">extract_annotations_from</span>(<span class="ruby-identifier">item</span>, <span class="ruby-node">/&lt;%\s*#\s*(#{tag}):?\s*(.*?)\s*%&gt;/</span>))&#x000A;72:       <span class="ruby-keyword kw">end</span>&#x000A;73:     <span class="ruby-keyword kw">end</span>&#x000A;74: &#x000A;75:     <span class="ruby-identifier">results</span>&#x000A;76:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

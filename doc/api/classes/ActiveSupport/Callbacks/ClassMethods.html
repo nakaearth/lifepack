@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Callbacks::ClassMethods [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Callbacks::ClassMethods
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activesupport/lib/active_support/callbacks_rb.html">vendor/rails/activesupport/lib/active_support/callbacks.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001362">define_callbacks</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001362'>
+                <a name='M001362'></a>
+                <div class='synopsis'>
+                  <span class='name'>define_callbacks</span>
+                  <span class='arguments'>(*callbacks)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001362-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001362-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/callbacks.rb, line 205</span>&#x000A;205:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_callbacks</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">callbacks</span>)&#x000A;206:         <span class="ruby-identifier">callbacks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">callback</span><span class="ruby-operator">|</span>&#x000A;207:           <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def self.\#{callback}(*methods, &amp;block)                             # def self.before_save(*methods, &amp;block)\ncallbacks = CallbackChain.build(:\#{callback}, *methods, &amp;block)  #   callbacks = CallbackChain.build(:before_save, *methods, &amp;block)\n@\#{callback}_callbacks ||= CallbackChain.new                     #   @before_save_callbacks ||= CallbackChain.new\n@\#{callback}_callbacks.concat callbacks                          #   @before_save_callbacks.concat callbacks\nend                                                                # end\n#\ndef self.\#{callback}_callback_chain                                # def self.before_save_callback_chain\n@\#{callback}_callbacks ||= CallbackChain.new                     #   @before_save_callbacks ||= CallbackChain.new\n#\nif superclass.respond_to?(:\#{callback}_callback_chain)           #   if superclass.respond_to?(:before_save_callback_chain)\nCallbackChain.new(                                             #     CallbackChain.new(\nsuperclass.\#{callback}_callback_chain +                      #       superclass.before_save_callback_chain +\n@\#{callback}_callbacks                                       #       @before_save_callbacks\n)                                                              #     )\nelse                                                             #   else\n@\#{callback}_callbacks                                         #     @before_save_callbacks\nend                                                              #   end\nend                                                                # end\n&quot;</span>&#x000A;208:         <span class="ruby-keyword kw">end</span>&#x000A;209:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

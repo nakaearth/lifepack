@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: I18nSimpleBackendLocalizeTimeTest [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          I18nSimpleBackendLocalizeTimeTest
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/i18n-0_1_3/test/simple_backend_test_rb.html">vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Test::Unit::TestCase</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000089">setup</a></li>
+              <li><a href="#M000090">teardown</a></li>
+              <li><a href="#M000093">test_translate_given_a_day_name_format_it_returns_the_correct_day_name</a></li>
+              <li><a href="#M000097">test_translate_given_a_meridian_indicator_format_it_returns_the_correct_meridian_indicator</a></li>
+              <li><a href="#M000095">test_translate_given_a_month_name_format_it_returns_the_correct_month_name</a></li>
+              <li><a href="#M000094">test_translate_given_an_abbr_day_name_format_it_returns_the_correct_abbrevated_day_name</a></li>
+              <li><a href="#M000096">test_translate_given_an_abbr_month_name_format_it_returns_the_correct_abbrevated_month_name</a></li>
+              <li><a href="#M000099">test_translate_given_an_unknown_format_it_does_not_fail</a></li>
+              <li><a href="#M000098">test_translate_given_no_format_it_does_not_fail</a></li>
+              <li><a href="#M000092">test_translate_given_the_long_format_it_uses_it</a></li>
+              <li><a href="#M000091">test_translate_given_the_short_format_it_uses_it</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li><a href="I18nSimpleBackendTestSetup.html">I18nSimpleBackendTestSetup</a></li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000089'>
+                <a name='M000089'></a>
+                <div class='synopsis'>
+                  <span class='name'>setup</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000089-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000089-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 418</span>&#x000A;418:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>&#x000A;419:     <span class="ruby-ivar">@old_timezone</span>, <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'TZ'</span>] = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'TZ'</span>], <span class="ruby-value str">'UTC'</span>&#x000A;420:     <span class="ruby-ivar">@backend</span> = <span class="ruby-constant">I18n</span><span class="ruby-operator">::</span><span class="ruby-constant">Backend</span><span class="ruby-operator">::</span><span class="ruby-constant">Simple</span>.<span class="ruby-identifier">new</span>&#x000A;421:     <span class="ruby-identifier">add_datetime_translations</span>&#x000A;422:     <span class="ruby-ivar">@morning</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'2008-01-01 6:00 UTC'</span>&#x000A;423:     <span class="ruby-ivar">@evening</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'2008-01-01 18:00 UTC'</span>&#x000A;424:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000090'>
+                <a name='M000090'></a>
+                <div class='synopsis'>
+                  <span class='name'>teardown</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000090-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000090-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 426</span>&#x000A;426:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>&#x000A;427:     <span class="ruby-ivar">@old_timezone</span> <span class="ruby-operator">?</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'TZ'</span>] = <span class="ruby-ivar">@old_timezone</span> <span class="ruby-operator">:</span> <span class="ruby-constant">ENV</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'TZ'</span>)&#x000A;428:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000093'>
+                <a name='M000093'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_a_day_name_format_it_returns_the_correct_day_name</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  TODO Seems to break on Windows because ENV[&#8216;TZ&#8217;] is ignored.
+                  What&#8217;s a better way to do this? def
+                  test_translate_given_the_default_format_it_uses_it
+                  </p>
+                  <pre>assert_equal 'Di, 01. Jan 2008 06:00:00 +0000', @backend.localize('de', @morning, :default)</pre>
+                  <p>
+                  end
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000093-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000093-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 443</span>&#x000A;443:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_a_day_name_format_it_returns_the_correct_day_name</span>&#x000A;444:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'Dienstag'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%A'</span>)&#x000A;445:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000097'>
+                <a name='M000097'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_a_meridian_indicator_format_it_returns_the_correct_meridian_indicator</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000097-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000097-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 459</span>&#x000A;459:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_a_meridian_indicator_format_it_returns_the_correct_meridian_indicator</span>&#x000A;460:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'am'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%p'</span>)&#x000A;461:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'pm'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@evening</span>, <span class="ruby-value str">'%p'</span>)&#x000A;462:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000095'>
+                <a name='M000095'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_a_month_name_format_it_returns_the_correct_month_name</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000095-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000095-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 451</span>&#x000A;451:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_a_month_name_format_it_returns_the_correct_month_name</span>&#x000A;452:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'Januar'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%B'</span>)&#x000A;453:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000094'>
+                <a name='M000094'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_an_abbr_day_name_format_it_returns_the_correct_abbrevated_day_name</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000094-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000094-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 447</span>&#x000A;447:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_an_abbr_day_name_format_it_returns_the_correct_abbrevated_day_name</span>&#x000A;448:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'Di'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%a'</span>)&#x000A;449:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000096'>
+                <a name='M000096'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_an_abbr_month_name_format_it_returns_the_correct_abbrevated_month_name</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000096-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000096-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 455</span>&#x000A;455:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_an_abbr_month_name_format_it_returns_the_correct_abbrevated_month_name</span>&#x000A;456:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'Jan'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%b'</span>)&#x000A;457:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000099'>
+                <a name='M000099'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_an_unknown_format_it_does_not_fail</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000099-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000099-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 468</span>&#x000A;468:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_an_unknown_format_it_does_not_fail</span>&#x000A;469:     <span class="ruby-identifier">assert_nothing_raised</span>{ <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span> <span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-value str">'%x'</span> }&#x000A;470:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000098'>
+                <a name='M000098'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_no_format_it_does_not_fail</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000098-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000098-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 464</span>&#x000A;464:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_no_format_it_does_not_fail</span>&#x000A;465:     <span class="ruby-identifier">assert_nothing_raised</span>{ <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span> <span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span> }&#x000A;466:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000092'>
+                <a name='M000092'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_the_long_format_it_uses_it</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000092-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000092-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 434</span>&#x000A;434:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_the_long_format_it_uses_it</span>&#x000A;435:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'01. Januar 2008 06:00'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-identifier">:long</span>)&#x000A;436:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000091'>
+                <a name='M000091'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_translate_given_the_short_format_it_uses_it</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000091-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000091-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 430</span>&#x000A;430:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_translate_given_the_short_format_it_uses_it</span>&#x000A;431:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-value str">'01. Jan 06:00'</span>, <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">localize</span>(<span class="ruby-value str">'de'</span>, <span class="ruby-ivar">@morning</span>, <span class="ruby-identifier">:short</span>)&#x000A;432:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>README</div>
+        <div class='paths'>
+          vendor/rails/activeresource/README
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Wed Jun 02 23:52:04 +0900 2010</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1>Active Resource</h1>
+            <p>
+            Active Resource (ARes) connects business objects and Representational State
+            Transfer (REST) web services. It implements object-relational mapping for
+            REST webservices to provide transparent proxying capabilities between a
+            client (<a
+            href="../../../../classes/ActiveResource.html">ActiveResource</a>) and a
+            RESTful service (which is provided by Simply RESTful routing in <a
+            href="../../../../classes/ActionController/Resources.html">ActionController::Resources</a>).
+            </p>
+            <h2>Philosophy</h2>
+            <p>
+            Active Resource attempts to provide a coherent wrapper object-relational
+            mapping for REST web services. It follows the same philosophy as Active
+            Record, in that one of its prime aims is to reduce the amount of code
+            needed to map to these resources. This is made possible by relying on a
+            number of code- and protocol-based conventions that make it easy for Active
+            Resource to infer complex relations and structures. These conventions are
+            outlined in detail in the documentation for <a
+            href="../../../../classes/ActiveResource/Base.html">ActiveResource::Base</a>.
+            </p>
+            <h2>Overview</h2>
+            <p>
+            Model classes are mapped to remote REST resources by Active Resource much
+            the same way Active Record maps model classes to database tables. When a
+            request is made to a remote resource, a REST XML request is generated,
+            transmitted, and the result received and serialized into a usable Ruby
+            object.
+            </p>
+            <h3>Configuration and Usage</h3>
+            <p>
+            Putting <a
+            href="../../../../classes/ActiveResource.html">ActiveResource</a> to use is
+            very similar to ActiveRecord. It&#8217;s as simple as creating a model
+            class that inherits from <a
+            href="../../../../classes/ActiveResource/Base.html">ActiveResource::Base</a>
+            and providing a <tt>site</tt> class variable to it:
+            </p>
+            <pre>class Person &lt; ActiveResource::Base&#x000A;  self.site = &quot;http://api.people.com:3000/&quot;&#x000A;end</pre>
+            <p>
+            Now the Person class is REST enabled and can invoke REST services very
+            similarly to how ActiveRecord invokes lifecycle methods that operate
+            against a persistent store.
+            </p>
+            <pre># Find a person with id = 1&#x000A;ryan = Person.find(1)&#x000A;Person.exists?(1)  #=&gt; true</pre>
+            <p>
+            As you can see, the methods are quite similar to Active Record&#8217;s
+            methods for dealing with database records. But rather than dealing directly
+            with a database record, you&#8217;re dealing with HTTP resources (which may
+            or may not be database records).
+            </p>
+            <h4>Protocol</h4>
+            <p>
+            Active Resource is built on a standard XML format for requesting and
+            submitting resources over HTTP. It mirrors the RESTful routing built into
+            ActionController but will also work with any other REST service that
+            properly implements the protocol. REST uses HTTP, but unlike
+            &#8220;typical&#8221; web applications, it makes use of all the verbs
+            available in the HTTP specification:
+            </p>
+            <ul>
+            <li>GET requests are used for finding and retrieving resources.
+            
+            </li>
+            <li>POST requests are used to create new resources.
+            
+            </li>
+            <li>PUT requests are used to update existing resources.
+            
+            </li>
+            <li>DELETE requests are used to delete resources.
+            
+            </li>
+            </ul>
+            <p>
+            For more information on how this protocol works with Active Resource, see
+            the <a
+            href="../../../../classes/ActiveResource/Base.html">ActiveResource::Base</a>
+            documentation; for more general information on REST web services, see the
+            article <a
+            href="http://en.wikipedia.org/wiki/Representational_State_Transfer">here</a>.
+            </p>
+            <h4>Find</h4>
+            <p>
+            GET Http requests expect the XML form of whatever resource/resources is/are
+            being requested. So, for a request for a single element - the XML of that
+            item is expected in response:
+            </p>
+            <pre># Expects a response of&#x000A;#&#x000A;# &lt;person&gt;&lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;&lt;attribute1&gt;value1&lt;/attribute1&gt;&lt;attribute2&gt;..&lt;/attribute2&gt;&lt;/person&gt;&#x000A;#&#x000A;# for GET http://api.people.com:3000/people/1.xml&#x000A;#&#x000A;ryan = Person.find(1)</pre>
+            <p>
+            The XML document that is received is used to build a new object of type
+            Person, with each XML element becoming an attribute on the object.
+            </p>
+            <pre>ryan.is_a? Person  #=&gt; true&#x000A;ryan.attribute1  #=&gt; 'value1'</pre>
+            <p>
+            Any complex element (one that contains other elements) becomes its own
+            object:
+            </p>
+            <pre># With this response:&#x000A;#&#x000A;# &lt;person&gt;&lt;id&gt;1&lt;/id&gt;&lt;attribute1&gt;value1&lt;/attribute1&gt;&lt;complex&gt;&lt;attribute2&gt;value2&lt;/attribute2&gt;&lt;/complex&gt;&lt;/person&gt;&#x000A;#&#x000A;# for GET http://api.people.com:3000/people/1.xml&#x000A;#&#x000A;ryan = Person.find(1)&#x000A;ryan.complex  #=&gt; &lt;Person::Complex::xxxxx&gt;&#x000A;ryan.complex.attribute2  #=&gt; 'value2'</pre>
+            <p>
+            Collections can also be requested in a similar fashion
+            </p>
+            <pre># Expects a response of&#x000A;#&#x000A;# &lt;people type=&quot;array&quot;&gt;&#x000A;#  &lt;person&gt;&lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;&lt;first&gt;Ryan&lt;/first&gt;&lt;/person&gt;&#x000A;#  &lt;person&gt;&lt;id type=&quot;integer&quot;&gt;2&lt;/id&gt;&lt;first&gt;Jim&lt;/first&gt;&lt;/person&gt;&#x000A;# &lt;/people&gt;&#x000A;#&#x000A;# for GET http://api.people.com:3000/people.xml&#x000A;#&#x000A;people = Person.find(:all)&#x000A;people.first  #=&gt; &lt;Person::xxx 'first' =&gt; 'Ryan' ...&gt;&#x000A;people.last  #=&gt; &lt;Person::xxx 'first' =&gt; 'Jim' ...&gt;</pre>
+            <h4>Create</h4>
+            <p>
+            Creating a new resource submits the xml form of the resource as the body of
+            the request and expects a &#8216;Location&#8217; header in the response
+            with the RESTful URL location of the newly created resource. The id of the
+            newly created resource is parsed out of the Location response header and
+            automatically set as the id of the ARes object.
+            </p>
+            <pre># &lt;person&gt;&lt;first&gt;Ryan&lt;/first&gt;&lt;/person&gt;&#x000A;#&#x000A;# is submitted as the body on&#x000A;#&#x000A;# POST http://api.people.com:3000/people.xml&#x000A;#&#x000A;# when save is called on a new Person object.  An empty response is&#x000A;# is expected with a 'Location' header value:&#x000A;#&#x000A;# Response (201): Location: http://api.people.com:3000/people/2&#x000A;#&#x000A;ryan = Person.new(:first =&gt; 'Ryan')&#x000A;ryan.new?  #=&gt; true&#x000A;ryan.save  #=&gt; true&#x000A;ryan.new?  #=&gt; false&#x000A;ryan.id    #=&gt; 2</pre>
+            <h4>Update</h4>
+            <p>
+            &#8216;save&#8217; is also used to update an existing resource - and
+            follows the same protocol as creating a resource with the exception that no
+            response headers are needed - just an empty response when the update on the
+            server side was successful.
+            </p>
+            <pre># &lt;person&gt;&lt;first&gt;Ryan&lt;/first&gt;&lt;/person&gt;&#x000A;#&#x000A;# is submitted as the body on&#x000A;#&#x000A;# PUT http://api.people.com:3000/people/1.xml&#x000A;#&#x000A;# when save is called on an existing Person object.  An empty response is&#x000A;# is expected with code (204)&#x000A;#&#x000A;ryan = Person.find(1)&#x000A;ryan.first #=&gt; 'Ryan'&#x000A;ryan.first = 'Rizzle'&#x000A;ryan.save  #=&gt; true</pre>
+            <h4>Delete</h4>
+            <p>
+            Destruction of a resource can be invoked as a class and instance method of
+            the resource.
+            </p>
+            <pre># A request is made to&#x000A;#&#x000A;# DELETE http://api.people.com:3000/people/1.xml&#x000A;#&#x000A;# for both of these forms.  An empty response with&#x000A;# is expected with response code (200)&#x000A;#&#x000A;ryan = Person.find(1)&#x000A;ryan.destroy  #=&gt; true&#x000A;ryan.exists?  #=&gt; false&#x000A;Person.delete(2)  #=&gt; true&#x000A;Person.exists?(2) #=&gt; false</pre>
+            <p>
+            You can find more usage information in the <a
+            href="../../../../classes/ActiveResource/Base.html">ActiveResource::Base</a>
+            documentation.
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

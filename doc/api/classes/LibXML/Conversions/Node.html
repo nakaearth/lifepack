@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: LibXML::Conversions::Node [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          LibXML::Conversions::Node
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activesupport/lib/active_support/xml_mini/libxml_rb.html">vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M002840">to_hash</a></li>
+            </ol>
+            <h3>protected instance</h3>
+            <ol>
+              <li><a href="#M002846">array?</a></li>
+              <li><a href="#M002843">attributes_to_hash</a></li>
+              <li><a href="#M002844">children_array_to_hash</a></li>
+              <li><a href="#M002842">children_to_hash</a></li>
+              <li><a href="#M002845">children_yaml_to_hash</a></li>
+              <li><a href="#M002841">insert_name_into_hash</a></li>
+              <li><a href="#M002847">yaml?</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>CONTENT_ROOT</td>
+                    <td>=</td>
+                    <td class='context-item-value'>'__content__'</td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>LIB_XML_LIMIT</td>
+                    <td>=</td>
+                    <td class='context-item-value'>30000000</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M002840'>
+                <a name='M002840'></a>
+                <div class='synopsis'>
+                  <span class='name'>to_hash</span>
+                  <span class='arguments'>(hash={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Convert XML document to hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the converted element into.
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002840-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002840-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 40</span>&#x000A;40:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>(<span class="ruby-identifier">hash</span>={})&#x000A;41:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text?</span>&#x000A;42:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">LibXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">LIB_XML_LIMIT</span>&#x000A;43:           <span class="ruby-identifier">hash</span>[<span class="ruby-constant">CONTENT_ROOT</span>] = <span class="ruby-identifier">content</span>&#x000A;44:         <span class="ruby-keyword kw">else</span>&#x000A;45:           <span class="ruby-identifier">sub_hash</span> = <span class="ruby-identifier">insert_name_into_hash</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">name</span>)&#x000A;46:           <span class="ruby-identifier">attributes_to_hash</span>(<span class="ruby-identifier">sub_hash</span>)&#x000A;47:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">array?</span>&#x000A;48:             <span class="ruby-identifier">children_array_to_hash</span>(<span class="ruby-identifier">sub_hash</span>)&#x000A;49:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">yaml?</span>&#x000A;50:             <span class="ruby-identifier">children_yaml_to_hash</span>(<span class="ruby-identifier">sub_hash</span>)&#x000A;51:           <span class="ruby-keyword kw">else</span>&#x000A;52:             <span class="ruby-identifier">children_to_hash</span>(<span class="ruby-identifier">sub_hash</span>)&#x000A;53:           <span class="ruby-keyword kw">end</span>&#x000A;54:         <span class="ruby-keyword kw">end</span>&#x000A;55:         <span class="ruby-identifier">hash</span>&#x000A;56:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Protected instance methods</h2>
+              <div class='method protected-instance' id='method-M002846'>
+                <a name='M002846'></a>
+                <div class='synopsis'>
+                  <span class='name'>array?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Check if child is of type array
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002846-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002846-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 119</span>&#x000A;119:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">array?</span>&#x000A;120:           <span class="ruby-identifier">child?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">next?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">next</span>.<span class="ruby-identifier">name</span>&#x000A;121:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002843'>
+                <a name='M002843'></a>
+                <div class='synopsis'>
+                  <span class='name'>attributes_to_hash</span>
+                  <span class='arguments'>(hash={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Convert xml attributes to hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the attributes into
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002843-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002843-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 93</span>&#x000A;93:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attributes_to_hash</span>(<span class="ruby-identifier">hash</span>={})&#x000A;94:           <span class="ruby-identifier">each_attr</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">attr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">attr</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">attr</span>.<span class="ruby-identifier">value</span> }&#x000A;95:           <span class="ruby-identifier">hash</span>&#x000A;96:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002844'>
+                <a name='M002844'></a>
+                <div class='synopsis'>
+                  <span class='name'>children_array_to_hash</span>
+                  <span class='arguments'>(hash={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Convert array into hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the array into
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002844-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002844-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 102</span>&#x000A;102:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">children_array_to_hash</span>(<span class="ruby-identifier">hash</span>={})&#x000A;103:           <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>&#x000A;104:             <span class="ruby-identifier">returning</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">sub_hash</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">children_to_hash</span>(<span class="ruby-identifier">sub_hash</span>) }&#x000A;105:           <span class="ruby-keyword kw">end</span>&#x000A;106:           <span class="ruby-identifier">hash</span>&#x000A;107:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002842'>
+                <a name='M002842'></a>
+                <div class='synopsis'>
+                  <span class='name'>children_to_hash</span>
+                  <span class='arguments'>(hash={})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Insert children into hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the children into.
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002842-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002842-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 83</span>&#x000A;83:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">children_to_hash</span>(<span class="ruby-identifier">hash</span>={})&#x000A;84:           <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_hash</span>(<span class="ruby-identifier">hash</span>) }&#x000A;85:           <span class="ruby-identifier">attributes_to_hash</span>(<span class="ruby-identifier">hash</span>)&#x000A;86:           <span class="ruby-identifier">hash</span>&#x000A;87:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002845'>
+                <a name='M002845'></a>
+                <div class='synopsis'>
+                  <span class='name'>children_yaml_to_hash</span>
+                  <span class='arguments'>(hash = {})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Convert yaml into hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the yaml into
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002845-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002845-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 113</span>&#x000A;113:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">children_yaml_to_hash</span>(<span class="ruby-identifier">hash</span> = {})&#x000A;114:           <span class="ruby-identifier">hash</span>[<span class="ruby-constant">CONTENT_ROOT</span>] = <span class="ruby-identifier">content</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">blank?</span>&#x000A;115:           <span class="ruby-identifier">hash</span>&#x000A;116:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002841'>
+                <a name='M002841'></a>
+                <div class='synopsis'>
+                  <span class='name'>insert_name_into_hash</span>
+                  <span class='arguments'>(hash, name)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Insert name into hash
+                  </p>
+                  <table>
+                  <tr><td valign="top">hash:</td><td>Hash to merge the converted element into.
+                  
+                  </td></tr>
+                  <tr><td valign="top">name:</td><td>name to to merge into hash
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002841-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002841-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 66</span>&#x000A;66:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert_name_into_hash</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">name</span>)&#x000A;67:           <span class="ruby-identifier">sub_hash</span> = {}&#x000A;68:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>]&#x000A;69:             <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Array</span>&#x000A;70:               <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>] = [<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>]]&#x000A;71:             <span class="ruby-keyword kw">end</span>&#x000A;72:             <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sub_hash</span>&#x000A;73:           <span class="ruby-keyword kw">else</span>&#x000A;74:             <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">sub_hash</span>&#x000A;75:           <span class="ruby-keyword kw">end</span>&#x000A;76:           <span class="ruby-identifier">sub_hash</span>&#x000A;77:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method protected-instance' id='method-M002847'>
+                <a name='M002847'></a>
+                <div class='synopsis'>
+                  <span class='name'>yaml?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Check if child is of type yaml
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002847-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002847-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini/libxml.rb, line 124</span>&#x000A;124:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">yaml?</span>&#x000A;125:           <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">value</span>}.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'yaml'</span>)&#x000A;126:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

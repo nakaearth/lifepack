@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Array::Grouping [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Array::Grouping
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/array/grouping_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/array/grouping.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001488">in_groups</a></li>
+              <li><a href="#M001487">in_groups_of</a></li>
+              <li><a href="#M001489">split</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001488'>
+                <a name='M001488'></a>
+                <div class='synopsis'>
+                  <span class='name'>in_groups</span>
+                  <span class='arguments'>(number, fill_with = nil) {|g| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Splits or iterates over the array in <tt>number</tt> of groups, padding any
+                  remaining slots with <tt>fill_with</tt> unless it is <tt>false</tt>.
+                  </p>
+                  <pre>%w(1 2 3 4 5 6 7 8 9 10).in_groups(3) {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;]&#x000A;[&quot;5&quot;, &quot;6&quot;, &quot;7&quot;, nil]&#x000A;[&quot;8&quot;, &quot;9&quot;, &quot;10&quot;, nil]&#x000A;&#x000A;%w(1 2 3 4 5 6 7).in_groups(3, '&amp;nbsp;') {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]&#x000A;[&quot;4&quot;, &quot;5&quot;, &quot;&amp;nbsp;&quot;]&#x000A;[&quot;6&quot;, &quot;7&quot;, &quot;&amp;nbsp;&quot;]&#x000A;&#x000A;%w(1 2 3 4 5 6 7).in_groups(3, false) {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]&#x000A;[&quot;4&quot;, &quot;5&quot;]&#x000A;[&quot;6&quot;, &quot;7&quot;]</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001488-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001488-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/array/grouping.rb, line 59</span>&#x000A;59:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">in_groups</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">fill_with</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;60:           <span class="ruby-comment cmt"># size / number gives minor group size;</span>&#x000A;61:           <span class="ruby-comment cmt"># size % number gives how many objects need extra accomodation;</span>&#x000A;62:           <span class="ruby-comment cmt"># each group hold either division or division + 1 items.</span>&#x000A;63:           <span class="ruby-identifier">division</span> = <span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">number</span>&#x000A;64:           <span class="ruby-identifier">modulo</span> = <span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">number</span>&#x000A;65: &#x000A;66:           <span class="ruby-comment cmt"># create a new array avoiding dup</span>&#x000A;67:           <span class="ruby-identifier">groups</span> = []&#x000A;68:           <span class="ruby-identifier">start</span> = <span class="ruby-value">0</span>&#x000A;69: &#x000A;70:           <span class="ruby-identifier">number</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>&#x000A;71:             <span class="ruby-identifier">length</span> = <span class="ruby-identifier">division</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">modulo</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">modulo</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">index</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>)&#x000A;72:             <span class="ruby-identifier">padding</span> = <span class="ruby-identifier">fill_with</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">&amp;&amp;</span>&#x000A;73:               <span class="ruby-identifier">modulo</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">division</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>&#x000A;74:             <span class="ruby-identifier">groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">slice</span>(<span class="ruby-identifier">start</span>, <span class="ruby-identifier">length</span>).<span class="ruby-identifier">concat</span>([<span class="ruby-identifier">fill_with</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">padding</span>)&#x000A;75:             <span class="ruby-identifier">start</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">length</span>&#x000A;76:           <span class="ruby-keyword kw">end</span>&#x000A;77: &#x000A;78:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;79:             <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">g</span>) }&#x000A;80:           <span class="ruby-keyword kw">else</span>&#x000A;81:             <span class="ruby-identifier">groups</span>&#x000A;82:           <span class="ruby-keyword kw">end</span>&#x000A;83:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001487'>
+                <a name='M001487'></a>
+                <div class='synopsis'>
+                  <span class='name'>in_groups_of</span>
+                  <span class='arguments'>(number, fill_with = nil) {|slice| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Splits or iterates over the array in groups of size <tt>number</tt>,
+                  padding any remaining slots with <tt>fill_with</tt> unless it is
+                  <tt>false</tt>.
+                  </p>
+                  <pre>%w(1 2 3 4 5 6 7).in_groups_of(3) {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]&#x000A;[&quot;4&quot;, &quot;5&quot;, &quot;6&quot;]&#x000A;[&quot;7&quot;, nil, nil]&#x000A;&#x000A;%w(1 2 3).in_groups_of(2, '&amp;nbsp;') {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;]&#x000A;[&quot;3&quot;, &quot;&amp;nbsp;&quot;]&#x000A;&#x000A;%w(1 2 3).in_groups_of(2, false) {|group| p group}&#x000A;[&quot;1&quot;, &quot;2&quot;]&#x000A;[&quot;3&quot;]</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001487-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001487-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/array/grouping.rb, line 22</span>&#x000A;22:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">in_groups_of</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">fill_with</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;23:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fill_with</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>&#x000A;24:             <span class="ruby-identifier">collection</span> = <span class="ruby-keyword kw">self</span>&#x000A;25:           <span class="ruby-keyword kw">else</span>&#x000A;26:             <span class="ruby-comment cmt"># size % number gives how many extra we have;</span>&#x000A;27:             <span class="ruby-comment cmt"># subtracting from number gives how many to add;</span>&#x000A;28:             <span class="ruby-comment cmt"># modulo number ensures we don't add group of just fill.</span>&#x000A;29:             <span class="ruby-identifier">padding</span> = (<span class="ruby-identifier">number</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">number</span>) <span class="ruby-operator">%</span> <span class="ruby-identifier">number</span>&#x000A;30:             <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">dup</span>.<span class="ruby-identifier">concat</span>([<span class="ruby-identifier">fill_with</span>] <span class="ruby-operator">*</span> <span class="ruby-identifier">padding</span>)&#x000A;31:           <span class="ruby-keyword kw">end</span>&#x000A;32: &#x000A;33:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;34:             <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-identifier">number</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">slice</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">slice</span>) }&#x000A;35:           <span class="ruby-keyword kw">else</span>&#x000A;36:             <span class="ruby-identifier">returning</span> [] <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">groups</span><span class="ruby-operator">|</span>&#x000A;37:               <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-identifier">number</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span> <span class="ruby-identifier">groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">group</span> }&#x000A;38:             <span class="ruby-keyword kw">end</span>&#x000A;39:           <span class="ruby-keyword kw">end</span>&#x000A;40:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001489'>
+                <a name='M001489'></a>
+                <div class='synopsis'>
+                  <span class='name'>split</span>
+                  <span class='arguments'>(value = nil) {|element| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Divides the array into one or more subarrays based on a delimiting
+                  <tt>value</tt> or the result of an optional block.
+                  </p>
+                  <pre>[1, 2, 3, 4, 5].split(3)                # =&gt; [[1, 2], [4, 5]]&#x000A;(1..10).to_a.split { |i| i % 3 == 0 }   # =&gt; [[1, 2], [4, 5], [7, 8], [10]]</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001489-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001489-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/array/grouping.rb, line 90</span>&#x000A; 90:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">split</span>(<span class="ruby-identifier">value</span> = <span class="ruby-keyword kw">nil</span>)&#x000A; 91:           <span class="ruby-identifier">using_block</span> = <span class="ruby-identifier">block_given?</span>&#x000A; 92: &#x000A; 93:           <span class="ruby-identifier">inject</span>([[]]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">results</span>, <span class="ruby-identifier">element</span><span class="ruby-operator">|</span>&#x000A; 94:             <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">using_block</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">element</span>)) <span class="ruby-operator">||</span> (<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">element</span>)&#x000A; 95:               <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> []&#x000A; 96:             <span class="ruby-keyword kw">else</span>&#x000A; 97:               <span class="ruby-identifier">results</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">element</span>&#x000A; 98:             <span class="ruby-keyword kw">end</span>&#x000A; 99: &#x000A;100:             <span class="ruby-identifier">results</span>&#x000A;101:           <span class="ruby-keyword kw">end</span>&#x000A;102:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

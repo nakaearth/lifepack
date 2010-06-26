@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: BlankSlate [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          BlankSlate
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/builder-2_1_2/blankslate_rb.html">vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/blankslate.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="BlankSlate.html">BlankSlate</a> provides an abstract base class
+            with no predefined methods (except for <tt>__send__</tt> and
+            <tt>__id__</tt>). <a href="BlankSlate.html">BlankSlate</a> is useful as a
+            base class when writing classes that depend upon <tt>method_missing</tt>
+            (e.g. dynamic proxies).
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000264">find_hidden_method</a></li>
+              <li><a href="#M000263">hide</a></li>
+              <li><a href="#M000265">reveal</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000264'>
+                <a name='M000264'></a>
+                <div class='synopsis'>
+                  <span class='name'>find_hidden_method</span>
+                  <span class='arguments'>(name)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000264-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000264-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/blankslate.rb, line 31</span>&#x000A;31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_hidden_method</span>(<span class="ruby-identifier">name</span>)&#x000A;32:       <span class="ruby-ivar">@hidden_methods</span> <span class="ruby-operator">||=</span> {}&#x000A;33:       <span class="ruby-ivar">@hidden_methods</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">find_hidden_method</span>(<span class="ruby-identifier">name</span>)&#x000A;34:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000263'>
+                <a name='M000263'></a>
+                <div class='synopsis'>
+                  <span class='name'>hide</span>
+                  <span class='arguments'>(name)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Hide the method named <tt>name</tt> in the <a
+                  href="BlankSlate.html">BlankSlate</a> class. Don&#8217;t hide
+                  <tt>instance_eval</tt> or any method beginning with &#8220;__&#8221;.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000263-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000263-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/blankslate.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hide</span>(<span class="ruby-identifier">name</span>)&#x000A;23:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">and</span>&#x000A;24:         <span class="ruby-identifier">name</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/^(__|instance_eval)/</span>&#x000A;25:         <span class="ruby-ivar">@hidden_methods</span> <span class="ruby-operator">||=</span> {}&#x000A;26:         <span class="ruby-ivar">@hidden_methods</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">name</span>)&#x000A;27:         <span class="ruby-identifier">undef_method</span> <span class="ruby-identifier">name</span>&#x000A;28:       <span class="ruby-keyword kw">end</span>&#x000A;29:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000265'>
+                <a name='M000265'></a>
+                <div class='synopsis'>
+                  <span class='name'>reveal</span>
+                  <span class='arguments'>(name)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Redefine a previously hidden method so that it may be called on a blank
+                  slate object.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000265-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000265-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/builder-2.1.2/blankslate.rb, line 38</span>&#x000A;38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reveal</span>(<span class="ruby-identifier">name</span>)&#x000A;39:       <span class="ruby-identifier">bound_method</span> = <span class="ruby-keyword kw">nil</span>&#x000A;40:       <span class="ruby-identifier">unbound_method</span> = <span class="ruby-identifier">find_hidden_method</span>(<span class="ruby-identifier">name</span>)&#x000A;41:       <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;Don't know how to reveal method '#{name}'&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">unbound_method</span>&#x000A;42:       <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">name</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>&#x000A;43:         <span class="ruby-identifier">bound_method</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">unbound_method</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-keyword kw">self</span>)&#x000A;44:         <span class="ruby-identifier">bound_method</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;45:       <span class="ruby-keyword kw">end</span>&#x000A;46:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

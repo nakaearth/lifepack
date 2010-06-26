@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::DateTime::Calculations::ClassMethods [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::DateTime::Calculations::ClassMethods
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/date_time/calculations_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/date_time/calculations.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001618">current</a></li>
+              <li><a href="#M001617">local_offset</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001618'>
+                <a name='M001618'></a>
+                <div class='synopsis'>
+                  <span class='name'>current</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001618-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001618-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/date_time/calculations.rb, line 23</span>&#x000A;23:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current</span>&#x000A;24:             <span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone_default</span> <span class="ruby-value">? </span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_datetime</span> <span class="ruby-operator">:</span> <span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_datetime</span>&#x000A;25:           <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001617'>
+                <a name='M001617'></a>
+                <div class='synopsis'>
+                  <span class='name'>local_offset</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  DateTimes aren&#8217;t aware of DST rules, so use a consistent non-DST
+                  offset when creating a DateTime with an offset in the local zone
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001617-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001617-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/date_time/calculations.rb, line 19</span>&#x000A;19:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">local_offset</span>&#x000A;20:             <span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">local</span>(<span class="ruby-value">2007</span>).<span class="ruby-identifier">utc_offset</span>.<span class="ruby-identifier">to_r</span> <span class="ruby-operator">/</span> <span class="ruby-value">86400</span>&#x000A;21:           <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

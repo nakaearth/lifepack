@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Testing::Metrics::Objects [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActiveSupport::Testing::Metrics::Objects
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/testing/performance_rb.html">vendor/rails/activesupport/lib/active_support/testing/performance.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="Base.html">ActiveSupport::Testing::Metrics::Base</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001695">format</a></li>
+              <li><a href="#M001694">measure</a></li>
+              <li><a href="#M001693">measure</a></li>
+              <li><a href="#M001692">measure</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>Mode</td>
+                    <td>=</td>
+                    <td class='context-item-value'>RubyProf::ALLOCATIONS if RubyProf.const_defined?(:ALLOCATIONS)</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001695'>
+                <a name='M001695'></a>
+                <div class='synopsis'>
+                  <span class='name'>format</span>
+                  <span class='arguments'>(measurement)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001695-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001695-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/testing/performance.rb, line 405</span>&#x000A;405:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">format</span>(<span class="ruby-identifier">measurement</span>)&#x000A;406:             <span class="ruby-identifier">measurement</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_s</span>&#x000A;407:           <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001694'>
+                <a name='M001694'></a>
+                <div class='synopsis'>
+                  <span class='name'>measure</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001694-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001694-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/testing/performance.rb, line 395</span>&#x000A;395:             <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">measure</span>&#x000A;396:               <span class="ruby-constant">GC</span>.<span class="ruby-identifier">enable</span>&#x000A;397:               <span class="ruby-constant">GC</span>.<span class="ruby-identifier">start</span>&#x000A;398:               <span class="ruby-identifier">last</span> = <span class="ruby-constant">GC</span><span class="ruby-operator">::</span><span class="ruby-constant">Profiler</span>.<span class="ruby-identifier">data</span>.<span class="ruby-identifier">last</span>&#x000A;399:               <span class="ruby-identifier">count</span> = <span class="ruby-identifier">last</span>[<span class="ruby-identifier">:HEAP_LIVE_OBJECTS</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">last</span>[<span class="ruby-identifier">:HEAP_FREE_OBJECTS</span>]&#x000A;400:               <span class="ruby-constant">GC</span>.<span class="ruby-identifier">disable</span>&#x000A;401:               <span class="ruby-identifier">count</span>&#x000A;402:             <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001693'>
+                <a name='M001693'></a>
+                <div class='synopsis'>
+                  <span class='name'>measure</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001693-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001693-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/testing/performance.rb, line 389</span>&#x000A;389:             <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">measure</span>&#x000A;390:               <span class="ruby-constant">ObjectSpace</span>.<span class="ruby-identifier">allocated_objects</span>&#x000A;391:             <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001692'>
+                <a name='M001692'></a>
+                <div class='synopsis'>
+                  <span class='name'>measure</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001692-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001692-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/testing/performance.rb, line 383</span>&#x000A;383:             <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">measure</span>&#x000A;384:               <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_allocations</span>&#x000A;385:             <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

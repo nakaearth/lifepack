@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::AutosaveAssociation [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveRecord::AutosaveAssociation
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activerecord/lib/active_record/autosave_association_rb.html">vendor/rails/activerecord/lib/active_record/autosave_association.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="AutosaveAssociation.html">AutosaveAssociation</a> is a module that
+            takes care of automatically saving your associations when the parent is
+            saved. In addition to saving, it also destroys any associations that were
+            marked for destruction. (See <a
+            href="AutosaveAssociation.html#M002470">mark_for_destruction</a> and
+            marked_for_destruction?)
+            </p>
+            <p>
+            Saving of the parent, its associations, and the destruction of marked
+            associations, all happen inside 1 transaction. This should never leave the
+            database in an inconsistent state after, for instance, mass assigning
+            attributes and saving them.
+            </p>
+            <p>
+            If validations for any of the associations fail, their error messages will
+            be applied to the parent.
+            </p>
+            <p>
+            Note that it also means that associations marked for destruction
+            won&#8217;t be destroyed directly. They will however still be marked for
+            destruction.
+            </p>
+            <h3>One-to-one Example</h3>
+            <p>
+            Consider a Post model with one Author:
+            </p>
+            <pre>class Post&#x000A;  has_one :author, :autosave =&gt; true&#x000A;end</pre>
+            <p>
+            Saving changes to the parent and its associated model can now be performed
+            automatically <em>and</em> atomically:
+            </p>
+            <pre>post = Post.find(1)&#x000A;post.title # =&gt; &quot;The current global position of migrating ducks&quot;&#x000A;post.author.name # =&gt; &quot;alloy&quot;&#x000A;&#x000A;post.title = &quot;On the migration of ducks&quot;&#x000A;post.author.name = &quot;Eloy Duran&quot;&#x000A;&#x000A;post.save&#x000A;post.reload&#x000A;post.title # =&gt; &quot;On the migration of ducks&quot;&#x000A;post.author.name # =&gt; &quot;Eloy Duran&quot;</pre>
+            <p>
+            Destroying an associated model, as part of the parent&#8217;s save action,
+            is as simple as marking it for destruction:
+            </p>
+            <pre>post.author.mark_for_destruction&#x000A;post.author.marked_for_destruction? # =&gt; true</pre>
+            <p>
+            Note that the model is <em>not</em> yet removed from the database:
+            </p>
+            <pre>id = post.author.id&#x000A;Author.find_by_id(id).nil? # =&gt; false&#x000A;&#x000A;post.save&#x000A;post.reload.author # =&gt; nil</pre>
+            <p>
+            Now it <em>is</em> removed from the database:
+            </p>
+            <pre>Author.find_by_id(id).nil? # =&gt; true</pre>
+            <h3>One-to-many Example</h3>
+            <p>
+            Consider a Post model with many Comments:
+            </p>
+            <pre>class Post&#x000A;  has_many :comments, :autosave =&gt; true&#x000A;end</pre>
+            <p>
+            Saving changes to the parent and its associated model can now be performed
+            automatically <em>and</em> atomically:
+            </p>
+            <pre>post = Post.find(1)&#x000A;post.title # =&gt; &quot;The current global position of migrating ducks&quot;&#x000A;post.comments.first.body # =&gt; &quot;Wow, awesome info thanks!&quot;&#x000A;post.comments.last.body # =&gt; &quot;Actually, your article should be named differently.&quot;&#x000A;&#x000A;post.title = &quot;On the migration of ducks&quot;&#x000A;post.comments.last.body = &quot;Actually, your article should be named differently. [UPDATED]: You are right, thanks.&quot;&#x000A;&#x000A;post.save&#x000A;post.reload&#x000A;post.title # =&gt; &quot;On the migration of ducks&quot;&#x000A;post.comments.last.body # =&gt; &quot;Actually, your article should be named differently. [UPDATED]: You are right, thanks.&quot;</pre>
+            <p>
+            Destroying one of the associated models members, as part of the
+            parent&#8217;s save action, is as simple as marking it for destruction:
+            </p>
+            <pre>post.comments.last.mark_for_destruction&#x000A;post.comments.last.marked_for_destruction? # =&gt; true&#x000A;post.comments.length # =&gt; 2</pre>
+            <p>
+            Note that the model is <em>not</em> yet removed from the database:
+            </p>
+            <pre>id = post.comments.last.id&#x000A;Comment.find_by_id(id).nil? # =&gt; false&#x000A;&#x000A;post.save&#x000A;post.reload.comments.length # =&gt; 1</pre>
+            <p>
+            Now it <em>is</em> removed from the database:
+            </p>
+            <pre>Comment.find_by_id(id).nil? # =&gt; true</pre>
+            <h3>Validation</h3>
+            <p>
+            Validation is performed on the parent as usual, but also on all autosave
+            enabled associations. If any of the associations fail validation, its error
+            messages will be applied on the parents errors object and validation of the
+            parent will fail.
+            </p>
+            <p>
+            Consider a Post model with Author which validates the presence of its name
+            attribute:
+            </p>
+            <pre>class Post&#x000A;  has_one :author, :autosave =&gt; true&#x000A;end&#x000A;&#x000A;class Author&#x000A;  validates_presence_of :name&#x000A;end&#x000A;&#x000A;post = Post.find(1)&#x000A;post.author.name = ''&#x000A;post.save # =&gt; false&#x000A;post.errors # =&gt; #&lt;ActiveRecord::Errors:0x174498c @errors={&quot;author_name&quot;=&gt;[&quot;can't be blank&quot;]}, @base=#&lt;Post ...&gt;&gt;</pre>
+            <p>
+            No validations will be performed on the associated models when validations
+            are skipped for the parent:
+            </p>
+            <pre>post = Post.find(1)&#x000A;post.author.name = ''&#x000A;post.save(false) # =&gt; true</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M002468">included</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M002470">mark_for_destruction</a></li>
+              <li><a href="#M002471">marked_for_destruction?</a></li>
+              <li><a href="#M002469">reload_with_autosave_associations</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="AutosaveAssociation/ClassMethods.html" class="link">ActiveRecord::AutosaveAssociation::ClassMethods</a><br />
+            </div>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>ASSOCIATION_TYPES</td>
+                    <td>=</td>
+                    <td class='context-item-value'>%w{ has_one belongs_to has_many has_and_belongs_to_many }</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M002468'>
+                <a name='M002468'></a>
+                <div class='synopsis'>
+                  <span class='name'>included</span>
+                  <span class='arguments'>(base)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002468-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002468-source'>     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/autosave_association.rb, line 130</span>&#x000A;130:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)&#x000A;131:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>&#x000A;132:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">ClassMethods</span>)&#x000A;133:         <span class="ruby-identifier">alias_method_chain</span> <span class="ruby-identifier">:reload</span>, <span class="ruby-identifier">:autosave_associations</span>&#x000A;134: &#x000A;135:         <span class="ruby-constant">ASSOCIATION_TYPES</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>&#x000A;136:           <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;valid_keys_for_#{type}_association&quot;</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">:autosave</span>&#x000A;137:         <span class="ruby-keyword kw">end</span>&#x000A;138:       <span class="ruby-keyword kw">end</span>&#x000A;139:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M002470'>
+                <a name='M002470'></a>
+                <div class='synopsis'>
+                  <span class='name'>mark_for_destruction</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Marks this record to be destroyed as part of the parents save transaction.
+                  This does <em>not</em> actually destroy the record yet, rather it will be
+                  destroyed when <tt>parent.save</tt> is called.
+                  </p>
+                  <p>
+                  Only useful if the <tt>:autosave</tt> option on the parent is enabled for
+                  this associated model.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002470-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002470-source'>     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/autosave_association.rb, line 198</span>&#x000A;198:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mark_for_destruction</span>&#x000A;199:       <span class="ruby-ivar">@marked_for_destruction</span> = <span class="ruby-keyword kw">true</span>&#x000A;200:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M002471'>
+                <a name='M002471'></a>
+                <div class='synopsis'>
+                  <span class='name'>marked_for_destruction?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns whether or not this record will be destroyed as part of the parents
+                  save transaction.
+                  </p>
+                  <p>
+                  Only useful if the <tt>:autosave</tt> option on the parent is enabled for
+                  this associated model.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002471-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002471-source'>     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/autosave_association.rb, line 205</span>&#x000A;205:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">marked_for_destruction?</span>&#x000A;206:       <span class="ruby-ivar">@marked_for_destruction</span>&#x000A;207:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M002469'>
+                <a name='M002469'></a>
+                <div class='synopsis'>
+                  <span class='name'>reload_with_autosave_associations</span>
+                  <span class='arguments'>(options = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Reloads the attributes of the object as usual and removes a mark for
+                  destruction.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002469-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002469-source'>     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/autosave_association.rb, line 189</span>&#x000A;189:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload_with_autosave_associations</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;190:       <span class="ruby-ivar">@marked_for_destruction</span> = <span class="ruby-keyword kw">false</span>&#x000A;191:       <span class="ruby-identifier">reload_without_autosave_associations</span>(<span class="ruby-identifier">options</span>)&#x000A;192:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

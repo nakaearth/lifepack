@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Multibyte::UnicodeDatabase [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActiveSupport::Multibyte::UnicodeDatabase
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activesupport/lib/active_support/multibyte/unicode_database_rb.html">vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../../Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Holds static data from the Unicode database
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001265">dirname</a></li>
+              <li><a href="#M001266">filename</a></li>
+              <li><a href="#M001262">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001264">===</a></li>
+              <li><a href="#M001263">load</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>ATTRIBUTES</td>
+                    <td>=</td>
+                    <td class='context-item-value'>:codepoints, :composition_exclusion, :composition_map, :boundary, :cp1252</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001265'>
+                <a name='M001265'></a>
+                <div class='synopsis'>
+                  <span class='name'>dirname</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns the directory in which the data files are stored
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001265-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001265-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb, line 59</span>&#x000A;59:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dirname</span>&#x000A;60:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'/../values/'</span>&#x000A;61:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M001266'>
+                <a name='M001266'></a>
+                <div class='synopsis'>
+                  <span class='name'>filename</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns the filename for the data file for this version
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001266-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001266-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb, line 64</span>&#x000A;64:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">filename</span>&#x000A;65:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dirname</span>, <span class="ruby-value str">&quot;unicode_tables.dat&quot;</span>)&#x000A;66:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M001262'>
+                <a name='M001262'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001262-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001262-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb, line 16</span>&#x000A;16:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>&#x000A;17:         <span class="ruby-ivar">@codepoints</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Codepoint</span>.<span class="ruby-identifier">new</span>)&#x000A;18:         <span class="ruby-ivar">@composition_exclusion</span> = []&#x000A;19:         <span class="ruby-ivar">@composition_map</span> = {}&#x000A;20:         <span class="ruby-ivar">@boundary</span> = {}&#x000A;21:         <span class="ruby-ivar">@cp1252</span> = {}&#x000A;22:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001264'>
+                <a name='M001264'></a>
+                <div class='synopsis'>
+                  <span class='name'>===</span>
+                  <span class='arguments'>(other)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001264-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001264-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb, line 46</span>&#x000A;46:             <span class="ruby-keyword kw">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)&#x000A;47:               <span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">other</span> } <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>&#x000A;48:             <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001263'>
+                <a name='M001263'></a>
+                <div class='synopsis'>
+                  <span class='name'>load</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Loads the Unicode database and returns all the internal objects of <a
+                  href="UnicodeDatabase.html">UnicodeDatabase</a>.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001263-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001263-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb, line 36</span>&#x000A;36:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load</span>&#x000A;37:         <span class="ruby-keyword kw">begin</span>&#x000A;38:           <span class="ruby-ivar">@codepoints</span>, <span class="ruby-ivar">@composition_exclusion</span>, <span class="ruby-ivar">@composition_map</span>, <span class="ruby-ivar">@boundary</span>, <span class="ruby-ivar">@cp1252</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">filename</span>, <span class="ruby-value str">'rb'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span> }&#x000A;39:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;40:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Couldn't load the Unicode tables for UTF8Handler (#{e.message}), ActiveSupport::Multibyte is unusable&quot;</span>)&#x000A;41:         <span class="ruby-keyword kw">end</span>&#x000A;42: &#x000A;43:         <span class="ruby-comment cmt"># Redefine the === method so we can write shorter rules for grapheme cluster breaks</span>&#x000A;44:         <span class="ruby-ivar">@boundary</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">_</span><span class="ruby-operator">|</span>&#x000A;45:           <span class="ruby-ivar">@boundary</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>&#x000A;46:             <span class="ruby-keyword kw">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)&#x000A;47:               <span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">other</span> } <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>&#x000A;48:             <span class="ruby-keyword kw">end</span>&#x000A;49:           <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@boundary</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)&#x000A;50:         <span class="ruby-keyword kw">end</span>&#x000A;51: &#x000A;52:         <span class="ruby-comment cmt"># define attr_reader methods for the instance variables</span>&#x000A;53:         <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>&#x000A;54:           <span class="ruby-identifier">attr_reader</span>(<span class="ruby-operator">*</span><span class="ruby-constant">ATTRIBUTES</span>)&#x000A;55:         <span class="ruby-keyword kw">end</span>&#x000A;56:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

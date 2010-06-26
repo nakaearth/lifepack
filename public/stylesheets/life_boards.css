@@ -1,0 +1,151 @@
+.title {
+	font-weight: bold;
+	font-size: 15pt;
+}
+.mo_title {
+	font-weight: bold;
+	font-size: 8pt;
+}
+.version {
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.LABEL {
+	font-size: 10pt;
+	font-weight: bold;
+}
+.map {
+	font-weight: bold;
+	border: 2px solid #333333;
+	vertical-align: text-top;
+	width: 90%;
+	height: 700px;
+}
+.messageBox {
+	text-align: left;
+	font-size: 9pt;
+	width: 30%;
+	height: 25px;
+	margin: 2px;
+	padding: 3px;
+}
+
+.headerBoard {
+	width: 100%;
+	background-color: #FFFFFF;
+	visibility: visible;
+	position: absolute;
+	z-index: 0;
+}
+.board {
+	width: 100%;
+	background-color: #FFFFFF;
+	visibility: visible;
+	position: absolute;
+    z-index: 1;
+}
+
+
+.memoCaption {
+	position: relative;
+	width: 90%;
+     z-index: 0;
+}
+
+.err_msg {
+	background-color: #FFFFFF;
+	font-size: 10pt;
+	float: left;
+	color: red;
+}
+
+.memo_board {
+	font-weight: bold;
+	border: 2px solid #333333;
+	background-color: #FAFAD2;
+	vertical-align: text-top;
+	width: 89%;
+	height: 700px;
+	overflow: visible;
+     z-index: 1;
+}
+
+.memo {
+	background-color: #FFFFFF;
+	font-size: 10pt;
+	width: 140px;
+	margin: 3px;
+	float: left;
+	cursor: move;
+}
+.memo_author {
+	text-align: right;
+	font-weight: bold;
+	font-size: 9pt;
+	color: #001079;
+	background-color:#FFFFFF;
+}
+.memo_detail{
+    background-color: #FFFFFF;
+	font-size: 10pt;
+	width: 400px;
+	margin: 3px;
+	cursor: move;
+    z-index: 2;
+}
+
+.a {
+	text-align: right;
+	font-weight: bold;
+	color: #3725A8;
+	text-decoration: none;
+}
+.memo_bar {
+	text-align: right;
+	font-size: 9pt;
+	background-color: #67BA37;
+}
+.comment_board {
+	font-weight: bold;
+	border: 2px solid #333333;
+	background-color: #FAFAD2;
+	vertical-align: text-top;
+	width: 70%;
+	height:400px;
+	overflow: visible;
+}
+
+.commentCaption {
+	position: relative;
+	width: 90%;
+     z-index: 0;
+}
+.comment_bar {
+	text-align: right;
+	font-size: 9pt;
+	background-color: #67BA37;
+}
+
+.comment_author {
+	text-align: right;
+	font-weight: bold;
+	font-size: 9pt;
+	color: #001079;
+	background-color:#FFFFFF;
+}
+.comment {
+	background-color: #FFFFFF;
+	font-size: 10pt;
+	width: 600px;
+	margin: 3px;
+	float: left;
+	cursor: move;
+}
+
+.comment_menu {
+    width: 70%;
+    text-align: right;
+	font-size: 9pt;
+	background-color: #67BA37;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::Batches::ClassMethods [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveRecord::Batches::ClassMethods
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activerecord/lib/active_record/batches_rb.html">vendor/rails/activerecord/lib/active_record/batches.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            When processing large numbers of records, it&#8217;s often a good idea to
+            do so in batches to prevent memory ballooning.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M002120">find_each</a></li>
+              <li><a href="#M002121">find_in_batches</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M002120'>
+                <a name='M002120'></a>
+                <div class='synopsis'>
+                  <span class='name'>find_each</span>
+                  <span class='arguments'>(options = {}) {|record| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Yields each record that was found by the find <tt>options</tt>. The find is
+                  performed by <a href="ClassMethods.html#M002121">find_in_batches</a> with a
+                  batch size of 1000 (or as specified by the <tt>batch_size</tt> option).
+                  </p>
+                  <p>
+                  Example:
+                  </p>
+                  <pre>Person.find_each(:conditions =&gt; &quot;age &gt; 21&quot;) do |person|&#x000A;  person.party_all_night!&#x000A;end</pre>
+                  <p>
+                  Note: This method is only intended to use for batch processing of large
+                  amounts of records that wouldn&#8217;t fit in memory all at once. If you
+                  just need to loop over less than 1000 records, it&#8217;s probably better
+                  just to use the regular find methods.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002120-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002120-source'>    <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/batches.rb, line 21</span>&#x000A;21:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_each</span>(<span class="ruby-identifier">options</span> = {})&#x000A;22:         <span class="ruby-identifier">find_in_batches</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">records</span><span class="ruby-operator">|</span>&#x000A;23:           <span class="ruby-identifier">records</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">record</span> }&#x000A;24:         <span class="ruby-keyword kw">end</span>&#x000A;25: &#x000A;26:         <span class="ruby-keyword kw">self</span>&#x000A;27:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M002121'>
+                <a name='M002121'></a>
+                <div class='synopsis'>
+                  <span class='name'>find_in_batches</span>
+                  <span class='arguments'>(options = {}) {|records| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Yields each batch of records that was found by the find <tt>options</tt> as
+                  an array. The size of each batch is set by the <tt>batch_size</tt> option;
+                  the default is 1000.
+                  </p>
+                  <p>
+                  You can control the starting point for the batch processing by supplying
+                  the <tt>start</tt> option. This is especially useful if you want multiple
+                  workers dealing with the same processing queue. You can make worker 1
+                  handle all the records between id 0 and 10,000 and worker 2 handle from
+                  10,000 and beyond (by setting the <tt>start</tt> option on that worker).
+                  </p>
+                  <p>
+                  It&#8217;s not possible to set the order. That is automatically set to
+                  ascending on the primary key (&#8220;id ASC&#8221;) to make the batch
+                  ordering work. This also mean that this method only works with
+                  integer-based primary keys. You can&#8217;t set the limit either,
+                  that&#8217;s used to control the the batch sizes.
+                  </p>
+                  <p>
+                  Example:
+                  </p>
+                  <pre>Person.find_in_batches(:conditions =&gt; &quot;age &gt; 21&quot;) do |group|&#x000A;  sleep(50) # Make sure it doesn't get too crowded in there!&#x000A;  group.each { |person| person.party_all_night! }&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002121-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002121-source'>    <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/batches.rb, line 47</span>&#x000A;47:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_in_batches</span>(<span class="ruby-identifier">options</span> = {})&#x000A;48:         <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;You can't specify an order, it's forced to be #{batch_order}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>]&#x000A;49:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You can't specify a limit, it's forced to be the batch_size&quot;</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>]&#x000A;50: &#x000A;51:         <span class="ruby-identifier">start</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:start</span>).<span class="ruby-identifier">to_i</span>&#x000A;52:         <span class="ruby-identifier">batch_size</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:batch_size</span>) <span class="ruby-operator">||</span> <span class="ruby-value">1000</span>&#x000A;53: &#x000A;54:         <span class="ruby-identifier">with_scope</span>(<span class="ruby-identifier">:find</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">batch_order</span>, <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">batch_size</span>)) <span class="ruby-keyword kw">do</span>&#x000A;55:           <span class="ruby-identifier">records</span> = <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-node">&quot;#{table_name}.#{primary_key} &gt;= ?&quot;</span>, <span class="ruby-identifier">start</span> ])&#x000A;56: &#x000A;57:           <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">records</span>.<span class="ruby-identifier">any?</span>&#x000A;58:             <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">records</span>&#x000A;59: &#x000A;60:             <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">records</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">batch_size</span>&#x000A;61:             <span class="ruby-identifier">records</span> = <span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-node">&quot;#{table_name}.#{primary_key} &gt; ?&quot;</span>, <span class="ruby-identifier">records</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span> ])&#x000A;62:           <span class="ruby-keyword kw">end</span>&#x000A;63:         <span class="ruby-keyword kw">end</span>&#x000A;64:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

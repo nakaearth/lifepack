@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Base64::Encoding [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Base64::Encoding
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/base64/encoding_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/base64/encoding.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001589">encode64s</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001589'>
+                <a name='M001589'></a>
+                <div class='synopsis'>
+                  <span class='name'>encode64s</span>
+                  <span class='arguments'>(value)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Encodes the value as base64 without the newline breaks. This makes the
+                  base64 encoding readily usable as URL parameters or memcache keys without
+                  further processing.
+                  </p>
+                  <pre>ActiveSupport::Base64.encode64s(&quot;Original unencoded string&quot;)&#x000A;# =&gt; &quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==&quot;</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001589-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001589-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/base64/encoding.rb, line 10</span>&#x000A;10:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encode64s</span>(<span class="ruby-identifier">value</span>)&#x000A;11:           <span class="ruby-identifier">encode64</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\n/</span>, <span class="ruby-value str">''</span>)&#x000A;12:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

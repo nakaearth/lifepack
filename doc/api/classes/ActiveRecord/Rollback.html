@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::Rollback [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActiveRecord::Rollback
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activerecord/lib/active_record/base_rb.html">vendor/rails/activerecord/lib/active_record/base.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="ActiveRecordError.html">ActiveRecord::ActiveRecordError</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a
+            href="Transactions/ClassMethods.html#M002126">ActiveRecord::Transactions::ClassMethods.transaction</a>
+            uses this exception to distinguish a deliberate rollback from other
+            exceptional situations. Normally, raising an exception will cause the
+            <tt>transaction</tt> method to rollback the database transaction <b>and</b>
+            pass on the exception. But if you raise an <a
+            href="Rollback.html">ActiveRecord::Rollback</a> exception, then the
+            database transaction will be rolled back, without passing on the exception.
+            </p>
+            <p>
+            For example, you could do this in your controller to rollback a
+            transaction:
+            </p>
+            <pre>class BooksController &lt; ActionController::Base&#x000A;  def create&#x000A;    Book.transaction do&#x000A;      book = Book.new(params[:book])&#x000A;      book.save!&#x000A;      if today_is_friday?&#x000A;        # The system must fail on Friday so that our support department&#x000A;        # won't be out of job. We silently rollback this transaction&#x000A;        # without telling the user.&#x000A;        raise ActiveRecord::Rollback, &quot;Call tech support!&quot;&#x000A;      end&#x000A;    end&#x000A;    # ActiveRecord::Rollback is the only exception that won't be passed on&#x000A;    # by ActiveRecord::Base.transaction, so this line will still be reached&#x000A;    # even on Friday.&#x000A;    redirect_to root_url&#x000A;  end&#x000A;end</pre>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Commands::Unsource [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Commands::Unsource
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/railties/lib/commands/plugin_rb.html">vendor/rails/railties/lib/commands/plugin.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001047">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001048">options</a></li>
+              <li><a href="#M001049">parse!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001047'>
+                <a name='M001047'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(base_command)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001047-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001047-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 647</span>&#x000A;647:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">base_command</span>)&#x000A;648:       <span class="ruby-ivar">@base_command</span> = <span class="ruby-identifier">base_command</span>&#x000A;649:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001048'>
+                <a name='M001048'></a>
+                <div class='synopsis'>
+                  <span class='name'>options</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001048-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001048-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 651</span>&#x000A;651:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;652:       <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>&#x000A;653:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">set_summary_indent</span>(<span class="ruby-value str">'  '</span>)&#x000A;654:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">banner</span> =    <span class="ruby-node">&quot;Usage: #{@base_command.script_name} unsource URI [URI [URI]...]&quot;</span>&#x000A;655:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">define_head</span> <span class="ruby-value str">&quot;Remove repositories from the default search list.&quot;</span>&#x000A;656:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">separator</span> <span class="ruby-value str">&quot;&quot;</span>&#x000A;657:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--help&quot;</span>, <span class="ruby-value str">&quot;Show this help message.&quot;</span>) { <span class="ruby-identifier">puts</span> <span class="ruby-identifier">o</span>; <span class="ruby-identifier">exit</span> }&#x000A;658:       <span class="ruby-keyword kw">end</span>&#x000A;659:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001049'>
+                <a name='M001049'></a>
+                <div class='synopsis'>
+                  <span class='name'>parse!</span>
+                  <span class='arguments'>(args)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001049-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001049-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 661</span>&#x000A;661:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)&#x000A;662:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)&#x000A;663:       <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>&#x000A;664:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">uri</span><span class="ruby-operator">|</span>&#x000A;665:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Repositories</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-identifier">uri</span>)&#x000A;666:           <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;667:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;removed: #{uri.ljust(50)}&quot;</span>&#x000A;668:         <span class="ruby-keyword kw">else</span>&#x000A;669:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;failed: #{uri.ljust(50)}&quot;</span>&#x000A;670:         <span class="ruby-keyword kw">end</span>&#x000A;671:       <span class="ruby-keyword kw">end</span>&#x000A;672:       <span class="ruby-constant">Repositories</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">save</span>&#x000A;673:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Removed #{count} repositories.&quot;</span>&#x000A;674:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionController::Integration::Runner [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActionController::Integration::Runner
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/actionpack/lib/action_controller/integration_rb.html">vendor/rails/actionpack/lib/action_controller/integration.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000427">method_missing</a></li>
+              <li><a href="#M000426">open_session</a></li>
+              <li><a href="#M000425">reset!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000427'>
+                <a name='M000427'></a>
+                <div class='synopsis'>
+                  <span class='name'>method_missing</span>
+                  <span class='arguments'>(sym, *args, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Delegate unhandled messages to the current session instance.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000427-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000427-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/integration.rb, line 553</span>&#x000A;553:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;554:         <span class="ruby-identifier">reset!</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@integration_session</span>&#x000A;555:         <span class="ruby-identifier">returning</span> <span class="ruby-ivar">@integration_session</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">do</span>&#x000A;556:           <span class="ruby-identifier">copy_session_variables!</span>&#x000A;557:         <span class="ruby-keyword kw">end</span>&#x000A;558:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000426'>
+                <a name='M000426'></a>
+                <div class='synopsis'>
+                  <span class='name'>open_session</span>
+                  <span class='arguments'>(application = nil) {|session if block_given?| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Open a new session instance. If a block is given, the new session is
+                  yielded to the block before being returned.
+                  </p>
+                  <pre>session = open_session do |sess|&#x000A;  sess.extend(CustomAssertions)&#x000A;end</pre>
+                  <p>
+                  By default, a single session is automatically created for you, but you can
+                  use this method to open multiple sessions that ought to be tested
+                  simultaneously.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000426-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000426-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/integration.rb, line 516</span>&#x000A;516:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_session</span>(<span class="ruby-identifier">application</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;517:         <span class="ruby-identifier">session</span> = <span class="ruby-constant">Integration</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">application</span>)&#x000A;518: &#x000A;519:         <span class="ruby-comment cmt"># delegate the fixture accessors back to the test instance</span>&#x000A;520:         <span class="ruby-identifier">extras</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">attr_accessor</span> <span class="ruby-identifier">:delegate</span>, <span class="ruby-identifier">:test_result</span> }&#x000A;521:         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:fixture_table_names</span>)&#x000A;522:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">fixture_table_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">table_name</span><span class="ruby-operator">|</span>&#x000A;523:             <span class="ruby-identifier">name</span> = <span class="ruby-identifier">table_name</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-value str">&quot;.&quot;</span>, <span class="ruby-value str">&quot;_&quot;</span>)&#x000A;524:             <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">name</span>)&#x000A;525:             <span class="ruby-identifier">extras</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">name</span>) { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>&#x000A;526:               <span class="ruby-identifier">delegate</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;527:             }&#x000A;528:           <span class="ruby-keyword kw">end</span>&#x000A;529:         <span class="ruby-keyword kw">end</span>&#x000A;530: &#x000A;531:         <span class="ruby-comment cmt"># delegate add_assertion to the test case</span>&#x000A;532:         <span class="ruby-identifier">extras</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">:add_assertion</span>) {&#x000A;533:           <span class="ruby-identifier">test_result</span>.<span class="ruby-identifier">add_assertion</span>&#x000A;534:         }&#x000A;535:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-identifier">extras</span>)&#x000A;536:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">delegate</span> = <span class="ruby-keyword kw">self</span>&#x000A;537:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">test_result</span> = <span class="ruby-ivar">@_result</span>&#x000A;538: &#x000A;539:         <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">session</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;540:         <span class="ruby-identifier">session</span>&#x000A;541:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000425'>
+                <a name='M000425'></a>
+                <div class='synopsis'>
+                  <span class='name'>reset!</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Reset the current session. This is useful for testing multiple sessions in
+                  a single test case.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000425-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000425-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/integration.rb, line 490</span>&#x000A;490:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset!</span>&#x000A;491:         <span class="ruby-ivar">@integration_session</span> = <span class="ruby-identifier">open_session</span>&#x000A;492:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

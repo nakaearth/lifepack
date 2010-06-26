@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: plugin.rb [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>plugin.rb</h1>
+        <div class='paths'>
+          vendor/rails/railties/lib/commands/plugin.rb
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Wed Jun 02 23:52:04 +0900 2010</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="../../../../../../classes/Rails.html">Rails</a> <a
+            href="../../../../../../classes/Plugin.html">Plugin</a> Manager.
+            </p>
+            <p>
+            Listing available plugins:
+            </p>
+            <pre>$ ./script/plugin list&#x000A;continuous_builder            http://dev.rubyonrails.com/svn/rails/plugins/continuous_builder&#x000A;asset_timestamping            http://svn.aviditybytes.com/rails/plugins/asset_timestamping&#x000A;enumerations_mixin            http://svn.protocool.com/rails/plugins/enumerations_mixin/trunk&#x000A;calculations                  http://techno-weenie.net/svn/projects/calculations/&#x000A;...</pre>
+            <p>
+            Installing plugins:
+            </p>
+            <pre>$ ./script/plugin install continuous_builder asset_timestamping</pre>
+            <p>
+            Finding Repositories:
+            </p>
+            <pre>$ ./script/plugin discover</pre>
+            <p>
+            Adding Repositories:
+            </p>
+            <pre>$ ./script/plugin source http://svn.protocool.com/rails/plugins/</pre>
+            <p>
+            How it works:
+            </p>
+            <pre>* Maintains a list of subversion repositories that are assumed to have&#x000A;  a plugin directory structure. Manage them with the (source, unsource,&#x000A;  and sources commands)&#x000A;&#x000A;* The discover command scrapes the following page for things that&#x000A;  look like subversion repositories with plugins:&#x000A;  http://wiki.rubyonrails.org/rails/pages/Plugins&#x000A;&#x000A;* Unless you specify that you want to use svn, script/plugin uses plain old&#x000A;  HTTP for downloads.  The following bullets are true if you specify&#x000A;  that you want to use svn.&#x000A;&#x000A;* If `vendor/plugins` is under subversion control, the script will&#x000A;  modify the svn:externals property and perform an update. You can&#x000A;  use normal subversion commands to keep the plugins up to date.&#x000A;&#x000A;* Or, if `vendor/plugins` is not under subversion control, the&#x000A;  plugin is pulled via `svn checkout` or `svn export` but looks&#x000A;  exactly the same.</pre>
+            <p>
+            Specifying revisions:
+            </p>
+            <pre>* Subversion revision is a single integer.&#x000A;&#x000A;* Git revision format:&#x000A;  - full - 'refs/tags/1.8.0' or 'refs/heads/experimental'&#x000A;  - short: 'experimental' (equivalent to 'refs/heads/experimental')&#x000A;           'tag 1.8.0' (equivalent to 'refs/tags/1.8.0')</pre>
+            <p>
+            This is Free Software, copyright 2005 by Ryan Tomayko (rtomayko@gmail.com)
+            and is licensed MIT: (<a
+            href="http://www.opensource.org/licenses/mit-license.php">www.opensource.org/licenses/mit-license.php</a>)
+            </p>
+          </div>
+          <div id='context'>
+            <div id='requires'>
+              <h2>Required files</h2>
+              <ol>
+                <li>open-uri</li>
+                <li>fileutils</li>
+                <li>tempfile</li>
+                <li>active_support/core_ext/kernel</li>
+                <li>optparse</li>
+                <li>open-uri</li>
+              </ol>
+            </div>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li>FileUtils</li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

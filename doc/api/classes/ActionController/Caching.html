@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionController::Caching [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActionController::Caching
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/caching/actions_rb.html">vendor/rails/actionpack/lib/action_controller/caching/actions.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/caching/fragments_rb.html">vendor/rails/actionpack/lib/action_controller/caching/fragments.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/caching/pages_rb.html">vendor/rails/actionpack/lib/action_controller/caching/pages.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/caching/sweeping_rb.html">vendor/rails/actionpack/lib/action_controller/caching/sweeping.rb</a>
+          </li>
+          <li class='other'>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/caching_rb.html">vendor/rails/actionpack/lib/action_controller/caching.rb</a>
+          </li>
+          <li>
+            <a class='show' href='#' onclick='this.parentNode.parentNode.className += " expanded"; this.parentNode.removeChild(this); return false'>show all</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="Caching.html">Caching</a> is a cheap way of speeding up slow
+            applications by keeping the result of calculations, renderings, and
+            database calls around for subsequent requests. Action Controller affords
+            you three approaches in varying levels of granularity: Page, Action,
+            Fragment.
+            </p>
+            <p>
+            You can read more about each approach and the sweeping assistance by
+            clicking the modules below.
+            </p>
+            <p>
+            Note: To turn off all caching and sweeping, set Base.perform_caching =
+            false.
+            </p>
+            <h2><a href="Caching.html">Caching</a> stores</h2>
+            <p>
+            All the caching stores from <a
+            href="../ActiveSupport/Cache.html">ActiveSupport::Cache</a> is available to
+            be used as backends for Action Controller caching. This setting only
+            affects action and fragment caching as page caching is always written to
+            disk.
+            </p>
+            <p>
+            Configuration examples (MemoryStore is the default):
+            </p>
+            <pre>ActionController::Base.cache_store = :memory_store&#x000A;ActionController::Base.cache_store = :file_store, &quot;/path/to/cache/directory&quot;&#x000A;ActionController::Base.cache_store = :drb_store, &quot;druby://localhost:9192&quot;&#x000A;ActionController::Base.cache_store = :mem_cache_store, &quot;localhost&quot;&#x000A;ActionController::Base.cache_store = MyOwnStore.new(&quot;parameter&quot;)</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000449">cache_configured?</a></li>
+              <li><a href="#M000448">cache_store=</a></li>
+            </ol>
+            <h3>protected instance</h3>
+            <ol>
+              <li><a href="#M000450">cache</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li><a href="Caching/Pages.html">Pages</a></li>
+                <li><a href="Caching/Actions.html">Actions</a></li>
+                <li><a href="Caching/Fragments.html">Fragments</a></li>
+                <li><a href="Caching/Sweeping.html">Sweeping</a></li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="Caching/Actions.html" class="link">ActionController::Caching::Actions</a><br />
+              Module <a href="Caching/Fragments.html" class="link">ActionController::Caching::Fragments</a><br />
+              Module <a href="Caching/Pages.html" class="link">ActionController::Caching::Pages</a><br />
+              Module <a href="Caching/Sweeping.html" class="link">ActionController::Caching::Sweeping</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000449'>
+                <a name='M000449'></a>
+                <div class='synopsis'>
+                  <span class='name'>cache_configured?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000449-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000449-source'>    <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/caching.rb, line 49</span>&#x000A;49:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">cache_configured?</span>&#x000A;50:           <span class="ruby-identifier">perform_caching</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">cache_store</span>&#x000A;51:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000448'>
+                <a name='M000448'></a>
+                <div class='synopsis'>
+                  <span class='name'>cache_store=</span>
+                  <span class='arguments'>(store_option)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Defines the storage option for cached fragments
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000448-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000448-source'>    <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/caching.rb, line 39</span>&#x000A;39:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">cache_store=</span>(<span class="ruby-identifier">store_option</span>)&#x000A;40:           <span class="ruby-ivar">@@cache_store</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">lookup_store</span>(<span class="ruby-identifier">store_option</span>)&#x000A;41:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Protected instance methods</h2>
+              <div class='method protected-instance' id='method-M000450'>
+                <a name='M000450'></a>
+                <div class='synopsis'>
+                  <span class='name'>cache</span>
+                  <span class='arguments'>(key, options = {}) {|| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Convenience accessor
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000450-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000450-source'>    <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/caching.rb, line 57</span>&#x000A;57:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;58:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cache_configured?</span>&#x000A;59:           <span class="ruby-identifier">cache_store</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">expand_cache_key</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">:controller</span>), <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;60:         <span class="ruby-keyword kw">else</span>&#x000A;61:           <span class="ruby-keyword kw">yield</span>&#x000A;62:         <span class="ruby-keyword kw">end</span>&#x000A;63:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

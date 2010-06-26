@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: I18nSimpleBackendLoadTranslationsTest [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          I18nSimpleBackendLoadTranslationsTest
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../files/vendor/rails/activesupport/lib/active_support/vendor/i18n-0_1_3/test/simple_backend_test_rb.html">vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Test::Unit::TestCase</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000016">test_load_rb_loads_data_from_ruby_file</a></li>
+              <li><a href="#M000017">test_load_rb_loads_data_from_yaml_file</a></li>
+              <li><a href="#M000018">test_load_translations_loads_from_different_file_formats</a></li>
+              <li><a href="#M000015">test_load_translations_with_ruby_file_type_does_not_raise_exception</a></li>
+              <li><a href="#M000014">test_load_translations_with_unknown_file_type_raises_exception</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li><a href="I18nSimpleBackendTestSetup.html">I18nSimpleBackendTestSetup</a></li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000016'>
+                <a name='M000016'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_load_rb_loads_data_from_ruby_file</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000016-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 496</span>&#x000A;496:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_load_rb_loads_data_from_ruby_file</span>&#x000A;497:     <span class="ruby-identifier">data</span> = <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:load_rb</span>, <span class="ruby-node">&quot;#{@locale_dir}/en.rb&quot;</span>&#x000A;498:     <span class="ruby-identifier">assert_equal</span>({<span class="ruby-identifier">:'en-Ruby'</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:foo</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:bar</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;baz&quot;</span>}}}, <span class="ruby-identifier">data</span>)&#x000A;499:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000017'>
+                <a name='M000017'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_load_rb_loads_data_from_yaml_file</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000017-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000017-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 501</span>&#x000A;501:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_load_rb_loads_data_from_yaml_file</span>&#x000A;502:     <span class="ruby-identifier">data</span> = <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:load_yml</span>, <span class="ruby-node">&quot;#{@locale_dir}/en.yml&quot;</span>&#x000A;503:     <span class="ruby-identifier">assert_equal</span>({<span class="ruby-value str">'en-Yaml'</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value str">'foo'</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value str">'bar'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'baz'</span>}}}, <span class="ruby-identifier">data</span>)&#x000A;504:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000018'>
+                <a name='M000018'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_load_translations_loads_from_different_file_formats</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000018-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000018-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 506</span>&#x000A;506:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_load_translations_loads_from_different_file_formats</span>&#x000A;507:     <span class="ruby-ivar">@backend</span> = <span class="ruby-constant">I18n</span><span class="ruby-operator">::</span><span class="ruby-constant">Backend</span><span class="ruby-operator">::</span><span class="ruby-constant">Simple</span>.<span class="ruby-identifier">new</span>&#x000A;508:     <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">load_translations</span> <span class="ruby-node">&quot;#{@locale_dir}/en.rb&quot;</span>, <span class="ruby-node">&quot;#{@locale_dir}/en.yml&quot;</span>&#x000A;509:     <span class="ruby-identifier">expected</span> = {&#x000A;510:       <span class="ruby-identifier">:'en-Ruby'</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:foo</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:bar</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;baz&quot;</span>}},&#x000A;511:       <span class="ruby-identifier">:'en-Yaml'</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:foo</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:bar</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;baz&quot;</span>}}&#x000A;512:     }&#x000A;513:     <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">expected</span>, <span class="ruby-identifier">backend_get_translations</span>&#x000A;514:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000015'>
+                <a name='M000015'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_load_translations_with_ruby_file_type_does_not_raise_exception</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000015-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 492</span>&#x000A;492:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_load_translations_with_ruby_file_type_does_not_raise_exception</span>&#x000A;493:     <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">load_translations</span> <span class="ruby-node">&quot;#{@locale_dir}/en.rb&quot;</span> }&#x000A;494:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000014'>
+                <a name='M000014'></a>
+                <div class='synopsis'>
+                  <span class='name'>test_load_translations_with_unknown_file_type_raises_exception</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000014-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/test/simple_backend_test.rb, line 488</span>&#x000A;488:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_load_translations_with_unknown_file_type_raises_exception</span>&#x000A;489:     <span class="ruby-identifier">assert_raise</span>(<span class="ruby-constant">I18n</span><span class="ruby-operator">::</span><span class="ruby-constant">UnknownFileType</span>) { <span class="ruby-ivar">@backend</span>.<span class="ruby-identifier">load_translations</span> <span class="ruby-node">&quot;#{@locale_dir}/en.xml&quot;</span> }&#x000A;490:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

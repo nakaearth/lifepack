@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Numeric::Time [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Numeric::Time
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/numeric/time_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Enables the use of time calculations and declarations, like 45.minutes +
+            2.hours + 4.years.
+            </p>
+            <p>
+            These methods use Time#advance for precise date calculations when using <a
+            href="Time.html#M001514">from_now</a>, ago, etc. as well as adding or
+            subtracting their results from a <a href="Time.html">Time</a> object. For
+            example:
+            </p>
+            <pre># equivalent to Time.now.advance(:months =&gt; 1)&#x000A;1.month.from_now&#x000A;&#x000A;# equivalent to Time.now.advance(:years =&gt; 2)&#x000A;2.years.from_now&#x000A;&#x000A;# equivalent to Time.now.advance(:months =&gt; 4, :years =&gt; 5)&#x000A;(4.months + 5.years).from_now</pre>
+            <p>
+            While these methods provide precise calculation when used as in the
+            examples above, care should be taken to note that this is not true if the
+            result of `months&#8217;, `years&#8217;, etc is converted before use:
+            </p>
+            <pre># equivalent to 30.days.to_i.from_now&#x000A;1.month.to_i.from_now&#x000A;&#x000A;# equivalent to 365.25.days.to_f.from_now&#x000A;1.year.to_f.from_now</pre>
+            <p>
+            In such cases, Ruby&#8217;s core <a
+            href="http://stdlib.rubyonrails.org/libdoc/date/rdoc/index.html">Date</a>
+            and <a
+            href="http://stdlib.rubyonrails.org/libdoc/time/rdoc/index.html">Time</a>
+            should be used for precision date and time arithmetic
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001511">ago</a></li>
+              <li><a href="#M001506">day</a></li>
+              <li><a href="#M001505">days</a></li>
+              <li><a href="#M001510">fortnight</a></li>
+              <li><a href="#M001509">fortnights</a></li>
+              <li><a href="#M001514">from_now</a></li>
+              <li><a href="#M001504">hour</a></li>
+              <li><a href="#M001503">hours</a></li>
+              <li><a href="#M001502">minute</a></li>
+              <li><a href="#M001501">minutes</a></li>
+              <li><a href="#M001500">second</a></li>
+              <li><a href="#M001499">seconds</a></li>
+              <li><a href="#M001513">since</a></li>
+              <li><a href="#M001512">until</a></li>
+              <li><a href="#M001508">week</a></li>
+              <li><a href="#M001507">weeks</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001511'>
+                <a name='M001511'></a>
+                <div class='synopsis'>
+                  <span class='name'>ago</span>
+                  <span class='arguments'>(time = ::Time.now)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Reads best without arguments: 10.minutes.ago
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001511-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001511-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 64</span>&#x000A;64:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ago</span>(<span class="ruby-identifier">time</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>)&#x000A;65:           <span class="ruby-identifier">time</span> <span class="ruby-operator">-</span> <span class="ruby-keyword kw">self</span>&#x000A;66:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001506'>
+                <a name='M001506'></a>
+                <div class='synopsis'>
+                  <span class='name'>day</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001505">days</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001505'>
+                <a name='M001505'></a>
+                <div class='synopsis'>
+                  <span class='name'>days</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001505-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001505-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 48</span>&#x000A;48:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">days</span>&#x000A;49:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">24</span>.<span class="ruby-identifier">hours</span>, [[<span class="ruby-identifier">:days</span>, <span class="ruby-keyword kw">self</span>]])&#x000A;50:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001510'>
+                <a name='M001510'></a>
+                <div class='synopsis'>
+                  <span class='name'>fortnight</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001509">fortnights</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001509'>
+                <a name='M001509'></a>
+                <div class='synopsis'>
+                  <span class='name'>fortnights</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001509-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001509-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 58</span>&#x000A;58:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fortnights</span>&#x000A;59:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">weeks</span>, [[<span class="ruby-identifier">:days</span>, <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">14</span>]])&#x000A;60:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001514'>
+                <a name='M001514'></a>
+                <div class='synopsis'>
+                  <span class='name'>from_now</span>
+                  <span class='arguments'>(time = ::Time.now)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001513">since</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001504'>
+                <a name='M001504'></a>
+                <div class='synopsis'>
+                  <span class='name'>hour</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001503">hours</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001503'>
+                <a name='M001503'></a>
+                <div class='synopsis'>
+                  <span class='name'>hours</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001503-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001503-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 43</span>&#x000A;43:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hours</span>&#x000A;44:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">3600</span>, [[<span class="ruby-identifier">:seconds</span>, <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">3600</span>]])&#x000A;45:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001502'>
+                <a name='M001502'></a>
+                <div class='synopsis'>
+                  <span class='name'>minute</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001501">minutes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001501'>
+                <a name='M001501'></a>
+                <div class='synopsis'>
+                  <span class='name'>minutes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001501-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001501-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 38</span>&#x000A;38:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">minutes</span>&#x000A;39:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">60</span>, [[<span class="ruby-identifier">:seconds</span>, <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">60</span>]])&#x000A;40:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001500'>
+                <a name='M001500'></a>
+                <div class='synopsis'>
+                  <span class='name'>second</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001499">seconds</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001499'>
+                <a name='M001499'></a>
+                <div class='synopsis'>
+                  <span class='name'>seconds</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001499-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001499-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 33</span>&#x000A;33:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">seconds</span>&#x000A;34:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, [[<span class="ruby-identifier">:seconds</span>, <span class="ruby-keyword kw">self</span>]])&#x000A;35:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001513'>
+                <a name='M001513'></a>
+                <div class='synopsis'>
+                  <span class='name'>since</span>
+                  <span class='arguments'>(time = ::Time.now)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Reads best with argument: 10.minutes.since(time)
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001513-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001513-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 72</span>&#x000A;72:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">since</span>(<span class="ruby-identifier">time</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>)&#x000A;73:           <span class="ruby-identifier">time</span> <span class="ruby-operator">+</span> <span class="ruby-keyword kw">self</span>&#x000A;74:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001512'>
+                <a name='M001512'></a>
+                <div class='synopsis'>
+                  <span class='name'>until</span>
+                  <span class='arguments'>(time = ::Time.now)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001511">ago</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001508'>
+                <a name='M001508'></a>
+                <div class='synopsis'>
+                  <span class='name'>week</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Time.html#M001507">weeks</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001507'>
+                <a name='M001507'></a>
+                <div class='synopsis'>
+                  <span class='name'>weeks</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001507-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001507-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/time.rb, line 53</span>&#x000A;53:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">weeks</span>&#x000A;54:           <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Duration</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">7</span>.<span class="ruby-identifier">days</span>, [[<span class="ruby-identifier">:days</span>, <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">7</span>]])&#x000A;55:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

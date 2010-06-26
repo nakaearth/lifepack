@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveResource::Validations [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveResource::Validations
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activeresource/lib/active_resource/validations_rb.html">vendor/rails/activeresource/lib/active_resource/validations.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="../Module.html">Module</a> to support validation and errors with
+            Active Resource objects. The module overrides <a
+            href="Base.html#M001186">Base#save</a> to rescue
+            ActiveResource::ResourceInvalid exceptions and parse the errors returned in
+            the web service response. The module also adds an <tt>errors</tt>
+            collection that mimics the interface of the errors provided by <a
+            href="../ActiveRecord/Errors.html">ActiveRecord::Errors</a>.
+            </p>
+            <h4>Example</h4>
+            <p>
+            Consider a Person resource on the server requiring both a
+            <tt>first_name</tt> and a <tt>last_name</tt> with a
+            <tt>validates_presence_of :first_name, :last_name</tt> declaration in the
+            model:
+            </p>
+            <pre>person = Person.new(:first_name =&gt; &quot;Jim&quot;, :last_name =&gt; &quot;&quot;)&#x000A;person.save                   # =&gt; false (server returns an HTTP 422 status code and errors)&#x000A;person.valid?                 # =&gt; false&#x000A;person.errors.empty?          # =&gt; false&#x000A;person.errors.count           # =&gt; 1&#x000A;person.errors.full_messages   # =&gt; [&quot;Last name can't be empty&quot;]&#x000A;person.errors.on(:last_name)  # =&gt; &quot;can't be empty&quot;&#x000A;person.last_name = &quot;Halpert&quot;&#x000A;person.save                   # =&gt; true (and person is now saved to the remote service)</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001129">errors</a></li>
+              <li><a href="#M001127">save_with_validation</a></li>
+              <li><a href="#M001128">valid?</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001129'>
+                <a name='M001129'></a>
+                <div class='synopsis'>
+                  <span class='name'>errors</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns the <a href="Errors.html">Errors</a> object that holds all
+                  information about attribute error messages.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001129-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001129-source'>     <span class="ruby-comment cmt"># File vendor/rails/activeresource/lib/active_resource/validations.rb, line 270</span>&#x000A;270:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">errors</span>&#x000A;271:       <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Errors</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)&#x000A;272:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001127'>
+                <a name='M001127'></a>
+                <div class='synopsis'>
+                  <span class='name'>save_with_validation</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Validate a resource and save (POST) it to the remote web service.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001127-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001127-source'>     <span class="ruby-comment cmt"># File vendor/rails/activeresource/lib/active_resource/validations.rb, line 247</span>&#x000A;247:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save_with_validation</span>&#x000A;248:       <span class="ruby-identifier">save_without_validation</span>&#x000A;249:       <span class="ruby-keyword kw">true</span>&#x000A;250:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ResourceInvalid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">error</span>&#x000A;251:       <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">error</span>.<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)&#x000A;252:       <span class="ruby-keyword kw">false</span>&#x000A;253:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001128'>
+                <a name='M001128'></a>
+                <div class='synopsis'>
+                  <span class='name'>valid?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Checks for errors on an object (i.e., is resource.errors empty?).
+                  </p>
+                  <h4>Examples</h4>
+                  <pre>my_person = Person.create(params[:person])&#x000A;my_person.valid?&#x000A;# =&gt; true&#x000A;&#x000A;my_person.errors.add('login', 'can not be empty') if my_person.login == ''&#x000A;my_person.valid?&#x000A;# =&gt; false</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001128-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001128-source'>     <span class="ruby-comment cmt"># File vendor/rails/activeresource/lib/active_resource/validations.rb, line 265</span>&#x000A;265:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid?</span>&#x000A;266:       <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">empty?</span>&#x000A;267:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

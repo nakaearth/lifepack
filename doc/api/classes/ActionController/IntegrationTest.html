@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionController::IntegrationTest [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActionController::IntegrationTest
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/actionpack/lib/action_controller/integration_rb.html">vendor/rails/actionpack/lib/action_controller/integration.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../ActiveSupport/TestCase.html">ActiveSupport::TestCase</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            An <a href="IntegrationTest.html">IntegrationTest</a> is one that spans
+            multiple controllers and actions, tying them all together to ensure they
+            work together as expected. It tests more completely than either unit or
+            functional tests do, exercising the entire stack, from the dispatcher to
+            the database.
+            </p>
+            <p>
+            At its simplest, you simply extend <a
+            href="IntegrationTest.html">IntegrationTest</a> and write your tests using
+            the get/post methods:
+            </p>
+            <pre>require &quot;#{File.dirname(__FILE__)}/test_helper&quot;&#x000A;&#x000A;class ExampleTest &lt; ActionController::IntegrationTest&#x000A;  fixtures :people&#x000A;&#x000A;  def test_login&#x000A;    # get the login page&#x000A;    get &quot;/login&quot;&#x000A;    assert_equal 200, status&#x000A;&#x000A;    # post the login and follow through to the home page&#x000A;    post &quot;/login&quot;, :username =&gt; people(:jamis).username,&#x000A;      :password =&gt; people(:jamis).password&#x000A;    follow_redirect!&#x000A;    assert_equal 200, status&#x000A;    assert_equal &quot;/home&quot;, path&#x000A;  end&#x000A;end</pre>
+            <p>
+            However, you can also have multiple session instances open per test, and
+            even extend those instances with assertions and methods to create a very
+            powerful testing DSL that is specific for your application. You can even
+            reference any named routes you happen to have defined!
+            </p>
+            <pre>require &quot;#{File.dirname(__FILE__)}/test_helper&quot;&#x000A;&#x000A;class AdvancedTest &lt; ActionController::IntegrationTest&#x000A;  fixtures :people, :rooms&#x000A;&#x000A;  def test_login_and_speak&#x000A;    jamis, david = login(:jamis), login(:david)&#x000A;    room = rooms(:office)&#x000A;&#x000A;    jamis.enter(room)&#x000A;    jamis.speak(room, &quot;anybody home?&quot;)&#x000A;&#x000A;    david.enter(room)&#x000A;    david.speak(room, &quot;hello!&quot;)&#x000A;  end&#x000A;&#x000A;  private&#x000A;&#x000A;    module CustomAssertions&#x000A;      def enter(room)&#x000A;        # reference a named route, for maximum internal consistency!&#x000A;        get(room_url(:id =&gt; room.id))&#x000A;        assert(...)&#x000A;        ...&#x000A;      end&#x000A;&#x000A;      def speak(room, message)&#x000A;        xml_http_request &quot;/say/#{room.id}&quot;, :message =&gt; message&#x000A;        assert(...)&#x000A;        ...&#x000A;      end&#x000A;    end&#x000A;&#x000A;    def login(who)&#x000A;      open_session do |sess|&#x000A;        sess.extend(CustomAssertions)&#x000A;        who = people(who)&#x000A;        sess.post &quot;/login&quot;, :username =&gt; who.username,&#x000A;          :password =&gt; who.password&#x000A;        assert(...)&#x000A;      end&#x000A;    end&#x000A;end</pre>
+          </div>
+          <div id='context'>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li><a href="Integration/Runner.html">Integration::Runner</a></li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

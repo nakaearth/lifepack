@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::XmlMini [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <div class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::XmlMini
+        </div>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/xml_mini_rb.html">vendor/rails/activesupport/lib/active_support/xml_mini.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1><a href="XmlMini.html">XmlMini</a></h1>
+            <p>
+            To use the much faster libxml parser:
+            </p>
+            <pre>gem 'libxml-ruby', '=0.9.7'&#x000A;XmlMini.backend = 'LibXML'</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001333">backend=</a></li>
+              <li><a href="#M001334">with_backend</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>backend</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001333'>
+                <a name='M001333'></a>
+                <div class='synopsis'>
+                  <span class='name'>backend=</span>
+                  <span class='arguments'>(name)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001333-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001333-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini.rb, line 13</span>&#x000A;13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">backend=</span>(<span class="ruby-identifier">name</span>)&#x000A;14:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Module</span>)&#x000A;15:         <span class="ruby-ivar">@backend</span> = <span class="ruby-identifier">name</span>&#x000A;16:       <span class="ruby-keyword kw">else</span>&#x000A;17:         <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;active_support/xml_mini/#{name.to_s.downcase}.rb&quot;</span>&#x000A;18:         <span class="ruby-ivar">@backend</span> = <span class="ruby-constant">ActiveSupport</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;XmlMini_#{name}&quot;</span>)&#x000A;19:       <span class="ruby-keyword kw">end</span>&#x000A;20:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001334'>
+                <a name='M001334'></a>
+                <div class='synopsis'>
+                  <span class='name'>with_backend</span>
+                  <span class='arguments'>(name) {|| ...}</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001334-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001334-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/xml_mini.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with_backend</span>(<span class="ruby-identifier">name</span>)&#x000A;23:       <span class="ruby-identifier">old_backend</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">backend</span> = <span class="ruby-identifier">backend</span>, <span class="ruby-identifier">name</span>&#x000A;24:       <span class="ruby-keyword kw">yield</span>&#x000A;25:     <span class="ruby-keyword kw">ensure</span>&#x000A;26:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">backend</span> = <span class="ruby-identifier">old_backend</span>&#x000A;27:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

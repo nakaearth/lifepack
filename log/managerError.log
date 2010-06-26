@@ -1,0 +1,61 @@
+2010-05-12 00:16:26 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:16:26 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:16:26 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:17:01 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:17:01 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:17:01 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:17:50 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:17:50 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:17:50 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:17:50 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-12 00:18:23 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:18:23 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:18:23 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:18:23 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-12 00:20:06 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:20:06 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:20:06 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:20:06 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-12 00:21:49 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-12 00:21:49 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-12 00:21:49 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-12 00:21:49 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-13 00:20:24 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-13 00:20:24 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-13 00:20:24 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-13 00:20:24 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-13 00:21:04 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-13 00:21:04 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-13 00:21:04 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-13 00:21:04 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-13 00:22:11 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-13 00:22:11 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-13 00:22:11 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-13 00:22:11 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-14 00:32:10 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-14 00:32:10 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-14 00:32:10 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-14 00:32:10 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-14 00:37:13 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-14 00:37:13 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-14 00:37:13 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-14 00:37:13 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-15 17:51:33 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-15 17:51:33 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-15 17:51:33 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-15 17:51:33 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-15 18:07:00 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-15 18:07:00 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-15 18:07:00 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-15 18:07:00 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-15 18:15:08 pinejuiceLog[ERROR]: findTodoAllTaskList:error.
+2010-05-15 18:15:08 pinejuiceLog[ERROR]: NilClass: nil
+2010-05-15 18:15:08 pinejuiceLog[ERROR]: findDoingAllTaskList:error.:User_id:
+2010-05-15 18:15:08 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-05-15 18:24:28 pinejuiceLog[ERROR]: saveTask:error.:User_id:
+2010-05-23 15:51:51 pinejuiceLog[ERROR]: updateTask:error.:User_id:
+2010-06-05 10:55:06 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-06-05 10:55:15 pinejuiceLog[ERROR]: findDoneAllTaskList:error.:User_id:
+2010-06-12 13:47:49 pinejuiceLog[ERROR]: findDoneTaskListByDay.:User_id:
+2010-06-12 13:49:33 pinejuiceLog[ERROR]: findDoneTaskListByDay.:User_id:
+2010-06-12 13:49:43 pinejuiceLog[ERROR]: findDoneTaskListByDay.:User_id:

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Range::Conversions [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Range::Conversions
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/range/conversions_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/range/conversions.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Getting ranges in different convenient string representations and other
+            objects
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001381">to_formatted_s</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>RANGE_FORMATS</td>
+                    <td>=</td>
+                    <td class='context-item-value'>{           :db =&gt; Proc.new { |start, stop| &quot;BETWEEN '#{start.to_s(:db)}' AND '#{stop.to_s(:db)}'&quot; }</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001381'>
+                <a name='M001381'></a>
+                <div class='synopsis'>
+                  <span class='name'>to_formatted_s</span>
+                  <span class='arguments'>(format = :default)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Gives a human readable format of the range.
+                  </p>
+                  <h4>Example</h4>
+                  <pre>[1..100].to_formatted_s # =&gt; &quot;1..100&quot;</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001381-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001381-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/range/conversions.rb, line 21</span>&#x000A;21:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_formatted_s</span>(<span class="ruby-identifier">format</span> = <span class="ruby-identifier">:default</span>)&#x000A;22:           <span class="ruby-constant">RANGE_FORMATS</span>[<span class="ruby-identifier">format</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">RANGE_FORMATS</span>[<span class="ruby-identifier">format</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">to_default_s</span>&#x000A;23:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

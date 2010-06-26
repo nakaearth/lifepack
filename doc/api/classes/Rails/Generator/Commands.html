@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Rails::Generator::Commands [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          Rails::Generator::Commands
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/railties/lib/rails_generator/commands_rb.html">vendor/rails/railties/lib/rails_generator/commands.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M002699">included</a></li>
+              <li><a href="#M002698">instance</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="Commands/Base.html" class="link">Rails::Generator::Commands::Base</a><br />
+              Class <a href="Commands/Create.html" class="link">Rails::Generator::Commands::Create</a><br />
+              Class <a href="Commands/Destroy.html" class="link">Rails::Generator::Commands::Destroy</a><br />
+              Class <a href="Commands/List.html" class="link">Rails::Generator::Commands::List</a><br />
+              Class <a href="Commands/RewindBase.html" class="link">Rails::Generator::Commands::RewindBase</a><br />
+              Class <a href="Commands/Update.html" class="link">Rails::Generator::Commands::Update</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M002699'>
+                <a name='M002699'></a>
+                <div class='synopsis'>
+                  <span class='name'>included</span>
+                  <span class='arguments'>(base)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Even more convenient access to commands. Include <a
+                  href="Commands.html">Commands</a> in the generator <a
+                  href="Commands/Base.html">Base</a> class to get a nice command instance
+                  method which returns a delegate for the requested command.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002699-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002699-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/rails_generator/commands.rb, line 20</span>&#x000A;20:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)&#x000A;21:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">:command</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">command</span><span class="ruby-operator">|</span>&#x000A;22:           <span class="ruby-constant">Commands</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">command</span>, <span class="ruby-keyword kw">self</span>)&#x000A;23:         <span class="ruby-keyword kw">end</span>&#x000A;24:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M002698'>
+                <a name='M002698'></a>
+                <div class='synopsis'>
+                  <span class='name'>instance</span>
+                  <span class='arguments'>(command, generator)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Here&#8217;s a convenient way to get a handle on generator commands.
+                  Command.instance(&#8216;destroy&#8217;, my_generator) instantiates a <a
+                  href="Commands/Destroy.html">Destroy</a> delegate of my_generator ready to
+                  do your dirty work.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002698-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002698-source'>    <span class="ruby-comment cmt"># File vendor/rails/railties/lib/rails_generator/commands.rb, line 13</span>&#x000A;13:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">command</span>, <span class="ruby-identifier">generator</span>)&#x000A;14:         <span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">command</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>).<span class="ruby-identifier">new</span>(<span class="ruby-identifier">generator</span>)&#x000A;15:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

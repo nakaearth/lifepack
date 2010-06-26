@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionView::Helpers::TranslationHelper [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActionView::Helpers::TranslationHelper
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/actionpack/lib/action_view/helpers/translation_helper_rb.html">vendor/rails/actionpack/lib/action_view/helpers/translation_helper.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001908">l</a></li>
+              <li><a href="#M001907">localize</a></li>
+              <li><a href="#M001906">t</a></li>
+              <li><a href="#M001905">translate</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001908'>
+                <a name='M001908'></a>
+                <div class='synopsis'>
+                  <span class='name'>l</span>
+                  <span class='arguments'>(*args)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="TranslationHelper.html#M001907">localize</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001907'>
+                <a name='M001907'></a>
+                <div class='synopsis'>
+                  <span class='name'>localize</span>
+                  <span class='arguments'>(*args)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Delegates to <a href="../../I18n.html#M002877">I18n.localize</a> with no
+                  additional functionality.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001907-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001907-source'>    <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/helpers/translation_helper.rb, line 23</span>&#x000A;23:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">localize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;24:         <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">localize</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>&#x000A;25:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001906'>
+                <a name='M001906'></a>
+                <div class='synopsis'>
+                  <span class='name'>t</span>
+                  <span class='arguments'>(key, options = {})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="TranslationHelper.html#M001905">translate</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001905'>
+                <a name='M001905'></a>
+                <div class='synopsis'>
+                  <span class='name'>translate</span>
+                  <span class='arguments'>(key, options = {})</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Delegates to <a href="../../I18n.html#M002876">I18n#translate</a> but also
+                  performs two additional functions. First, it&#8217;ll catch
+                  MissingTranslationData exceptions and turn them into inline spans that
+                  contains the missing key, such that you can see in a view what is missing
+                  where.
+                  </p>
+                  <p>
+                  Second, it&#8217;ll scope the key by the current partial if the key starts
+                  with a period. So if you call translate(&#8220;.foo&#8221;) from the
+                  people/index.html.erb template, you&#8217;ll actually be calling <a
+                  href="../../I18n.html#M002876">I18n.translate</a>(&#8220;people.index.foo&#8220;).
+                  This makes it less repetitive to translate many keys within the same
+                  partials and gives you a simple framework for scoping them consistently. If
+                  you don&#8217;t prepend the key with a period, nothing is converted.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001905-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001905-source'>    <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/helpers/translation_helper.rb, line 13</span>&#x000A;13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">translate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span> = {})&#x000A;14:         <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:raise</span>] = <span class="ruby-keyword kw">true</span>&#x000A;15:         <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-identifier">scope_key_by_partial</span>(<span class="ruby-identifier">key</span>), <span class="ruby-identifier">options</span>)&#x000A;16:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">I18n</span><span class="ruby-operator">::</span><span class="ruby-constant">MissingTranslationData</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>&#x000A;17:         <span class="ruby-identifier">keys</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:normalize_translation_keys</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">key</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:scope</span>])&#x000A;18:         <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">'span'</span>, <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>), <span class="ruby-identifier">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'translation_missing'</span>)&#x000A;19:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

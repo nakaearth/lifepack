@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Numeric::Conversions [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Numeric::Conversions
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/numeric/conversions_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/numeric/conversions.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001498">to_utc_offset_s</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001498'>
+                <a name='M001498'></a>
+                <div class='synopsis'>
+                  <span class='name'>to_utc_offset_s</span>
+                  <span class='arguments'>(colon=true)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Assumes self represents an offset from UTC in seconds (as returned from
+                  Time#utc_offset) and turns this into an +HH:MM formatted string. Example:
+                  </p>
+                  <pre>-21_600.to_utc_offset_s   # =&gt; &quot;-06:00&quot;</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001498-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001498-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/conversions.rb, line 9</span>&#x000A; 9:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_utc_offset_s</span>(<span class="ruby-identifier">colon</span>=<span class="ruby-keyword kw">true</span>)&#x000A;10:           <span class="ruby-identifier">seconds</span> = <span class="ruby-keyword kw">self</span>&#x000A;11:           <span class="ruby-identifier">sign</span> = (<span class="ruby-identifier">seconds</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>)&#x000A;12:           <span class="ruby-identifier">hours</span> = <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-value">3600</span>&#x000A;13:           <span class="ruby-identifier">minutes</span> = (<span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">%</span> <span class="ruby-value">3600</span>) <span class="ruby-operator">/</span> <span class="ruby-value">60</span>&#x000A;14:           <span class="ruby-value str">&quot;%+03d%s%02d&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">sign</span>, <span class="ruby-identifier">colon</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;:&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-identifier">minutes</span> ]&#x000A;15:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

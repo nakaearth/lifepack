@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: REXML::Document [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          REXML::Document
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/core_ext/rexml_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/rexml.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Element</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001827">entity_expansion_limit=</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001828">record_entity_expansion!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001827'>
+                <a name='M001827'></a>
+                <div class='synopsis'>
+                  <span class='name'>entity_expansion_limit=</span>
+                  <span class='arguments'>(val)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001827-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001827-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/rexml.rb, line 27</span>&#x000A;27:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">entity_expansion_limit=</span> <span class="ruby-identifier">val</span>&#x000A;28:           <span class="ruby-ivar">@@entity_expansion_limit</span> = <span class="ruby-identifier">val</span>&#x000A;29:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001828'>
+                <a name='M001828'></a>
+                <div class='synopsis'>
+                  <span class='name'>record_entity_expansion!</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001828-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001828-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/rexml.rb, line 31</span>&#x000A;31:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">record_entity_expansion!</span>&#x000A;32:           <span class="ruby-ivar">@number_of_expansions</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>&#x000A;33:           <span class="ruby-ivar">@number_of_expansions</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;34:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@number_of_expansions</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@entity_expansion_limit</span>&#x000A;35:             <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Number of entity expansions exceeded, processing aborted.&quot;</span>&#x000A;36:           <span class="ruby-keyword kw">end</span>&#x000A;37:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

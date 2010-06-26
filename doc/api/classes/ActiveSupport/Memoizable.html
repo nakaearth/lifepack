@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Memoizable [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Memoizable
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/memoizable_rb.html">vendor/rails/activesupport/lib/active_support/memoizable.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001276">memoized_ivar_for</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001277">memoize</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="Memoizable/InstanceMethods.html" class="link">ActiveSupport::Memoizable::InstanceMethods</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001276'>
+                <a name='M001276'></a>
+                <div class='synopsis'>
+                  <span class='name'>memoized_ivar_for</span>
+                  <span class='arguments'>(symbol)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001276-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001276-source'>   <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/memoizable.rb, line 3</span>&#x000A;3:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">memoized_ivar_for</span>(<span class="ruby-identifier">symbol</span>)&#x000A;4:       <span class="ruby-node">&quot;@_memoized_#{symbol.to_s.sub(/\?\Z/, '_query').sub(/!\Z/, '_bang')}&quot;</span>.<span class="ruby-identifier">to_sym</span>&#x000A;5:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001277'>
+                <a name='M001277'></a>
+                <div class='synopsis'>
+                  <span class='name'>memoize</span>
+                  <span class='arguments'>(*symbols)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001277-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001277-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/memoizable.rb, line 56</span>&#x000A;56:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">memoize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">symbols</span>)&#x000A;57:       <span class="ruby-identifier">symbols</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">symbol</span><span class="ruby-operator">|</span>&#x000A;58:         <span class="ruby-identifier">original_method</span> = <span class="ruby-identifier">:&quot;_unmemoized_#{symbol}&quot;</span>&#x000A;59:         <span class="ruby-identifier">memoized_ivar</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Memoizable</span>.<span class="ruby-identifier">memoized_ivar_for</span>(<span class="ruby-identifier">symbol</span>)&#x000A;60: &#x000A;61:         <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;include InstanceMethods                                                  # include InstanceMethods\n#\nif method_defined?(:\#{original_method})                                  # if method_defined?(:_unmemoized_mime_type)\nraise \&quot;Already memoized \#{symbol}\&quot;                                     #   raise \&quot;Already memoized mime_type\&quot;\nend                                                                      # end\nalias \#{original_method} \#{symbol}                                       # alias _unmemoized_mime_type mime_type\n#\nif instance_method(:\#{symbol}).arity == 0                                # if instance_method(:mime_type).arity == 0\ndef \#{symbol}(reload = false)                                          #   def mime_type(reload = false)\nif reload || !defined?(\#{memoized_ivar}) || \#{memoized_ivar}.empty?  #     if reload || !defined?(@_memoized_mime_type) || @_memoized_mime_type.empty?\n\#{memoized_ivar} = [\#{original_method}.freeze]                     #       @_memoized_mime_type = [_unmemoized_mime_type.freeze]\nend                                                                  #     end\n\#{memoized_ivar}[0]                                                  #     @_memoized_mime_type[0]\nend                                                                    #   end\nelse                                                                     # else\ndef \#{symbol}(*args)                                                   #   def mime_type(*args)\n\#{memoized_ivar} ||= {} unless frozen?                               #     @_memoized_mime_type ||= {} unless frozen?\nreload = args.pop if args.last == true || args.last == :reload       #     reload = args.pop if args.last == true || args.last == :reload\n#\nif defined?(\#{memoized_ivar}) &amp;&amp; \#{memoized_ivar}                    #     if defined?(@_memoized_mime_type) &amp;&amp; @_memoized_mime_type\nif !reload &amp;&amp; \#{memoized_ivar}.has_key?(args)                      #       if !reload &amp;&amp; @_memoized_mime_type.has_key?(args)\n\#{memoized_ivar}[args]                                           #         @_memoized_mime_type[args]\nelsif \#{memoized_ivar}                                             #       elsif @_memoized_mime_type\n\#{memoized_ivar}[args] = \#{original_method}(*args).freeze        #         @_memoized_mime_type[args] = _unmemoized_mime_type(*args).freeze\nend                                                                #       end\nelse                                                                 #     else\n\#{original_method}(*args)                                          #       _unmemoized_mime_type(*args)\nend                                                                  #     end\nend                                                                    #   end\nend                                                                      # end\n#\nif private_method_defined?(\#{original_method.inspect})                   # if private_method_defined?(:_unmemoized_mime_type)\nprivate \#{symbol.inspect}                                              #   private :mime_type\nend                                                                      # end\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>&#x000A;62:       <span class="ruby-keyword kw">end</span>&#x000A;63:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

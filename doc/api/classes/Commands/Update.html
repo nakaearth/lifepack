@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Commands::Update [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Commands::Update
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/railties/lib/commands/plugin_rb.html">vendor/rails/railties/lib/commands/plugin.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001044">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001045">options</a></li>
+              <li><a href="#M001046">parse!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001044'>
+                <a name='M001044'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(base_command)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001044-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001044-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 822</span>&#x000A;822:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">base_command</span>)&#x000A;823:       <span class="ruby-ivar">@base_command</span> = <span class="ruby-identifier">base_command</span>&#x000A;824:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001045'>
+                <a name='M001045'></a>
+                <div class='synopsis'>
+                  <span class='name'>options</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001045-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001045-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 826</span>&#x000A;826:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;827:       <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>&#x000A;828:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">set_summary_indent</span>(<span class="ruby-value str">'  '</span>)&#x000A;829:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">banner</span> =    <span class="ruby-node">&quot;Usage: #{@base_command.script_name} update [name [name]...]&quot;</span>&#x000A;830:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">on</span>(         <span class="ruby-value str">&quot;-r REVISION&quot;</span>, <span class="ruby-value str">&quot;--revision REVISION&quot;</span>,&#x000A;831:                       <span class="ruby-value str">&quot;Checks out the given revision from subversion.&quot;</span>,&#x000A;832:                       <span class="ruby-value str">&quot;Ignored if subversion is not used.&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@revision</span> = <span class="ruby-identifier">v</span> }&#x000A;833:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">define_head</span> <span class="ruby-value str">&quot;Update plugins.&quot;</span>&#x000A;834:       <span class="ruby-keyword kw">end</span>&#x000A;835:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001046'>
+                <a name='M001046'></a>
+                <div class='synopsis'>
+                  <span class='name'>parse!</span>
+                  <span class='arguments'>(args)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001046-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001046-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 837</span>&#x000A;837:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)&#x000A;838:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)&#x000A;839:       <span class="ruby-identifier">root</span> = <span class="ruby-ivar">@base_command</span>.<span class="ruby-identifier">environment</span>.<span class="ruby-identifier">root</span>&#x000A;840:       <span class="ruby-identifier">cd</span> <span class="ruby-identifier">root</span>&#x000A;841:       <span class="ruby-identifier">args</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-value str">&quot;vendor/plugins/*&quot;</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>&#x000A;842:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-node">&quot;#{f}/.svn&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">f</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>&#x000A;843:       <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">compact</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span>&#x000A;844:       <span class="ruby-identifier">cd</span> <span class="ruby-value str">&quot;vendor/plugins&quot;</span>&#x000A;845:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>&#x000A;846:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">name</span>)&#x000A;847:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Updating plugin: #{name}&quot;</span>&#x000A;848:           <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;svn #{$verbose ? '' : '-q'} up \&quot;#{name}\&quot; #{@revision ? &quot;-r #{@revision}&quot; : ''}&quot;</span>)&#x000A;849:         <span class="ruby-keyword kw">else</span>&#x000A;850:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Plugin doesn't exist: #{name}&quot;</span>&#x000A;851:         <span class="ruby-keyword kw">end</span>&#x000A;852:       <span class="ruby-keyword kw">end</span>&#x000A;853:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

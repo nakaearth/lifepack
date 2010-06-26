@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::SessionStore [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActiveRecord::SessionStore
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activerecord/lib/active_record/session_store_rb.html">vendor/rails/activerecord/lib/active_record/session_store.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../ActionController/Session/AbstractStore.html">ActionController::Session::AbstractStore</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            A session store backed by an Active Record class. A default class is
+            provided, but any object duck-typing to an Active Record <a
+            href="SessionStore/Session.html">Session</a> class with text
+            <tt>session_id</tt> and <tt>data</tt> attributes is sufficient.
+            </p>
+            <p>
+            The default assumes a <tt>sessions</tt> tables with columns:
+            </p>
+            <pre>+id+ (numeric primary key),&#x000A;+session_id+ (text, or longtext if your session data exceeds 65K), and&#x000A;+data+ (text or longtext; careful if your session data exceeds 65KB).</pre>
+            <p>
+            The <tt>session_id</tt> column should always be indexed for speedy lookups.
+            <a href="SessionStore/Session.html">Session</a> data is marshaled to the
+            <tt>data</tt> column in Base64 format. If the data you write is larger than
+            the column&#8217;s size limit, ActionController::SessionOverflowError will
+            be raised.
+            </p>
+            <p>
+            You may configure the table name, primary key, and data column. For
+            example, at the end of <tt>config/environment.rb</tt>:
+            </p>
+            <pre>ActiveRecord::SessionStore::Session.table_name = 'legacy_session_table'&#x000A;ActiveRecord::SessionStore::Session.primary_key = 'session_id'&#x000A;ActiveRecord::SessionStore::Session.data_column_name = 'legacy_session_data'</pre>
+            <p>
+            Note that setting the primary key to the <tt>session_id</tt> frees you from
+            having a separate <tt>id</tt> column if you don&#8217;t want it. However,
+            you must set <tt>session.model.id = session.session_id</tt> by hand! A
+            before filter on ApplicationController is a good place.
+            </p>
+            <p>
+            Since the default class is a simple Active Record, you get timestamps for
+            free if you add <tt>created_at</tt> and <tt>updated_at</tt> datetime
+            columns to the <tt>sessions</tt> table, making periodic session expiration
+            a snap.
+            </p>
+            <p>
+            You may provide your own session class implementation, whether a
+            feature-packed Active Record or a bare-metal high-performance SQL store, by
+            setting
+            </p>
+            <pre>ActiveRecord::SessionStore.session_class = MySessionClass</pre>
+            <p>
+            You must implement these methods:
+            </p>
+            <pre>self.find_by_session_id(session_id)&#x000A;initialize(hash_of_session_id_and_data)&#x000A;attr_reader :session_id&#x000A;attr_accessor :data&#x000A;save&#x000A;destroy</pre>
+            <p>
+            The example <a href="SessionStore/SqlBypass.html">SqlBypass</a> class is a
+            generic SQL session store. You may use it as a basis for high-performance
+            database-specific stores.
+            </p>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="SessionStore/Session.html" class="link">ActiveRecord::SessionStore::Session</a><br />
+              Class <a href="SessionStore/SqlBypass.html" class="link">ActiveRecord::SessionStore::SqlBypass</a><br />
+            </div>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>SESSION_RECORD_KEY</td>
+                    <td>=</td>
+                    <td class='context-item-value'>'rack.session.record'.freeze</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

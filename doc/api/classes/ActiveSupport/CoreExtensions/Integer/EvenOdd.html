@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Integer::EvenOdd [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Integer::EvenOdd
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            For checking if a fixnum is even or odd.
+            </p>
+            <pre>2.even?  # =&gt; true&#x000A;2.odd?   # =&gt; false&#x000A;1.even?  # =&gt; false&#x000A;1.odd?   # =&gt; true&#x000A;0.even?  # =&gt; true&#x000A;0.odd?   # =&gt; false&#x000A;-1.even? # =&gt; false&#x000A;-1.odd?  # =&gt; true</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001391">even?</a></li>
+              <li><a href="#M001390">multiple_of?</a></li>
+              <li><a href="#M001392">odd?</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001391'>
+                <a name='M001391'></a>
+                <div class='synopsis'>
+                  <span class='name'>even?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001391-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001391-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd.rb, line 19</span>&#x000A;19:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">even?</span>&#x000A;20:           <span class="ruby-identifier">multiple_of?</span> <span class="ruby-value">2</span>&#x000A;21:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001390'>
+                <a name='M001390'></a>
+                <div class='synopsis'>
+                  <span class='name'>multiple_of?</span>
+                  <span class='arguments'>(number)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001390-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001390-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd.rb, line 15</span>&#x000A;15:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multiple_of?</span>(<span class="ruby-identifier">number</span>)&#x000A;16:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">number</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;17:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001392'>
+                <a name='M001392'></a>
+                <div class='synopsis'>
+                  <span class='name'>odd?</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001392-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001392-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd.rb, line 23</span>&#x000A;23:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">odd?</span>&#x000A;24:           <span class="ruby-operator">!</span><span class="ruby-identifier">even?</span>&#x000A;25:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Numeric::Bytes [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Numeric::Bytes
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Enables the use of byte calculations and declarations, like 45.bytes +
+            2.6.megabytes
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001516">byte</a></li>
+              <li><a href="#M001515">bytes</a></li>
+              <li><a href="#M001528">exabyte</a></li>
+              <li><a href="#M001527">exabytes</a></li>
+              <li><a href="#M001522">gigabyte</a></li>
+              <li><a href="#M001521">gigabytes</a></li>
+              <li><a href="#M001518">kilobyte</a></li>
+              <li><a href="#M001517">kilobytes</a></li>
+              <li><a href="#M001520">megabyte</a></li>
+              <li><a href="#M001519">megabytes</a></li>
+              <li><a href="#M001526">petabyte</a></li>
+              <li><a href="#M001525">petabytes</a></li>
+              <li><a href="#M001524">terabyte</a></li>
+              <li><a href="#M001523">terabytes</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001516'>
+                <a name='M001516'></a>
+                <div class='synopsis'>
+                  <span class='name'>byte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001515">bytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001515'>
+                <a name='M001515'></a>
+                <div class='synopsis'>
+                  <span class='name'>bytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001515-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001515-source'>   <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 6</span>&#x000A;6:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bytes</span>&#x000A;7:           <span class="ruby-keyword kw">self</span>&#x000A;8:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001528'>
+                <a name='M001528'></a>
+                <div class='synopsis'>
+                  <span class='name'>exabyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001527">exabytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001527'>
+                <a name='M001527'></a>
+                <div class='synopsis'>
+                  <span class='name'>exabytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001527-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001527-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 36</span>&#x000A;36:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exabytes</span>&#x000A;37:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>.<span class="ruby-identifier">petabytes</span>&#x000A;38:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001522'>
+                <a name='M001522'></a>
+                <div class='synopsis'>
+                  <span class='name'>gigabyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001521">gigabytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001521'>
+                <a name='M001521'></a>
+                <div class='synopsis'>
+                  <span class='name'>gigabytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001521-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001521-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 21</span>&#x000A;21:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gigabytes</span>&#x000A;22:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>.<span class="ruby-identifier">megabytes</span> &#x000A;23:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001518'>
+                <a name='M001518'></a>
+                <div class='synopsis'>
+                  <span class='name'>kilobyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001517">kilobytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001517'>
+                <a name='M001517'></a>
+                <div class='synopsis'>
+                  <span class='name'>kilobytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001517-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001517-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 11</span>&#x000A;11:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">kilobytes</span>&#x000A;12:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>&#x000A;13:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001520'>
+                <a name='M001520'></a>
+                <div class='synopsis'>
+                  <span class='name'>megabyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001519">megabytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001519'>
+                <a name='M001519'></a>
+                <div class='synopsis'>
+                  <span class='name'>megabytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001519-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001519-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 16</span>&#x000A;16:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">megabytes</span>&#x000A;17:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>.<span class="ruby-identifier">kilobytes</span>&#x000A;18:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001526'>
+                <a name='M001526'></a>
+                <div class='synopsis'>
+                  <span class='name'>petabyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001525">petabytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001525'>
+                <a name='M001525'></a>
+                <div class='synopsis'>
+                  <span class='name'>petabytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001525-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001525-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 31</span>&#x000A;31:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">petabytes</span>&#x000A;32:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>.<span class="ruby-identifier">terabytes</span>&#x000A;33:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001524'>
+                <a name='M001524'></a>
+                <div class='synopsis'>
+                  <span class='name'>terabyte</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="Bytes.html#M001523">terabytes</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001523'>
+                <a name='M001523'></a>
+                <div class='synopsis'>
+                  <span class='name'>terabytes</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001523-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001523-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/numeric/bytes.rb, line 26</span>&#x000A;26:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">terabytes</span>&#x000A;27:           <span class="ruby-keyword kw">self</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span>.<span class="ruby-identifier">gigabytes</span>&#x000A;28:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

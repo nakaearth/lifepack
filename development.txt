@@ -1,0 +1,628 @@
+0.Rubyの設定
+
+% cd $HOME/local/src
+% wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p0.tar.gz
+or wget ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
+% tar xzf ruby-1.8.7.tar.gz
+% cd ruby-1.8.7
+% ./configure --prefix=$HOME/local
+% make
+% make install
+(ruby-mysqlのバージョンが2.8.1でないとだめかも)
+
+>gem install rails
+
+もしzlibがないと怒られたら、、
+http://love41terry.blog51.fc2.com/blog-category-2.html
+
+MySql(Rails 2.2から個別に入れないとだめになた)
+>yum install mysql-devel
+>gem install mysql -- --with-mysql-config=/usr/bin/mysql_config
+
+1.プラグイン設定
+>sudo gem install log4r
+>sudo gem install magic_multi_connections
+>sudo gem install capistrano
+gem install mysql
+gem install ruby-mysql
+> gem install mislav-will_paginate
+(http://d.hatena.ne.jp/idesaku/20080508/1210249865)
+
+・Pagenateも、標準搭載されていない。
+（参考：http://d.hatena.ne.jp/hayori/20080418/1208490669
+     http://d.hatena.ne.jp/elm200/20080501/1209636980）
+→gem install will_paginate
+変更になった。また
+→gem install mislav-will_paginate
+(http://d.hatena.ne.jp/idesaku/20080508/1210249865)
+
+・Sennaとの連携
+ruby script/plugin install http://ryu.rubyforge.org/svn/acts_as_tritonn
+
+
+2.プロジェクト生成
+rails lifepack -d mysql
+
+ruby script\generate scaffold memo title:string message:string img_url:string author:string password:string
+ruby script\generate scaffold recommend_place title:string message:string img_url:string author:string password:string
+
+create database lifepack_development character set utf8;
+create database lifepack_test character set utf8;
+create database lifepack_production character set utf8;
+
+・補完機能がなくなったがプラグインになった。
+>ruby script\plugin install auto_complete
+
+・Session管理にDBを使う場合
+＞rake db:sessions:create
+＞rake db:migrate
+
+●GoogleMap連携
+>gem install google-geocode
+http://www.johnyerhot.com/2008/01/05/integrating-google-maps-in-your-rails-20-app/
+>gem install ym4r
+http://kenjiro2u.blogspot.com/2009/09/google-maps-on-rails.html
+http://ym4r.rubyforge.org/ym4r_gm-doc/
+http://ym4r.rubyforge.org/ym4r-doc/
+
+・GoogleMap連携(こっちかな？？)
+ruby script/plugin install http://gmaps-on-rails.googlecode.com/svn/trunk/
+(※参考URL：http://www.banwanko.net/etc/?GoogleMaps+%A5%D7%A5%E9%A5%B0%A5%A4%A5%F3）
+
+・API
+http://code.google.com/intl/ja/apis/maps/documentation/examples/index.html
+
+・GoogleEarth
+http://code.google.com/intl/ja/apis/earth/documentation/index.html
+--------------------------------------------------------------------
+<script src="http://www.google.com/jsapi?key=ABQIAAAANev-7G8eKq-3IAhsgVZRhxSg5UQRAHjjMgPNqE9hXZnVHf7JhxRHRQvhN0UmfukDlf03X9Vz2KjFeg"> </script>
+  <script type="text/javascript">
+      var ge;
+      google.load("earth", "1");
+
+      function init() {
+         google.earth.createInstance('map3d', initCB, failureCB);
+      }
+
+      function initCB(instance) {
+         ge = instance;
+         ge.getWindow().setVisibility(true);
+      }
+
+      function failureCB(errorCode) {
+      }
+
+      google.setOnLoadCallback(init);
+   </script>
+-------------------------------------------------------------------
+<div id="map3d" style="height: 400px; width: 600px;"></div>
+
+
+●OpenID
+http://d.hatena.ne.jp/ma2/20060305/p1
+http://github.com/dbloete/masquerade/tree/master
+http://japan.internet.com/column/developer/20080627/26.html
+
+gem install ruby-openid
+ruby script/plugin install open_id_authentication
+rake open_id_authentication:db:create
+rake db:migrate
+
+※Gemのバージョンによってはopen_id_authentication クラスの以下のメソッドを修正しないとだめ
+def requested_url
+      #"#{request.protocol + request.host_with_port + request.relative_url_root + request.path}"
+      "#{request.protocol + request.host_with_port  + request.path}"
+    end
+
+※http://www13.atwiki.jp/maimuzo/m/pages/61.html?guid=on
+
+●Twitter連携
+http://twitter4r.rubyforge.org/
+
+＞sudo gem install twitter4r
+＞sudo gem install json
+
+※連携
+Twitthis
+http://www.twitthis.com/
+
+●Composite Primary Keys
+http://programmer-toy-box.sblo.jp/article/5400816.html
+>gem install composite_primary_keys
+
+
+●CAPTCHA
+simple_captchaプラグインを使用
+　(http://doruby.kbmj.com/nakahira_on_rails/20090615/ruby_on_rails_CAPTCHA__simple_captcha_）
+
+＞ruby script\plugin install svn://rubyforge.org/var/svn/expressica/plugins/simple_captcha
+http://expressica.com/wp-content/plugins/wp-downloadMonitor/download.php?id=1
+
+※事前に RMagicを設定する必要がある。
+http://rmagick.rubyforge.org/install-faq.html
+
+　ImageMagic：http://www.imagemagick.org/script/index.php
+
+→GEM、RAILSのバージョンによりか、RMagickがうまく動作しないのか、プラグインのInstall後のRakeができない。
+
+●タグ
+http://brass.to/blog/acts_as_taggable_on_steroids.html
+
+●Memcached設定
+http://brass.to/blog/rails_2_1_summary.html
+
+フラグメントキャッシュなどのキャッシュは今まではファイルに保存するしかなかったけれども、
+これをメモリやmemcacheやdrbなど他のキャッシュストアにも保存できるようになった。
+定義はconfig/environment.rbなどで以下のように
+ActionController::Base.cache_store = :memory_store
+ActionController::Base.cache_store = :file_store, "/path/to/cache/directory"
+ActionController::Base.cache_store = :drb_store, "druby://localhost:9192"
+ActionController::Base.cache_store = :mem_cache_store, "localhost"
+
+●設定系
+http://www.rizeteaz.com/tkosuga/?p=165
+
+●サーバ
+http://webroar.in/
+
+＞gem sources -a http://gems.github.com
+＞sudo gem install webroar
+＞sudo webroar install
+
+・thin
+http://blog.poqu.org/2008/03/09/rails-thin/
+
+・Passenger
+http://lab.koshigoe.jp/en2ja/passenger/Architectural%20overview.html
+
+http://code.google.com/p/phusion-passenger/issues/detail?id=199
+
+・Mongrel
+http://www.kaeruspoon.net/articles/300
+mongrel_rails cluster::configure -e production -p 3000 -N 3
+　これでRailsアプリがproductionモードで、ポート番号3000, 3001, 3002の3つのプロセスで立ち上がる設定が完了です。あとは、
+
+mongrel_rails cluster::start
+とやれば、設定どおりにRailsアプリが3つ起動します。
+とめるときは、
+
+mongrel_rails cluster::stop
+でOK。
+
+●テスト
+・Rspec
+http://jp.rubyist.net/magazine/?0021-Rspec
+> gem install rspec
+gem install win32console
+gem install moro-miso（日本語でステップが×）
+
+受け入れテスト
+・cucumber
+＞gem install cucumber webrat gherkin
+http://gihyo.jp/dev/serial/01/ruby/0022
+
+●モバイル
+http://jpmobile-rails.org/
+http://rdoc.info/projects/darashi/jpmobile
+http://recommend.kbmj.com/recommend/link_without_param/197/?t=history1
+モバイル地図は：http://ke-tai.org/blog/2008/02/26/gmapstatic/
+http://ke-tai.org/blog/2008/02/26/gmapstatic/
+(AUはURLパラメータを改行してはいけない）
+
+・Pluginでインストール
+>ruby script/plugin install svn://rubyforge.org/var/svn/geokit/trunk
+
+
+・iPhone対応
+http://jp.rubyist.net/magazine/?0029-JpMobile#l3
+
+・GEO KIT
+http://rdoc.info/projects/darashi/jpmobile
+
+http://geokit.rubyforge.org/index.html
+http://rdoc.info/projects/darashi/jpmobile
+
+
+・サイトマップを作る
+http://fdays.blogspot.com/2009/11/rails-2x-xml.html
+
+○Rdocに検索機能を
+http://github.com/mislav/hanna
+＞gem install hanna
+＞rake doc:rails.
+
+○RestFull API作成
+(http://nokogiri.org/tutorials/installing_nokogiri.html)
+sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel
+sudo gem install nokogiri
+gem install roxml
+
+・ActionWebResource
+http://gihyo.jp/dev/feature/01/rails2/0003?page=2
+---------------------過去の情報--------------------
+
+※はじめに
+Linux環境でのrubyのインストールは、
+まずは、Rubyのダウンロード。
+>wget ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
+>tar xzf ruby-1.8.7.tar.bz2
+>cd ruby1.8.7
+> ./configure
+> make
+>make test
+>sudo make install
+>PATH=$PATH:/usr/src/ruby-1.8.5
+>export PATH
+
+>wget http://rubyforge.org/frs/download.php/29548/rubygems-1.0.1.tgz
+>tar xzf rubygems-1.0.1.tgz
+
+>sudo ruby setup.rb
+>sudo gem install rails --include-dependencies
+
+※http://rubyforge.org/frs/?group_id=126
+
+では、プラグインをインストールしましょう。
+>sudo gem install log4r
+>sudo gem install amazon-ecs
+>sudo gem install hpricot amrita2
+>sudo gem install magic_multi_connections
+>sudo gem install capistrano
+> gem install rapt
+>rapt search "amf"
+> ruby script/plugin install http://themidnightcoders.net:8089/svn/weborb
+>gem install gettext
+>gem install flickr
+
+続けて、Linuxで動かすためにpassengerを入れましょう。
+
+>sudo gem install passenger-x.x.x.gem
+
+http://redmine.jp/tech_note/apache-passenger/
+
+まー、ちょっとうまくいってなかったから、、
+http://saikyoline.jp/weblog/2006/08/mongrelapache22.html
+apache と Mongrelで良いかな？
+
+
+・Pagenateも、標準搭載されていない。
+（参考：http://d.hatena.ne.jp/hayori/20080418/1208490669
+     http://d.hatena.ne.jp/elm200/20080501/1209636980）
+→gem install will_paginate
+変更になった。また
+→gem install mislav-will_paginate
+(http://d.hatena.ne.jp/idesaku/20080508/1210249865)
+
+
+・補完機能がなくなったがプラグインになった。
+＞ruby script\plugin install auto_complete
+で修正完了。
+
+--------------------------------------------------------------
+0.Rails2.0用に修正
+　DBをつくり直し、テーブルを新規作成する。
+→プラグインインストール完了。
+→スレーブ用テーブル作成
+
+0.phpMyAdminでの文字化け
+　create database startTracker_development character set utf8;
+
+のように直接コマンドで作成することを強くお勧めする。
+
+・http://www.infoq.com/jp/news/2007/12/rails20-released
+
+1.PineJuice（タスク看板)の作成
+  ・ユーザによって表示タスクを切り替える
+    →一度ドラッグ＆ドロップしたら捜査できない！！何故？
+      →スタイルシートを修正したら、多分直る。
+      　　IEとFierFoxのレンダリングの違い。
+          スタイルシートを修正。
+    →似たようなメソッドがあるので、リファクタしたいが・・・。どうする。
+    　あと、上手く動作しない
+    →完了。
+  ・MessageFlashを使う
+  　→完了
+  ・コンポーネントを利用する。
+  ・
+ ----------------------------------------------------------------------
+2.グラフ表示
+  ・表示形式を看板からグラフ表示に切り替えができるようにする。
+  http://nubyonrails.com/pages/css_graphs
+  →まずは完了
+  更にスゴイ
+  http://tam.qmix.org/wiki/RubyGruff.html
+  →GEMのバージョンが古いらしい。→しばらく様子見
+
+  JavaScript直でこれを使うか
+  http://www.omnipotent.net/jquery.sparkline/
+  →JQueryだから、prototypeとは一緒に使えない。
+  →取り合えず表示はできた。
+
+http://www.moongift.jp/2008/09/bluff/
+→取り合えず使えそう！
+
+ ----------------------------------------------------------------------
+
+3. RSSを使ったタスク状況の監視
+3.5 RSSを使ってニュース一覧を表示。
+  →ソース上の別フォルダを参照したい場合は、config/environment.rbを編集すること！
+    config.load_paths += %W( #{RAILS_ROOT}/app/cachers
+#{RAILS_ROOT}/app/drops #{RAILS_ROOT}/app/filters )
+    を追記するとよい！！
+
+http://www.cozmixng.org/~rwiki/?cmd=view;name=RSS+Parser%3A%3ATutorial.ja
+
+http://d.hatena.ne.jp/shunsuk/20071203/1196680466
+
+→うまくいってるのかな？？
+----------------------------------------------------------------------
+
+4.メールによる通知
+http://wota.jp/ac/?date=20050731
+→日本語の問題をクリアにすればOKかな・・・。
+　あ、でもメール送付されてないよな～
+→
+http://akimichi.homeunix.net/hiki/rails/?%A5%E1%A1%BC%A5%EB%C1%F7%BF%AE
+
+http://railspress.matake.jp/actionmailer-base-server-settings-are-deplicated-in-rails20
+http://akimichi.homeunix.net/hiki/rails/?%A5%E1%A1%BC%A5%EB%C1%F7%BF%AE
+http://d.hatena.ne.jp/koseki2/20080425/actionmailerView
+http://www.2mihi.com/2007/11/6-actionmail.html
+
+SendMail:
+http://wiki.rubyonrails.org/rails/pages/HowToSendEmailsWithActionMailer
+
+Gmailを使う方法
+http://terrazilog.quipu.jp/?eid=591548
+
+設定まわり
+http://railspress.matake.jp/actionmailer-base-server-settings-are-deplicated-in-rails20
+
+→途中までうまくいってるようだけど、、認証で失敗する・・？何故？
+----------------------------------------------------------------------
+
+5.GoogleMap
+Key:ABQIAAAANev-7G8eKq-3IAhsgVZRhxTJQa0g3IQ9GZqIMmInSLzwtGDKaBSSa1S1DPoIZ97PNg6jW5_4PT5daQ
+
+http://www.johnyerhot.com/2008/01/05/integrating-google-maps-in-your-rails-20-app/
+http://hwhack.blogspot.com/2008/01/ruby-on-rails-googlemap.html
+
+http://www008.upp.so-net.ne.jp/getback/
+
+→JavaScript方面をRJSかヘルパーを使う→いや、Controllerに記述する？
+
+・IP情報取得
+http://www.atmarkit.co.jp/fnetwork/rensai/ichijouhou02/01.html
+----------------------------------------------------------------------
+
+6.テストサイクル
+
+----------------------------------------------------------------------
+7.OpenId
+http://d.hatena.ne.jp/ma2/20060305/p1
+http://github.com/dbloete/masquerade/tree/master
+http://japan.internet.com/column/developer/20080627/26.html
+
+●
+gem install ruby-openid
+ruby script/plugin install open_id_authentication
+rake open_id_authentication:db:create
+rake db:migrate
+
+
+----------------------------------------------------------------------
+8.
+ログ形式のカスタマイズ
+http://d.hatena.ne.jp/mingos/20080118/1200620800
+
+>gem install log4r
+
+----------------------------------------------------------------------
+9.アマゾン連携
+http://doruby.kbmj.com/x5r_on_rails/20080121/Rails_Amazon_API_
+
+>sudo gem install amazon-ecs
+
+中村が取った
+→15J4V1J9ZTXGEVBA7RG2
+E-Mail:shinichirou.nakamura@gmo-media.jp
+Password:earth5313
+
+→まずは、やってみた。。
+→できたっぽい
+
+----------------------------------------------------------------------
+10 Ruby on Railsで携帯からファイルのアップロード（+送信者認証）
+http://koress.jp/2007/09/ruby_on_rails_3.html
+
+----------------------------------------------------------------------
+10.5 ファイルのアップロード
+http://blog.takeda-soft.jp/blog/show/51
+
+----------------------------------------------------------------------
+11．テンプレートエンジン
+gem install hpricot amrita2
+
+----------------------------------------------------------------------
+12.DB負荷分散
+http://blog.tkmr.org/tatsuya/show/311-twitter-db-rails
+→分散を試す
+→方法の確認終了。
+→アプリに適用する場合、ユーザごとにデータベースを振り分ける必要がある。
+　その振り分け処理を考える必要がある。
+
+①
+#gem からインストール
+gem install magic_multi_connections
+
+②
+#config/database.ymlを編集
+development:
+  database: hoge_master
+  timeout: 5000
+  host: localhost
+
+development_slave1:
+  database: hoge_slave1
+  timeout: 5000
+  host: localhost
+
+development_slave2:
+  database: hoge_slave2
+  timeout: 5000
+  host: localhost
+
+③
+config/environment.rbを編集
+＞＞
+require 'magic_multi_connections'
+connection_names = ActiveRecord::Base.configurations.keys.select do |name|
+  name =~ /^#{ENV['RAILS_ENV']}_slave/
+end
+@@connection_pool = connection_names.map do |connection_name|
+  Object.class_eval <<-EOS
+    module #{connection_name.camelize}
+      establish_connection :#{connection_name}
+    end
+  EOS
+  connection_name.camelize.constantize
+end
+
+>>Hoge.find(1)                      #hoge_master DB を検索
+>>DevelopmentSlave1::Hoge.find(1)   #hoge_slave1 DB を検索
+>>DevelopmentSlave2::Hoge.find(1)   #hoge_slave2 DB を検索
+
+
+----------------------------------------------------------------------
+13.Youtube
+http://www.moongift.jp/2008/04/mini_youtube/
+→Rails1.2用だった。。。
+変わりにAmazonS3 との連携
+→http://rails20.jp/2008/03/amazon_s3_development_use_parkplace/
+>gem i aws-s3
+→
+http://amazon.rubyforge.org/
+→有料でお金かかるから、こっちにするかね。。。
+http://rails20.jp/2008/03/amazon_s3_development_use_parkplace/
+----------------------------------------------------------------------
+14.運用
+http://www.moongift.jp/2008/04/passenger/
+>gem install passenger-x.x.x.gem
+>passenger-install-apache2-module
+
+http://blog.takeda-soft.jp/blog/show/10
+
+Passengerのインストール
+http://d.hatena.ne.jp/higepon/20080728/1217232627
+
+----------------------------------------------------------------------
+15.ディプロイ？
+Capistrano？（カピストラーノ：旧名SwitchTower）
+http://www.atmarkit.co.jp/fjava/column/andoh/andoh30.html
+→やってみた。
+>gem install capistrano
+でインストール完了。
+
+使い方
+→http://doruby.kbmj.com/trinityt_on_rails/20080325/__Capistrano___1
+
+http://doruby.kbmj.com/tacchi_on_rails/20080725/capistrano_1
+
+http://labs.peritor.com/webistrano
+----------------------------------------------------------------------
+16.PDF
+http://sublog.subimage.com/articles/2007/05/29/html-css-to-pdf-using-ruby-on-rails
+http://www.gesource.jp/weblog/archives/2008/07/rubypdfharu_free_pdf_library.html
+----------------------------------------------------------------------
+17.Railsにおける命名規則
+irb(main):006:0> 'cache'.pluralize
+=> "caches"
+irb(main):007:0> 'caches'.singularize
+=> "cach"
+irb(main):008:0> 'hoge_caches'.classify
+=> "HogeCach"
+----------------------------------------------------------------------
+18.スイカと連携
+http://doruby.kbmj.com/akio0911_on_rails/20080325/Ruby_PaSoRi_Suica_
+http://doruby.kbmj.com/akio0911_on_rails/20080325/Ruby_PaSoRi_Suica_
+
+----------------------------------------------------------------------
+19.キャッシュ機能
+ActionController::Caching::Sweeperについて
+参考サイト：http://cgi.members.interq.or.jp/cgi-bin/cgiwrapkiller/me385301/sb/sb.cgi?page=2&cid=8
+→掲示板、簡易ブログを作成する。(テンプレート使っちゃう？)
+→テーブル構築、モデルクラスジェンレート終了。
+→テストクラスの作成
+
+参考：http://www.kaeruspoon.net/articles/179
+      http://mudaimemo.blogspot.com/2008/04/ruby-on-rails-rails.html
+
+----------------------------------------------------------------------
+20.ボトルネックを分析するツール
+http://github.com/flyingma/palmist/tree/master
+
+----------------------------------------------------------------------
+21.データ処理分散システムMapReduceのオープンソース実装
+http://skynet.rubyforge.org/
+
+----------------------------------------------------------------------
+22.Ruby Enterpriseだって
+http://www.rubyenterpriseedition.com/
+
+----------------------------------------------------------------------
+23.FlashとRails
+http://blog.takeda-soft.jp/blog/show/285
+
+■Ruby on Rails
+■JavaSDK
+■FlexSDK、$FLEX_HOME/bin　をPATHに追加
+　http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK
+□ANT（いらないかも）、$ANT_HOME/bin　をPATHに追加
+□FlashDevelop（Win限定のASエディタ）。
+　http://www.flashdevelop.org/community/
+
+ (1)AWFインストール
+  > gem install rapt
+　> rapt search "amf"
+  > ruby script/plugin install http://themidnightcoders.net:8089/svn/weborb
+
+→まずは、サンプルが動いた。
+→仕組みを理解する。
+http://www13.atwiki.jp/maimuzo/pages/25.html
+
+※Railsで動かすためには、、、
+1.publicフォルダ以下にRailsのコントローラと同じ名前のディレクトリ名を作成し、そこにswfファイルを
+作成する。
+>mxmlc NucoNuco.as
+
+2./config/WEB-INF/flex/remoting-config.xml
+を編集する。
+
+ <destination id="ForumService">
+        <properties>
+            <source>ForumService</source>
+        </properties>
+    </destination>
+
+3.後はサンプルの通りに<object />を使用する。
+ <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="NucoNuco"
+width="100%" height="100%"
+codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+     <param name="movie" value="NucoNuco.swf" /><param name="quality"
+value="high" /><param name="bgcolor" value="#ffffff" /><param
+name="allowScriptAccess" value="sameDomain" />
+     <embed src="NucoNuco.swf" quality="high" bgcolor="#ffffff" width="100%"
+height="100%" name="main" align="middle" play="true" loop="false"
+quality="high" allowScriptAccess="sameDomain"
+type="application/x-shockwave-flash"
+pluginspage="http://www.adobe.com/go/getflashplayer">
+     </embed>
+ </object>
+
+4.後はFlashをもっと自由に作れれば、面白いことになるかな。。。
+
+※他にもあるよ。。。。
+http://www.infoq.com/jp/news/2008/06/jumpship-31-released
+ →http://osflash.org/projects/jumpship/documentation/rails
+------------------------------------------------------------------------
+

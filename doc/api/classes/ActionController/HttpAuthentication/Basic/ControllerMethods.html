@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionController::HttpAuthentication::Basic::ControllerMethods [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActionController::HttpAuthentication::Basic::ControllerMethods
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/actionpack/lib/action_controller/http_authentication_rb.html">vendor/rails/actionpack/lib/action_controller/http_authentication.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000395">authenticate_or_request_with_http_basic</a></li>
+              <li><a href="#M000396">authenticate_with_http_basic</a></li>
+              <li><a href="#M000397">request_http_basic_authentication</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000395'>
+                <a name='M000395'></a>
+                <div class='synopsis'>
+                  <span class='name'>authenticate_or_request_with_http_basic</span>
+                  <span class='arguments'>(realm = &quot;Application&quot;, &amp;login_procedure)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000395-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000395-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/http_authentication.rb, line 111</span>&#x000A;111:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authenticate_or_request_with_http_basic</span>(<span class="ruby-identifier">realm</span> = <span class="ruby-value str">&quot;Application&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)&#x000A;112:           <span class="ruby-identifier">authenticate_with_http_basic</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">request_http_basic_authentication</span>(<span class="ruby-identifier">realm</span>)&#x000A;113:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000396'>
+                <a name='M000396'></a>
+                <div class='synopsis'>
+                  <span class='name'>authenticate_with_http_basic</span>
+                  <span class='arguments'>(&amp;login_procedure)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000396-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000396-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/http_authentication.rb, line 115</span>&#x000A;115:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authenticate_with_http_basic</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)&#x000A;116:           <span class="ruby-constant">HttpAuthentication</span><span class="ruby-operator">::</span><span class="ruby-constant">Basic</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)&#x000A;117:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000397'>
+                <a name='M000397'></a>
+                <div class='synopsis'>
+                  <span class='name'>request_http_basic_authentication</span>
+                  <span class='arguments'>(realm = &quot;Application&quot;)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000397-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000397-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_controller/http_authentication.rb, line 119</span>&#x000A;119:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_http_basic_authentication</span>(<span class="ruby-identifier">realm</span> = <span class="ruby-value str">&quot;Application&quot;</span>)&#x000A;120:           <span class="ruby-constant">HttpAuthentication</span><span class="ruby-operator">::</span><span class="ruby-constant">Basic</span>.<span class="ruby-identifier">authentication_request</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">realm</span>)&#x000A;121:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

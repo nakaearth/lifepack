@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Rescuable [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Rescuable
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activesupport/lib/active_support/rescuable_rb.html">vendor/rails/activesupport/lib/active_support/rescuable.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            <a href="Rescuable.html">Rescuable</a> module adds support for easier
+            exception handling.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001274">handler_for_rescue</a></li>
+              <li><a href="#M001273">rescue_with_handler</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="Rescuable/ClassMethods.html" class="link">ActiveSupport::Rescuable::ClassMethods</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001274'>
+                <a name='M001274'></a>
+                <div class='synopsis'>
+                  <span class='name'>handler_for_rescue</span>
+                  <span class='arguments'>(exception)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001274-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001274-source'>     <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/rescuable.rb, line 78</span>&#x000A; 78:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">handler_for_rescue</span>(<span class="ruby-identifier">exception</span>)&#x000A; 79:       <span class="ruby-comment cmt"># We go from right to left because pairs are pushed onto rescue_handlers</span>&#x000A; 80:       <span class="ruby-comment cmt"># as rescue_from declarations are found.</span>&#x000A; 81:       <span class="ruby-identifier">_</span>, <span class="ruby-identifier">rescuer</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">rescue_handlers</span>).<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass_name</span>, <span class="ruby-identifier">handler</span><span class="ruby-operator">|</span>&#x000A; 82:         <span class="ruby-comment cmt"># The purpose of allowing strings in rescue_from is to support the</span>&#x000A; 83:         <span class="ruby-comment cmt"># declaration of handler associations for exception classes whose</span>&#x000A; 84:         <span class="ruby-comment cmt"># definition is yet unknown.</span>&#x000A; 85:         <span class="ruby-comment cmt">#</span>&#x000A; 86:         <span class="ruby-comment cmt"># Since this loop needs the constants it would be inconsistent to</span>&#x000A; 87:         <span class="ruby-comment cmt"># assume they should exist at this point. An early raised exception</span>&#x000A; 88:         <span class="ruby-comment cmt"># could trigger some other handler and the array could include</span>&#x000A; 89:         <span class="ruby-comment cmt"># precisely a string whose corresponding constant has not yet been</span>&#x000A; 90:         <span class="ruby-comment cmt"># seen. This is why we are tolerant to unknown constants.</span>&#x000A; 91:         <span class="ruby-comment cmt">#</span>&#x000A; 92:         <span class="ruby-comment cmt"># Note that this tolerance only matters if the exception was given as</span>&#x000A; 93:         <span class="ruby-comment cmt"># a string, otherwise a NameError will be raised by the interpreter</span>&#x000A; 94:         <span class="ruby-comment cmt"># itself when rescue_from CONSTANT is executed.</span>&#x000A; 95:         <span class="ruby-identifier">klass</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">klass_name</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>&#x000A; 96:         <span class="ruby-identifier">klass</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">klass_name</span>.<span class="ruby-identifier">constantize</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>&#x000A; 97:         <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-identifier">klass</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span>&#x000A; 98:       <span class="ruby-keyword kw">end</span>&#x000A; 99: &#x000A;100:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rescuer</span>&#x000A;101:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>&#x000A;102:         <span class="ruby-identifier">method</span>(<span class="ruby-identifier">rescuer</span>)&#x000A;103:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Proc</span>&#x000A;104:         <span class="ruby-identifier">rescuer</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-keyword kw">self</span>)&#x000A;105:       <span class="ruby-keyword kw">end</span>&#x000A;106:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001273'>
+                <a name='M001273'></a>
+                <div class='synopsis'>
+                  <span class='name'>rescue_with_handler</span>
+                  <span class='arguments'>(exception)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Tries to rescue the exception by looking up and calling a registered
+                  handler.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001273-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001273-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/rescuable.rb, line 71</span>&#x000A;71:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rescue_with_handler</span>(<span class="ruby-identifier">exception</span>)&#x000A;72:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span> = <span class="ruby-identifier">handler_for_rescue</span>(<span class="ruby-identifier">exception</span>)&#x000A;73:         <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">exception</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">call</span>&#x000A;74:         <span class="ruby-keyword kw">true</span> <span class="ruby-comment cmt"># don't rely on the return value of the handler</span>&#x000A;75:       <span class="ruby-keyword kw">end</span>&#x000A;76:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

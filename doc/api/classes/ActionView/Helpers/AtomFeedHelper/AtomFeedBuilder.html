@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActionView::Helpers::AtomFeedHelper::AtomFeedBuilder [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          ActionView::Helpers::AtomFeedHelper::AtomFeedBuilder
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/actionpack/lib/action_view/helpers/atom_feed_helper_rb.html">vendor/rails/actionpack/lib/action_view/helpers/atom_feed_helper.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="AtomBuilder.html">ActionView::Helpers::AtomFeedHelper::AtomBuilder</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001889">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001891">entry</a></li>
+              <li><a href="#M001890">updated</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001889'>
+                <a name='M001889'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(xml, view, feed_options = {})</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001889-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001889-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/helpers/atom_feed_helper.rb, line 160</span>&#x000A;160:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">view</span>, <span class="ruby-identifier">feed_options</span> = {})&#x000A;161:           <span class="ruby-ivar">@xml</span>, <span class="ruby-ivar">@view</span>, <span class="ruby-ivar">@feed_options</span> = <span class="ruby-identifier">xml</span>, <span class="ruby-identifier">view</span>, <span class="ruby-identifier">feed_options</span>&#x000A;162:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001891'>
+                <a name='M001891'></a>
+                <div class='synopsis'>
+                  <span class='name'>entry</span>
+                  <span class='arguments'>(record, options = {}) {|AtomBuilder.new(@xml)| ...}</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Creates an entry tag for a specific record and prefills the id using class
+                  and id.
+                  </p>
+                  <p>
+                  Options:
+                  </p>
+                  <ul>
+                  <li><tt>:published</tt>: Time first published. Defaults to the created_at
+                  attribute on the record if one such exists.
+                  
+                  </li>
+                  <li><tt>:updated</tt>: Time of update. Defaults to the updated_at attribute on
+                  the record if one such exists.
+                  
+                  </li>
+                  <li><tt>:url</tt>: The URL for this entry. Defaults to the polymorphic_url for
+                  the record.
+                  
+                  </li>
+                  <li><tt>:id</tt>: The ID for this entry. Defaults to
+                  &#8220;tag:#{@view.request.host},#{@feed_options[:schema_date]}:#{record.class}/#{record.id}&#8220;
+                  
+                  </li>
+                  </ul>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001891-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001891-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/helpers/atom_feed_helper.rb, line 177</span>&#x000A;177:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">entry</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">options</span> = {})&#x000A;178:           <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">entry</span> <span class="ruby-keyword kw">do</span>&#x000A;179:             <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">id</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:id</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;tag:#{@view.request.host},#{@feed_options[:schema_date]}:#{record.class}/#{record.id}&quot;</span>)&#x000A;180: &#x000A;181:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:published</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">record</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:created_at</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">created_at</span>)&#x000A;182:               <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">published</span>((<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:published</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">created_at</span>).<span class="ruby-identifier">xmlschema</span>)&#x000A;183:             <span class="ruby-keyword kw">end</span>&#x000A;184: &#x000A;185:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">record</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:updated_at</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">updated_at</span>)&#x000A;186:               <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">updated</span>((<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">updated_at</span>).<span class="ruby-identifier">xmlschema</span>)&#x000A;187:             <span class="ruby-keyword kw">end</span>&#x000A;188: &#x000A;189:             <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:rel</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'alternate'</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/html'</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:url</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@view</span>.<span class="ruby-identifier">polymorphic_url</span>(<span class="ruby-identifier">record</span>))&#x000A;190: &#x000A;191:             <span class="ruby-keyword kw">yield</span> <span class="ruby-constant">AtomBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@xml</span>)&#x000A;192:           <span class="ruby-keyword kw">end</span>&#x000A;193:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001890'>
+                <a name='M001890'></a>
+                <div class='synopsis'>
+                  <span class='name'>updated</span>
+                  <span class='arguments'>(date_or_time = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Accepts a Date or Time object and inserts it in the proper format. If nil
+                  is passed, current time in UTC is used.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001890-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001890-source'>     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/helpers/atom_feed_helper.rb, line 165</span>&#x000A;165:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updated</span>(<span class="ruby-identifier">date_or_time</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;166:           <span class="ruby-ivar">@xml</span>.<span class="ruby-identifier">updated</span>((<span class="ruby-identifier">date_or_time</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span>).<span class="ruby-identifier">xmlschema</span>)&#x000A;167:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Commands::List [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          Commands::List
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/railties/lib/commands/plugin_rb.html">vendor/rails/railties/lib/commands/plugin.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong><a href="../Object.html">Object</a></strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M001035">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001036">options</a></li>
+              <li><a href="#M001037">parse!</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M001035'>
+                <a name='M001035'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(base_command)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001035-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001035-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 541</span>&#x000A;541:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">base_command</span>)&#x000A;542:       <span class="ruby-ivar">@base_command</span> = <span class="ruby-identifier">base_command</span>&#x000A;543:       <span class="ruby-ivar">@sources</span> = []&#x000A;544:       <span class="ruby-ivar">@local</span> = <span class="ruby-keyword kw">false</span>&#x000A;545:       <span class="ruby-ivar">@remote</span> = <span class="ruby-keyword kw">true</span>&#x000A;546:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001036'>
+                <a name='M001036'></a>
+                <div class='synopsis'>
+                  <span class='name'>options</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001036-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001036-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 548</span>&#x000A;548:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>&#x000A;549:       <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>&#x000A;550:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">set_summary_indent</span>(<span class="ruby-value str">'  '</span>)&#x000A;551:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">banner</span> =    <span class="ruby-node">&quot;Usage: #{@base_command.script_name} list [OPTIONS] [PATTERN]&quot;</span>&#x000A;552:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">define_head</span> <span class="ruby-value str">&quot;List available plugins.&quot;</span>&#x000A;553:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">separator</span>   <span class="ruby-value str">&quot;&quot;</span>        &#x000A;554:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">separator</span>   <span class="ruby-value str">&quot;Options:&quot;</span>&#x000A;555:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">separator</span>   <span class="ruby-value str">&quot;&quot;</span>&#x000A;556:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">on</span>(         <span class="ruby-value str">&quot;-s&quot;</span>, <span class="ruby-value str">&quot;--source=URL1,URL2&quot;</span>, <span class="ruby-constant">Array</span>,&#x000A;557:                       <span class="ruby-value str">&quot;Use the specified plugin repositories.&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">sources</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@sources</span> = <span class="ruby-identifier">sources</span>}&#x000A;558:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">on</span>(         <span class="ruby-value str">&quot;--local&quot;</span>, &#x000A;559:                       <span class="ruby-value str">&quot;List locally installed plugins.&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">local</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@local</span>, <span class="ruby-ivar">@remote</span> = <span class="ruby-identifier">local</span>, <span class="ruby-keyword kw">false</span>}&#x000A;560:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">on</span>(         <span class="ruby-value str">&quot;--remote&quot;</span>,&#x000A;561:                       <span class="ruby-value str">&quot;List remotely available plugins. This is the default behavior&quot;</span>,&#x000A;562:                       <span class="ruby-value str">&quot;unless --local is provided.&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">remote</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@remote</span> = <span class="ruby-identifier">remote</span>}&#x000A;563:       <span class="ruby-keyword kw">end</span>&#x000A;564:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001037'>
+                <a name='M001037'></a>
+                <div class='synopsis'>
+                  <span class='name'>parse!</span>
+                  <span class='arguments'>(args)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001037-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001037-source'>     <span class="ruby-comment cmt"># File vendor/rails/railties/lib/commands/plugin.rb, line 566</span>&#x000A;566:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)&#x000A;567:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">order!</span>(<span class="ruby-identifier">args</span>)&#x000A;568:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">empty?</span>&#x000A;569:         <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">map!</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">uri</span><span class="ruby-operator">|</span> <span class="ruby-constant">Repository</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>) }&#x000A;570:       <span class="ruby-keyword kw">else</span>&#x000A;571:         <span class="ruby-ivar">@sources</span> = <span class="ruby-constant">Repositories</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">all</span>&#x000A;572:       <span class="ruby-keyword kw">end</span>&#x000A;573:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@remote</span>&#x000A;574:         <span class="ruby-ivar">@sources</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">plugins</span>}.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plugin</span><span class="ruby-operator">|</span> &#x000A;575:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@local</span> <span class="ruby-keyword kw">or</span> <span class="ruby-operator">!</span><span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">installed?</span>&#x000A;576:             <span class="ruby-identifier">puts</span> <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">to_s</span>&#x000A;577:           <span class="ruby-keyword kw">end</span>&#x000A;578:         <span class="ruby-keyword kw">end</span>&#x000A;579:       <span class="ruby-keyword kw">else</span>&#x000A;580:         <span class="ruby-identifier">cd</span> <span class="ruby-node">&quot;#{@base_command.environment.root}/vendor/plugins&quot;</span>&#x000A;581:         <span class="ruby-constant">Dir</span>[<span class="ruby-value str">&quot;*&quot;</span>].<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">p</span>)}.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> &#x000A;582:           <span class="ruby-identifier">puts</span> <span class="ruby-identifier">name</span>&#x000A;583:         <span class="ruby-keyword kw">end</span>&#x000A;584:       <span class="ruby-keyword kw">end</span>&#x000A;585:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

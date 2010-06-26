@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveRecord::NamedScope [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveRecord::NamedScope
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/vendor/rails/activerecord/lib/active_record/named_scope_rb.html">vendor/rails/activerecord/lib/active_record/named_scope.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M002449">included</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Module <a href="NamedScope/ClassMethods.html" class="link">ActiveRecord::NamedScope::ClassMethods</a><br />
+              Class <a href="NamedScope/Scope.html" class="link">ActiveRecord::NamedScope::Scope</a><br />
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M002449'>
+                <a name='M002449'></a>
+                <div class='synopsis'>
+                  <span class='name'>included</span>
+                  <span class='arguments'>(base)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  All subclasses of <a href="Base.html">ActiveRecord::Base</a> have one named
+                  scope:
+                  </p>
+                  <ul>
+                  <li><tt>scoped</tt> - which allows for the creation of anonymous scopes, on the
+                  fly: <tt>Shirt.scoped(:conditions =&gt; {:color =&gt;
+                  'red'}).scoped(:include =&gt; :washing_instructions)</tt>
+                  
+                  </li>
+                  </ul>
+                  <p>
+                  These anonymous scopes tend to be useful when procedurally generating
+                  complex queries, where passing intermediate values (scopes) around as
+                  first-class objects is convenient.
+                  </p>
+                  <p>
+                  You can define a scope that applies to all finders using <a
+                  href="Base.html#M002603">ActiveRecord::Base.default_scope</a>.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M002449-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M002449-source'>    <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/named_scope.rb, line 10</span>&#x000A;10:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)&#x000A;11:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>&#x000A;12:         <span class="ruby-identifier">extend</span> <span class="ruby-constant">ClassMethods</span>&#x000A;13:         <span class="ruby-identifier">named_scope</span> <span class="ruby-identifier">:scoped</span>, <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">scope</span><span class="ruby-operator">|</span> <span class="ruby-identifier">scope</span> }&#x000A;14:       <span class="ruby-keyword kw">end</span>&#x000A;15:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

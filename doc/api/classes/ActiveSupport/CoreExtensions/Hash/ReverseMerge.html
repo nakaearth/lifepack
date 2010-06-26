@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Hash::ReverseMerge [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Hash::ReverseMerge
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/hash/reverse_merge_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/hash/reverse_merge.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Allows for reverse merging two hashes where the keys in the calling hash
+            take precedence over those in the <tt>other_hash</tt>. This is particularly
+            useful for initializing an option hash with default values:
+            </p>
+            <pre>def setup(options = {})&#x000A;  options.reverse_merge! :size =&gt; 25, :velocity =&gt; 10&#x000A;end</pre>
+            <p>
+            Using <tt>merge</tt>, the above example would look as follows:
+            </p>
+            <pre>def setup(options = {})&#x000A;  { :size =&gt; 25, :velocity =&gt; 10 }.merge(options)&#x000A;end</pre>
+            <p>
+            The default <tt>:size</tt> and <tt>:velocity</tt> are only set if the
+            <tt>options</tt> hash passed in doesn&#8217;t already have the respective
+            key.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001456">reverse_merge</a></li>
+              <li><a href="#M001457">reverse_merge!</a></li>
+              <li><a href="#M001458">reverse_update</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001456'>
+                <a name='M001456'></a>
+                <div class='synopsis'>
+                  <span class='name'>reverse_merge</span>
+                  <span class='arguments'>(other_hash)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Performs the opposite of <tt>merge</tt>, with the keys and values from the
+                  first hash taking precedence over the second.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001456-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001456-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/hash/reverse_merge.rb, line 21</span>&#x000A;21:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">other_hash</span>)&#x000A;22:           <span class="ruby-identifier">other_hash</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-keyword kw">self</span>)&#x000A;23:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001457'>
+                <a name='M001457'></a>
+                <div class='synopsis'>
+                  <span class='name'>reverse_merge!</span>
+                  <span class='arguments'>(other_hash)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Performs the opposite of <tt>merge</tt>, with the keys and values from the
+                  first hash taking precedence over the second. Modifies the receiver in
+                  place.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001457-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001457-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/hash/reverse_merge.rb, line 27</span>&#x000A;27:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reverse_merge!</span>(<span class="ruby-identifier">other_hash</span>)&#x000A;28:           <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">other_hash</span>))&#x000A;29:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M001458'>
+                <a name='M001458'></a>
+                <div class='synopsis'>
+                  <span class='name'>reverse_update</span>
+                  <span class='arguments'>(other_hash)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="ReverseMerge.html#M001457">reverse_merge!</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

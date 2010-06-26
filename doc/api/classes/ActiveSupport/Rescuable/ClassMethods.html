@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::Rescuable::ClassMethods [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::Rescuable::ClassMethods
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../files/vendor/rails/activesupport/lib/active_support/rescuable_rb.html">vendor/rails/activesupport/lib/active_support/rescuable.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001275">rescue_from</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001275'>
+                <a name='M001275'></a>
+                <div class='synopsis'>
+                  <span class='name'>rescue_from</span>
+                  <span class='arguments'>(*klasses, &amp;block)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Rescue exceptions raised in controller actions.
+                  </p>
+                  <p>
+                  <tt><a href="ClassMethods.html#M001275">rescue_from</a></tt> receives a
+                  series of exception classes or class names, and a trailing <tt>:with</tt>
+                  option with the name of a method or a Proc object to be called to handle
+                  them. Alternatively a block can be given.
+                  </p>
+                  <p>
+                  Handlers that take one argument will be called with the exception, so that
+                  the exception can be inspected when dealing with it.
+                  </p>
+                  <p>
+                  Handlers are inherited. They are searched from right to left, from bottom
+                  to top, and up the hierarchy. The handler of the first class for which
+                  <tt>exception.is_a?(klass)</tt> holds true is the one invoked, if any.
+                  </p>
+                  <pre>class ApplicationController &lt; ActionController::Base&#x000A;  rescue_from User::NotAuthorized, :with =&gt; :deny_access # self defined exception&#x000A;  rescue_from ActiveRecord::RecordInvalid, :with =&gt; :show_errors&#x000A;&#x000A;  rescue_from 'MyAppError::Base' do |exception|&#x000A;    render :xml =&gt; exception, :status =&gt; 500&#x000A;  end&#x000A;&#x000A;  protected&#x000A;    def deny_access&#x000A;      ...&#x000A;    end&#x000A;&#x000A;    def show_errors(exception)&#x000A;      exception.record.new_record? ? ...&#x000A;    end&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001275-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001275-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/rescuable.rb, line 44</span>&#x000A;44:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rescue_from</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">klasses</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;45:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">klasses</span>.<span class="ruby-identifier">extract_options!</span>&#x000A;46: &#x000A;47:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">:with</span>)&#x000A;48:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>&#x000A;49:             <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>] = <span class="ruby-identifier">block</span>&#x000A;50:           <span class="ruby-keyword kw">else</span>&#x000A;51:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Need a handler. Supply an options hash that has a :with key as the last argument.&quot;</span>&#x000A;52:           <span class="ruby-keyword kw">end</span>&#x000A;53:         <span class="ruby-keyword kw">end</span>&#x000A;54: &#x000A;55:         <span class="ruby-identifier">klasses</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>&#x000A;56:           <span class="ruby-identifier">key</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Class</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">klass</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Exception</span>&#x000A;57:             <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>&#x000A;58:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)&#x000A;59:             <span class="ruby-identifier">klass</span>&#x000A;60:           <span class="ruby-keyword kw">else</span>&#x000A;61:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{klass} is neither an Exception nor a String&quot;</span>&#x000A;62:           <span class="ruby-keyword kw">end</span>&#x000A;63: &#x000A;64:           <span class="ruby-comment cmt"># put the new handler at the end because the list is read in reverse</span>&#x000A;65:           <span class="ruby-identifier">rescue_handlers</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]]&#x000A;66:         <span class="ruby-keyword kw">end</span>&#x000A;67:       <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

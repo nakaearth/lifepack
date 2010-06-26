@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: ActiveSupport::CoreExtensions::Range::IncludeRange [Rails Framework Documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          ActiveSupport::CoreExtensions::Range::IncludeRange
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../../../files/vendor/rails/activesupport/lib/active_support/core_ext/range/include_range_rb.html">vendor/rails/activesupport/lib/active_support/core_ext/range/include_range.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Check if a Range includes another Range.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M001384">include_with_range?</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M001384'>
+                <a name='M001384'></a>
+                <div class='synopsis'>
+                  <span class='name'>include_with_range?</span>
+                  <span class='arguments'>(value)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Extends the default Range#include? to support range comparisons.
+                  </p>
+                  <pre>(1..5).include?(1..5) # =&gt; true&#x000A;(1..5).include?(2..3) # =&gt; true&#x000A;(1..5).include?(2..6) # =&gt; false</pre>
+                  <p>
+                  The native Range#include? behavior is untouched.
+                  </p>
+                  <pre>(&quot;a&quot;..&quot;f&quot;).include?(&quot;c&quot;) # =&gt; true&#x000A;(5..9).include?(11) # =&gt; false</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M001384-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M001384-source'>    <span class="ruby-comment cmt"># File vendor/rails/activesupport/lib/active_support/core_ext/range/include_range.rb, line 18</span>&#x000A;18:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include_with_range?</span>(<span class="ruby-identifier">value</span>)&#x000A;19:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Range</span>)&#x000A;20:             <span class="ruby-identifier">operator</span> = <span class="ruby-identifier">exclude_end?</span> <span class="ruby-value">? </span><span class="ruby-operator">:</span><span class="ruby-operator">&lt;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">:&lt;=</span>&#x000A;21:             <span class="ruby-identifier">end_value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">exclude_end?</span> <span class="ruby-value">? </span><span class="ruby-identifier">last</span>.<span class="ruby-identifier">succ</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">last</span>&#x000A;22:             <span class="ruby-identifier">include?</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">first</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">value</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">end_value</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">operator</span>, <span class="ruby-value">0</span>)&#x000A;23:           <span class="ruby-keyword kw">else</span>&#x000A;24:             <span class="ruby-identifier">include_without_range?</span>(<span class="ruby-identifier">value</span>)&#x000A;25:           <span class="ruby-keyword kw">end</span>&#x000A;26:         <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
