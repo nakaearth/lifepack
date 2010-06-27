@@ -9,6 +9,9 @@ ActionController::Routing::Routes.draw do |map|
     :controller => "login" ,
     :requirements => { :method => :get }
 
+  map.task_boards "task_boards",
+    :controller =>"task_boards", :action=>"http_method_dispatch"
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
