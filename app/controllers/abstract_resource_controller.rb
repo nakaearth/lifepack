@@ -6,7 +6,7 @@ class AbstractResourceController < ApplicationController
   end
 
   [:get,:post,:put, :delete].each do |http_method|
-    define_method(httpd_method){
+    define_method(http_method){
       render :text => "Forbidden", :status => "405 not allowed"
     }
   end
