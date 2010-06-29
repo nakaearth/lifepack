@@ -1,0 +1,8 @@
+<%= render :partial => 'header' %>
+<%= render :partial => 'menus' %>
+<div id="item_form_block" class="forms">
+<%= error_messages_for 'task' %>
+<div id='task_form_block'>
+<%= form_tag  :action => @form_action, :id => @task.id %>
+<%= render :partial => 'form_fields' %>
+<%= submit_tag @form_button %>

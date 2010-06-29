@@ -1,0 +1,29 @@
+
+<p>
+  <%=  @user_name %> さんは・・・
+  <label for="task_content">何するのかな？</label>
+  <br/>
+  <%= text_area 'task', 'content',"cols" => 80, "rows" => 3  %>
+  <br/>
+  <br>
+  
+  <span>
+      <label for="priority">後で</label>
+      <%=image_tag("priority1.jpg",:size => "20x20",:border => 0)%>
+      <%= radio_button("task", "priority", "1") %>
+  </span>
+  &nbsp;&nbsp;
+  <span>
+      <label for="priority">もう少し後で</label>
+      <%=image_tag("priority2.jpg",:size => "20x20",:border => 0)%>
+      <%= radio_button("task", "priority", "2")%>
+  </span>
+  &nbsp;&nbsp;
+  <span>
+      <label for="priority">今やるか</label>
+      <%=image_tag("priority3.jpg",:size => "20x20",:border => 0)%>
+      <%= radio_button("task", "priority", "3") %>
+  </span>  
+  <br>
+
+

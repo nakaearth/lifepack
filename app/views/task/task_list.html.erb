@@ -1,11 +1,7 @@
 <%= render :partial => 'header' %>
 <%= render :partial => 'menus' %>
-<div id="item_form_block" class="forms">
-<%= render :partial => 'form' %>
-</div>
+<br>
 <div id="task_info"></div>
-
-
 <table class="task_list_board">
     <tr >
         <th class="task_list_menu_bar">
@@ -34,7 +30,7 @@
 			<%=h priority_name(task.priority) %>
         </td>
         <td class="task_list_td<%= list_color_num(i) %>">
-            <%= link_to_remote '編集', :url => {:action => 'editTask', :id => task.id} %>
+            <%= link_to '編集', :action => 'edit_task', :id => task.id %>
         </td>
     </tr>
     <% i+=1 %>

@@ -1,5 +1,5 @@
 class TaskController < ApplicationController
-  before_filter :authorize, :only=>[:index,:list, :show_task_board,:task_list, :edit, :update, :destroy,:add_task,:add_task_list,:show_calendar,:show_past_tasks]
+  before_filter :authorize, :only=>[:index,:list, :show_task_board,:task_list, :edit, :update, :destroy,:add_task,:add_task_list,:show_calendar,:show_past_tasks,:edit_task,:update_task]
   before_filter :redirect_if_mobile
 
    #インデックス
@@ -82,6 +82,27 @@ class TaskController < ApplicationController
     end
   end
 
+  #タスクの編集
+   def edit_task
+    @task = Task.find(params[:id])
+    @task.content = @task.content.gsub("<br/>", "\n")
+    user_id = session[:user_id].email
+    if user_id ==nil || (user_id != nil && user_id.isBlank?)
+      user_id = session[:user_id].nickname
+    end
+    @user_name= user_id
+    @form_action = 'update_task'
+    @form_button = 'タスク編集'
+  end
+  def update_task
+    @logical = TaskLogical.new
+    user_id = session[:user_id].email
+    if user_id ==nil || (user_id != nil && user_id.isBlank?)
+      user_id = session[:user_id].nickname
+    end
+    @task = @logical.updateTask(params[:id],params[:task][:content],params[:task][:priority])
+     redirect_to :action => 'task_list'
+  end
    #削除
   def destroy
     @logical = TaskLogical.new
