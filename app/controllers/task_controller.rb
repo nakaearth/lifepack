@@ -166,7 +166,7 @@ class TaskController < ApplicationController
       user_id = session[:user_id].nickname
     end
     @user_name= user_id
-    day = params[:year]+'-'+params[:month]+'-'+params[:day]
+    day = params[:year]+'-'+params[:month]+'-'+params[:day]+' 00:00:00'
     @logical = TaskLogical.new
     @tasks = @logical.find_done_tasks_4day(user_id,day)
   end
