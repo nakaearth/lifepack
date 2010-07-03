@@ -1,4 +1,4 @@
-
+<div id="pastCaption" class="pastCaption">
 <%#
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
@@ -32,7 +32,7 @@ end
 	</table>
 </div>
 	<%=task.content %><br><br>
-<hr>
+    <hr>
 	<span class="datetime">
 		作成<%=h task.created_at.strftime("%Y/%m/%d %H:%M") %><br>
 		更新<%=h task.updated_at.strftime("%Y/%m/%d %H:%M") %><br>
@@ -40,3 +40,4 @@ end
 </div>
 
 <% end %>
+</div>

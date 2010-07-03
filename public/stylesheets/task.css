@@ -184,3 +184,13 @@
 	text-decoration: none;
     width: 100%;
 }
+.pastCaption {
+	font-weight: bold;
+	border: 2px solid #333333;
+	background-color: #FFFFFF;
+	vertical-align: text-top;
+	width: 90%;
+	height: 700px;
+	overflow: visible;
+
+}

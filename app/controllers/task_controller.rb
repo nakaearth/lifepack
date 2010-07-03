@@ -8,8 +8,11 @@ class TaskController < ApplicationController
   def index
     list
     @user_name= session[:user_id].nickname
-    if @user_name == nil
+    if @user_name==nil || (@user_name != nil && @user_name.length ==0)
       @user_name = session[:user_id].email
+    end
+    if @user_name==nil || (@user_name != nil && @user_name.length ==0)
+      @user_name = session[:user_id].fullname
     end
     render :action => 'list'
   end

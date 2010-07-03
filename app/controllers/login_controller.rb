@@ -22,7 +22,7 @@ class LoginController < ApplicationController
   protected
     def authenticate(identity_url = "")
       authenticate_with_open_id(
-      params[:openid_url], :required => [:nickname, :email]) do
+      params[:openid_url], :required => [:nickname, :email,:fullname]) do
         |result, identity_url, registration|
 
         if result.successful?
@@ -30,6 +30,7 @@ class LoginController < ApplicationController
           @user.identity_url = identity_url
           @user.nickname = registration["nickname"]
           @user.email = registration["email"]
+          @user.fullname = registration["fullname"]
           session[:user_id] = @user
 
           jumpto = session[:jumpto] || { :controller => "task" }
