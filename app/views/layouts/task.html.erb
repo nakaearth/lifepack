@@ -11,6 +11,10 @@
         <p style="color: green">
             <%= flash[:notice] %>
         </p>
+        <%= render :partial => 'header' %>
+        <%= render :partial => 'menus' %>
+        <br>
+        <hr>
         <%= yield %>
     </body>
 </html>

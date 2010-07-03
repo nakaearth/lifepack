@@ -1,6 +1,4 @@
-<%= render :partial => 'header' %>
-<%= render :partial => 'menus' %>
-<br>
+
 <div id="cal_menu" class="cal_menu_text">
 <%=  link_to @prev.year.to_s+'年'+@prev.month.to_s+'月' ,:action=>'show_calendar',:year =>@prev.year,:month=>@prev.month %>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

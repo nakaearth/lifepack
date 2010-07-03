@@ -1,12 +1,42 @@
+
 <%#
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-
-<%
-for task in @tasks
- %>
-    <%= h task.title %>
-<%
+<% if @tasks.size == 0 %>
+  この日に完了したタスクはありません。
+<% end %>
+<%  for task in @tasks do -%>
+    <%
+case task.priority
+when 1
+  @color = "#67BA37"
+when 2
+  @color = "#9DB1FF"
+when 3
+  @color = "#FF3333"
+else
+  @color = "#9DB1FF"
 end
 %>
+<div class="task" id="<%=task.id%>" style="border:2px solid <%=@color%>">
+<div class="owner">
+	<table style="padding:0px;margin:0px;">
+		<tr>
+		<td>担当者：
+           <% if (task.user_id != nil) %>
+               <%=task.user_id %>
+           <% end %>
+        </td>
+		</tr>
+	</table>
+</div>
+	<%=task.content %><br><br>
+<hr>
+	<span class="datetime">
+		作成<%=h task.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+		更新<%=h task.updated_at.strftime("%Y/%m/%d %H:%M") %><br>
+	</span>
+</div>
+
+<% end %>

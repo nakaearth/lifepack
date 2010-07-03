@@ -40,12 +40,16 @@ class TaskLogical < AbstractLogical
   end
 
   def find_done_tasks_4day(user_id,day)
+    next_day = day+1
     begin
-      @doneTasks = Task.find(:all, :conditions=>["status=? and user_id=? and updated_at < ? and updated_at >= ?",@@DONE,user_id,day+1,day],:order=> "updated_at desc" )
+      @doneTasks = Task.find(:all, :conditions=>["status=? and user_id=? and updated_at < ? and updated_at >= ?",@@DONE,user_id,next_day.to_s,day],:order=> "updated_at desc" )
       logInfo(@doneTasks)
       return @doneTasks
-    rescue
+    rescue => e
+      logError("Exception:"+e.to_s)
       logError("findDoneTaskListByDay.:User_id:")
+      logError(day)
+      logError(next_day)
       return Array.new
     end
   end

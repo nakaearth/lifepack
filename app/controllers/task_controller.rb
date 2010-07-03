@@ -1,3 +1,5 @@
+require 'date'
+
 class TaskController < ApplicationController
   before_filter :authorize, :only=>[:index,:list, :show_task_board,:task_list, :edit, :update, :destroy,:add_task,:add_task_list,:show_calendar,:show_past_tasks,:edit_task,:update_task]
   before_filter :redirect_if_mobile
@@ -166,9 +168,10 @@ class TaskController < ApplicationController
       user_id = session[:user_id].nickname
     end
     @user_name= user_id
-    day = params[:year]+'-'+params[:month]+'-'+params[:day]+' 00:00:00'
+    day = params[:year]+'-'+params[:month]+'-'+params[:day]
+
     @logical = TaskLogical.new
-    @tasks = @logical.find_done_tasks_4day(user_id,day)
+    @tasks = @logical.find_done_tasks_4day(user_id,Date.parse(day))
   end
 
    #ゴミ箱からの生還
