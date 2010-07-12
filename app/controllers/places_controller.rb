@@ -47,4 +47,6 @@ class PlacesController < ApplicationController
     end
    # render :partial=>"places_map"
   end
+
+  
 end

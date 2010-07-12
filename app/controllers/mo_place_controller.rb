@@ -24,4 +24,23 @@ def map
     @position=session[:now_position]
     @distance=@position.distance_to(@place_name, :units=>:kms)
   end
+
+  def new
+
+  end
+  def recommend_place
+    @position=session[:now_position]
+    @place = Place.new
+    @place.lat = @position.lat
+    @placce.lot = @position.lon
+    @place.place_name = params[:place_name]
+    @place.description = params[:description]
+    if @place.save
+      flash[:flash]='登録完了'
+    else
+      flash[:error]='登録エラー'
+      redirect_to :action=>'index'
+    end
+  end
+  
 end
