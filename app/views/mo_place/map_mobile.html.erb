@@ -3,8 +3,8 @@
  <%= form_tag  :action => 'recommend_place' %>
 <p>
 <label for="place_name">場所の名前</label>
-<%= text_field 'place' 'place_name' %>
-<%= text_area 'replace' 'description' "cols" => 40, "rows" => 3 %>
+<%= text_field 'place' ,'place_name' %>
+<%= text_area 'place', 'description' "cols" => 40, "rows" => 3 %>
 <%= submit_tag '登録' %>
 <br>
 <font size="3" >距離検索しますか？</font>
