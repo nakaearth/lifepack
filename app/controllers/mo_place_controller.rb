@@ -13,9 +13,7 @@ def map
       @display_width= (@display.physical_width*0.7).to_int
       @display_size=@display_height.to_s+"x"+@display_width.to_s
       p @display_size
-      #@logical = BoardLogical.new
-      #session[:now_position] = @position
-      #@boards = @logical.find_board_by_position(@position.lon,@position.lat)
+      session[:now_position] = @position
     end
   end
   
