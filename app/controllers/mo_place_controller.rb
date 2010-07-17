@@ -28,16 +28,17 @@ def map
   end
   def recommend_place
     @position=session[:now_position]
-    @place = Place.new
+    @place = Place.new(params[:place])
     @place.lat = @position.lat
     @place.lng = @position.lon
-    @place.place_name = params[:place_name]
-    @place.description = params[:description]
+   # @place.place_name = params[:place_name]
+   # @place.description = params[:description]
     if @place.save
       flash[:flash]='登録完了'
+      redirect_to :action=>'index'
     else
       flash[:error]='登録エラー'
-      redirect_to :action=>'index'
+      redirect_to :action=>'new'
     end
   end
   

@@ -1,12 +1,6 @@
 
 <font size="3" >今いるこの場所をお勧めしますか？</font>
- <%= form_tag  :action => 'recommend_place' %>
-<p>
-<label for="place_name">場所の名前</label>
-<%= text_field 'place' ,'place_name' %>
-<%= text_area 'place', 'description', "cols" => 30, "rows" => 5 %>
-<br>
-<%= submit_tag '登録' %>
+<%= link_to '投稿', :action => 'new' %><br>
 <br>
 <font size="3" >距離検索しますか？</font>
 あなたが今いる場所はからの距離を測りましょうか？
