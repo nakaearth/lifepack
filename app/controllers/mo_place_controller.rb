@@ -30,7 +30,7 @@ def map
     @position=session[:now_position]
     @place = Place.new
     @place.lat = @position.lat
-    @placce.lot = @position.lon
+    @placce.lng = @position.lon
     @place.place_name = params[:place_name]
     @place.description = params[:description]
     if @place.save
