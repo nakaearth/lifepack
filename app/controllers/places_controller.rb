@@ -7,8 +7,8 @@ class PlacesController < ApplicationController
     @map = GoogleMap.new(:dom_id=>'map')
     for place in @places
       @map.markers << GoogleMapMarker.new(:map => @map,
-        :html =>place.description,:lat => place.lat.to_f,  # 経度 139.556424
-                                   :lng =>place.lng.to_f  # 緯度 35.326105
+        :html =>place.description,:lat => place.lat.to_f,  # 緯度 35.326105
+                                   :lng =>place.lng.to_f  # 経度 139.556424
                                   )
     end
     respond_to do |format|
