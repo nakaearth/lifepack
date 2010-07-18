@@ -6,6 +6,9 @@ def map
     if request.mobile
       @position=session[:now_position]
       @position = request.mobile.position unless @position.nil?
+      if @position.nil?
+        redirect_to :action=>'index'
+      end
       #画面サイズに合わせて表示
       @display = request.mobile.display ##あってるかな？画面サイズ取得
       @display_height = (@display.physical_height*0.5).to_int
@@ -33,7 +36,7 @@ def map
    # @place.description = params[:description]
     if @place.save
       flash[:flash]='登録完了'
-      redirect_to :action=>'index'
+      redirect_to :action=>'map'
     else
       flash[:error]='登録エラー'
       redirect_to :action=>'new'
