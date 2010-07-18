@@ -5,14 +5,12 @@ class MoPlaceController < MoAbstractController
 def map
     if request.mobile
       @position=session[:now_position]
-    #unless @position.nil?
-      @position = request.mobile.position
+      @position = request.mobile.position unless @position.nil?
       #画面サイズに合わせて表示
       @display = request.mobile.display ##あってるかな？画面サイズ取得
       @display_height = (@display.physical_height*0.5).to_int
       @display_width= (@display.physical_width*0.7).to_int
       @display_size=@display_height.to_s+"x"+@display_width.to_s
-      p @display_size
       session[:now_position] = @position
     end
   end
