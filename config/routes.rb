@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :languages
+
   map.resources :task_boards
 
   #map.resources :recommend_places
