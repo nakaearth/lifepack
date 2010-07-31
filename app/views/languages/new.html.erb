@@ -2,9 +2,11 @@
 
 <% form_for(@language) do |f| %>
   <%= f.error_messages %>
-
+  <label for="comment_author">文章を入れてください。文章から言葉を覚えていきます。</label>
+  <%= text_field 'sentence' %>
+  <br>
   <p>
-    <%= f.submit 'Create' %>
+  <%= f.submit '登録' %>
   </p>
 <% end %>
 

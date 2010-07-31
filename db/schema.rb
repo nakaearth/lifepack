@@ -35,12 +35,15 @@ ActiveRecord::Schema.define(:version => 20100731071707) do
   end
 
   create_table "languages", :force => true do |t|
-    t.text     "word",       :limit => 255,                 :null => false
-    t.string   "parse",                     :default => "", :null => false
-    t.integer  "count",                     :default => 0
+    t.string   "word",       :limit => 60, :default => "", :null => false
+    t.string   "parse",      :limit => 20, :default => "", :null => false
+    t.string   "category",   :limit => 30, :default => "", :null => false
+    t.integer  "count",                    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "languages", ["category", "word"], :name => "index_languages_on_category_and_word"
 
   create_table "memos", :force => true do |t|
     t.string   "title",      :default => "", :null => false
