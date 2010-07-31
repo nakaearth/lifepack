@@ -11,8 +11,8 @@ class CreatePlaces < ActiveRecord::Migration
     @place = Place.new
     @place.place_name ="鶴ヶ丘八幡宮"
     @place.description ="古都鎌倉の代表的な建物です。"
-    @place.lng = 35.326105
-    @place.lat = 139.556424
+    @place.lng = 139.556424
+    @place.lat = 35.326105
     @place.save
 
   end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100605021301) do
+ActiveRecord::Schema.define(:version => 20100731071707) do
 
   create_table "bad_words", :force => true do |t|
     t.string   "word",       :default => "", :null => false
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20100605021301) do
     t.integer "comment_id",                                  :null => false
     t.string  "message",    :limit => 140, :default => "",   :null => false
     t.string  "author",     :limit => 50,  :default => "''", :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.text     "word",       :limit => 255,                 :null => false
+    t.string   "parse",                     :default => "", :null => false
+    t.integer  "count",                     :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "memos", :force => true do |t|
@@ -89,6 +97,11 @@ ActiveRecord::Schema.define(:version => 20100605021301) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "task_boards", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tasks", :force => true do |t|
     t.text     "content",    :limit => 255,                 :null => false
