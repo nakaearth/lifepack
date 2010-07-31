@@ -3,6 +3,17 @@
 <h1>おすすめ場所</h1>
 <br>
   <div id='places_form_block'>
-  
+  <%= form_remote_tag :update=>'places_map',:url => { :action => 'find_places_by_address'}%>
+<p>
+  <label for="addresst">住所からの検索は？</label>
+  <br/>
+  <input type="text" id="address" name="address" size="30" value="">
+  <br>
+  <label for="distant">距離も指定</label>
+  <br/>
+  <input type="text" id="distant" name="distant" size="4" default="10">
+ <!-- %= submit_to_remote :name=> 'search',:value=>'検索' % -->
+ <%= submit_tag '検索' %>
   </div>
 <%= render :partial => 'places_map' %>
+ 

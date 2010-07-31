@@ -7,8 +7,8 @@ class PlacesController < ApplicationController
     @map = GoogleMap.new(:dom_id=>'map')
     for place in @places
       @map.markers << GoogleMapMarker.new(:map => @map,
-        :html =>place.place_name+":"+place.description,:lat => place.lat.to_f,  # 緯度 35.326105
-                                   :lng =>place.lng.to_f  # 経度 139.556424
+        :html =>place.place_name+":"+place.description,:lat => place.lat.to_f,  
+                                   :lng =>place.lng.to_f  
                                   )
     end
     respond_to do |format|
@@ -19,7 +19,7 @@ class PlacesController < ApplicationController
     end
   end
 
-  def find_place_by_address
+  def find_places_by_address
     address=params[:address]
     distant=params[:distant]
     @places = Place.find(:all,:origin=>address, :within=>distant.to_i)
@@ -30,23 +30,10 @@ class PlacesController < ApplicationController
                                    :lng => place.lat.to_f   
                                   )
     end
-
-  end
-
-  def find_place_by_distant(distant,place_x, place_y)
-#    @places = Place.find(:all,:origin=>[place_x,place_y], :width=>distant)
-    for place in @places
-      @map.markers << GoogleMapMarker.new(:map => @map,
-        :html =>place.description,:lat => place.lng.to_f,   
-                                   :lng => place.lat.to_f   
-                                  )
-    end
     render :update do |page|
-      page['places_map'].remove
-      page.insert_html :top, 'task_form_block', :partial => 'places_map'
+        page['places_map'].remove
+        page.insert_html :top, 'map_form', :partial => 'places_map'
     end
-   # render :partial=>"places_map"
   end
-
-  
+ 
 end
