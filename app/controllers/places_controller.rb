@@ -26,13 +26,13 @@ class PlacesController < ApplicationController
     @map = GoogleMap.new(:dom_id=>'map')
     for place in @places
       @map.markers << GoogleMapMarker.new(:map => @map,
-        :html =>place.description,:lat => place.lng.to_f,   
+        :html =>place.place_name+":"+place.description,:lat => place.lng.to_f,
                                    :lng => place.lat.to_f   
                                   )
     end
     render :update do |page|
         page['places_map'].remove
-        page.insert_html :top, 'map_form', :partial => 'places_map'
+        page.insert_html :top, 'map_top', :partial => 'places_map'
     end
   end
  

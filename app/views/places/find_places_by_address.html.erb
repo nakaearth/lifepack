@@ -3,7 +3,7 @@
 <h1>おすすめ場所</h1>
 <br>
   <div id='places_form_block'>
-  <%= form_remote_tag :url => { :action => 'find_places_by_address'},:html => {:id => 'places_form'}%>
+  <%= form_remote_tag :update=>'places_map',:url => { :action => 'find_places_by_address'}%>
 <p>
   <label for="addresst">住所からの検索は？</label>
   <br/>
