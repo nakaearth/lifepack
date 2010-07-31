@@ -1,9 +1,11 @@
+require 'MeCab'
+
 class LanguagesController < ApplicationController
   # GET /languages
   # GET /languages.xml
   def index
     @languages = Language.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @languages }
@@ -14,7 +16,6 @@ class LanguagesController < ApplicationController
   # GET /languages/1.xml
   def show
     @language = Language.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @language }
@@ -40,6 +41,9 @@ class LanguagesController < ApplicationController
   # POST /languages
   # POST /languages.xml
   def create
+    sentence = params[:sentence]
+    mecab = MeCab::Tagger.new( "-d /usr/local/lib/mecab-ipadic-2.7.0-20070801" )
+    logInfo("========"+mecab.parse(sentence))
     @language = Language.new(params[:language])
 
     respond_to do |format|
