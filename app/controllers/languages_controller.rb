@@ -1,5 +1,8 @@
 require 'MeCab'
 
+#require 'classifier'
+#require 'stemmer'
+
 class LanguagesController < ApplicationController
   # GET /languages
   # GET /languages.xml
@@ -44,10 +47,21 @@ class LanguagesController < ApplicationController
     sentence = params[:sentence]
     mecab = MeCab::Tagger.new( "-d /usr/local/lib/mecab-ipadic-2.7.0-20070801" )
     logInfo("========"+mecab.parse(sentence))
-    @language = Language.new(params[:language])
-
+    node = mecab.parseToNode(sentence)
+    is_save= false
+    while  node do
+      logInfo("========"+"#{node.surface}\t#{node.feature}")
+      if !("#{node.surface}".blank?)
+        @language = Language.new(params[:language])
+        @language.word="#{node.surface}"
+        @language.parse="#{node.feature}"
+        is_save= @language.save
+      end
+       node = node.next
+    end
+   
     respond_to do |format|
-      if @language.save
+      if is_save
         flash[:notice] = 'Language was successfully created.'
         format.html { redirect_to(@language) }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
