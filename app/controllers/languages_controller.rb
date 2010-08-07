@@ -52,10 +52,9 @@ class LanguagesController < ApplicationController
     while  node do
       logInfo("========"+"#{node.surface}\t#{node.feature}")
       if !("#{node.surface}".blank?)
-        @language = Language.new(params[:language])
-        @language.word="#{node.surface}"
-        @language.parse="#{node.feature}"
-        is_save= @language.save
+        @logical = LanguagesLogical.new
+        @language = @logical.save_language("#{node.surface}",params[:language][:category], "#{node.feature}")
+        @language.save
       end
        node = node.next
     end
